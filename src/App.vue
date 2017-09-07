@@ -47,14 +47,13 @@ export default {
 }
 .general{
   width: 100%;
-  height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #CFD8DC;
 }
 .contenedor{
-  height: 200px;
   width: 1200px;
   background-color: red;
 }

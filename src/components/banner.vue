@@ -11,7 +11,7 @@
    data(){
      return{
        items: [
-         'http://www.meta.gov.co/web/sites/default/files/styles/slider_1200x400/public/papa-01.jpg',
+         'http://www.meta.gov.co/web/sites/default/files/styles/slider_1200x400/public/Banner%20gobernacion%20sobre%20ruedas-01.png',
        ]
      }
    }

@@ -12,6 +12,6 @@
   line-height:4;
   text-align: center;
   background-color: #EEEEEE;
-  color: #F4511E
+  color: #CCCCCC
 }
 </style>
