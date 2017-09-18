@@ -1,10 +1,13 @@
 <template>
 <div>
   <div class="general">
+    <div>
+    </div>
+
     <div class="menutop">
       <menu-top ></menu-top>
-
     </div>
+
     <div id="app" class="contenedor">
       <router-view></router-view>
     </div>
@@ -51,7 +54,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #CFD8DC;
+  background-color: #eeeeee;
 }
 .contenedor{
   width: 1200px;
