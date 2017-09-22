@@ -1,21 +1,380 @@
 <template>
-  <div class="cont">
-  <h1>inicio</h1>
+  <div class="general">
+
+      <div class="banner">
+        <bannerTop></bannerTop>
+      </div>
+
+      <div class="botones_banner">
+        <div class="botones_banner_accion">
+          <div><span>Acción comunal y participación ciudadana</span></div>
+          <div><img src="../assets/business-person-silhouette-wearing-tie.png"></div>
+        </div>
+        <div class="botones_banner_accion botones_banner_regalias">
+          <div><span>Regalías Meta</span></div>
+          <div><img src="../assets/bitmap.png"></div>
+        </div>
+        <div class="botones_banner_accion botones_banner_calendario">
+          <div><span>Calendario eventos</span></div>
+          <div><img src="../assets/calendar.jpg"></div>
+        </div>
+        <div class="botones_banner_accion botones_banner_liquidacion">
+          <div><span>Liquidación impuesto vehiculos</span></div>
+          <div><img src="../assets/impuestoscar.png"></div>
+        </div>
+      </div>
+
+      <div class="contenido">
+        <div class="noticias">
+          <div class="noticias_contenedor">
+                  <img src="../assets/img.jpg">
+                  <div>
+                    <h2>Papa visito el llano</h2>
+                    <p>hola noticias</p>
+                    <button type="button" name="button">Ver más</button>
+                  </div>
+          </div>
+          <div class="noticias_contenedor">
+                  <img src="../assets/img.jpg">
+                  <div>
+                    <h2>Papa visito el llano</h2>
+                    <p>hola noticias</p>
+                    <button type="button" name="button">Ver más</button>
+                  </div>
+          </div>
+          <div class="noticias_contenedor">
+                  <img src="../assets/img.jpg">
+                  <div>
+                    <h2>Papa visito el llano</h2>
+                    <p>hola noticias</p>
+                    <button type="button" name="button">Ver más</button>
+                  </div>
+          </div>
+          <div class="noticias_contenedor">
+                  <img src="../assets/img.jpg">
+                  <div>
+                    <h2>Papa visito el llano</h2>
+                    <p>hola noticias</p>
+                    <button type="button" name="button">Ver más</button>
+                  </div>
+          </div>
+          <div class="noticias_contenedor">
+                  <img src="../assets/img.jpg">
+                  <div>
+                    <h2>Papa visito el llano</h2>
+                    <p>hola noticias</p>
+                    <button type="button" name="button">Ver más</button>
+                  </div>
+          </div>
+
+        </div>
+        <div class="lateral">
+
+
+          <h2>Información Servicios</h2>
+
+          <div class="lateral_line"><p></p></div>
+
+          <button type="button" name="button" class="lateral_line_boton">
+            <img src="../assets/check.png" >
+            <span>Transparencia</span>
+          </button>
+          <button type="button" name="button" class="lateral_line_boton">
+            <img src="../assets/check.png" >
+            <span>Intranet</span>
+          </button>
+          <button type="button" name="button" class="lateral_line_boton">
+            <img src="../assets/check.png" >
+            <span>Regalias</span>
+          </button>
+
+          <div class="lateral_line"><p></p></div>
+
+          <div class="lateral_cuadros">
+            <img src="../assets/prensa-papa-2017-1.jpg">
+          </div>
+
+          <div class="lateral_cuadros">
+            <img src="../assets/gobierno-sobre-ruedas-01.jpg">
+          </div>
+
+          <div class="lateral_cuadros">
+            <img src="../assets/boton-1063.jpg">
+          </div>
+
+          <div class="lateral_cuadros">
+            <img src="../assets/logo-ctpd-0-1.jpg">
+          </div>
+
+          <div class="lateral_line"><p></p></div>
+
+          <iframe
+          class="lateral_video"
+          src="https://www.youtube.com/embed/B8D31dhgGDQ?t=5"
+          frameborder="0"
+          allowfullscreen>
+          </iframe>
+
+        </div>
+
+
+
+      </div>
+
+      <div class="social_botones">
+
+        <div class="social_botones_cuadro2">
+          <h2>Suscribete</h2>
+          <p>Dejanos tu correo electronico y recibe boletines de noticias</p>
+          <el-input placeholder="Escribe tu correo electronico" v-model="input"></el-input>
+          <el-button type="primary">Suscribete</el-button>
+        </div>
+
+        <div class="social_botones_cuadro">
+          <div id="fb-root"></div>
+          <div class="fb-page" data-href="https://www.facebook.com/GobMeta/"
+            data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
+            data-hide-cover="false" data-show-facepile="true" data-width="500">
+            <blockquote cite="https://www.facebook.com/GobMeta/" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/GobMeta/">Cargando Facebook...</a></blockquote>
+          </div>
+        </div>
+
+        <div class="social_botones_cuadro">
+          <a class="twitter-timeline" href="https://twitter.com/marcela_amayag">Cargando Twitter...</a>
+        </div>
+
+
+      </div>
   </div>
 </template>
 
+<script>
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=1513660055361840";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+import bannerTop from './banner.vue'
+export default {
+  components: {bannerTop},
+  data(){
+     return{
+           input: ''
+           }
+         }
+}
+</script>
+
 <style scoped>
-  .cont{
-  top: 0;
+.general{
+  max-width: 100%;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white
+}
+.menu{
+  width: 100%;
+  display: flex;
+  background-color: white
+}
+.banner{
+  width: 100%;
+}
+.botones_banner{
+  width: 100%;
+  height: 128px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 30px
+}
+.botones_banner_accion{
+  max-width: 277px;
+  width: 100%;
+  height: 128px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #9b9b9b;
+  box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+}
+.botones_banner_accion div{
+  padding: 25px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #ffffff;
+}
+.botones_banner_regalias{
+  background-color: #f5f5f5;
+}
+.botones_banner_regalias div{
+  color: #393939;
+}
+.botones_banner_calendario{
+  background-color: #3fbef6;
+}
+.botones_banner_liquidacion{
+  background-color: #818a89;
+}
+.contenido{
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.noticias{
+  display: flex;
+  flex-direction: column;
+}
+.noticias_contenedor{
+  width: 755px;
+	height: 220px;
+  display: flex;
+  flex-direction: row;
+	background-color: #f6f6f6;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+}
+.noticias_contenedor img{
+  height: 220px;
+  width: 300px;
+}
+.noticias_contenedor div{
+  width: 460px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.noticias_contenedor h2{
+	font-size: 22px;
+	color: #4f6983;
+  font-weight: 300;
+}
+.noticias_contenedor p{
+	font-size: 14px;
+	line-height: 2.02;
+	letter-spacing: 0.2px;
+	color: #393939;
+}
+.noticias_contenedor button{
+  	width: 110px;
+  	height: 45px;
+  	border: solid 1px #009d3d;
+    background-color: white;
+    margin-top: 20px;
+    font-size: 14px;
+	  font-weight: 500;
+	  color: #393939;
+    font-size: 12px;
+  	font-weight: 500;
+  	color: #128f2e;
+}
+.lateral{
+  width: 384.1px;
+	background-color: #f6f6f6;
+	box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.lateral_video{
+  width: 100%;
+  height: 235px;
+  margin-bottom: 10px;
+}
+.lateral h2{
+  font-size: 22px;
+  font-weight: 300;
+	color: #4f6983;
+  display: flex;
+  align-self: flex-end;
+  margin-bottom: 5px
+}
+.lateral_line {
+	width: 100%;
+	height: 1px;
+	border: solid 1px rgba(155, 155, 155, 0.62);
+  margin-bottom: 25px
+}
+.lateral_line_boton {
+	width: 100%;
+	height: 45px;
+	background-color: #f1f1f1;
+	border: solid 1px rgba(155, 155, 155, 0.96);
+  margin-bottom: 15px;
+  font-size: 14px;
+	font-weight: 500;
+	color: #393939;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 60px;
+}
+.lateral_line_boton img{
+  margin-right: 75px;
+  height: 20px
+}
+.lateral_cuadros {
+	width: 100%;
+	background-color: #ffffff;
+	box-shadow: 0 2px 4px 0 #b7b5b7;
+  padding: 10px;
   display: flex;
   justify-content: center;
-  flex: 1;
-  background-color: yellow;
+  text-align: center;
+  margin-bottom: 15px
+}
+.social_botones{
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
 
-},
-@media(max-width: 585px){
-  .aplications{
-    width: 100%;
-  }
+}
+.social_botones_cuadro{
+  width: 32%;
+  height: 500px;
+  background-color: #f6f6f6;
+  box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  overflow:auto;
+}
+.social_botones_cuadro2{
+  width: 32%;
+  height: 500px;
+  background-color: #f6f6f6;
+  box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  overflow:auto;
+  padding: 90px 40px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.social_botones_cuadro2 h2{
+  font-size: 22px;
+	color: #4f6983;
+  font-weight: 300;
+  margin-bottom: 60px
+}
+.social_botones_cuadro2 p{
+  color: #393939;
+  text-align: center
+}
+.el-button--primary{
+  width: 100%
+}
+@media screen and (max-width: 1100px) {
+
 }
 </style>

@@ -1,27 +1,32 @@
 <template>
 <div>
   <div class="general">
-    <div>
-    </div>
 
-    <div class="menutop">
+
       <menu-top ></menu-top>
-    </div>
 
-    <div id="app" class="contenedor">
+
+    <div class="contenedor">
+
+      <div class="menu">
+        <menuPrincipal></menuPrincipal>
+      </div>
+
       <router-view></router-view>
     </div>
 
   </div>
-  <footerWeb></footerWeb>
+     <footerWeb></footerWeb>
 </div>
 </template>
 
 <script>
 import menuTop from './components/menu_top.vue'
 import footerWeb from './components/footer.vue'
+import menuPrincipal from './components/menu.vue'
+
 export default {
-  components: { menuTop, footerWeb },
+  components: { menuTop, footerWeb, menuPrincipal },
   name: 'app'
 }
 </script>
@@ -33,17 +38,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  /*color: #393939;*/
   font-family: 'Roboto', sans-serif;
-}
-#app{
-  display: flex;
-  flex-wrap: wrap;
-  background-image: linear-gradient(to bottom, #f1f8fa, #ffffff);
-}
-.views{
-  width: calc(100% - 180px);
-  min-height: 100vh;
 }
 .upload-demo, .upload-demo > .el-upload, .upload-demo .el-upload-dragger{
   width: 100%;
@@ -56,28 +51,23 @@ export default {
   align-items: center;
   background-color: #eeeeee;
 }
+.menu{
+  width: 100%;
+  display: flex;
+  background-color: white
+}
 .contenedor{
-  width: 1200px;
-  background-color: red;
+  max-width: 1200px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px 0 rgba(94, 92, 92, 0.32);
+  background-color: white;
 }
 .menutop{
-  width: 1200px;
+  width: 1300px;
   display: flex;
-}
-
-footer{
-  width: 100%;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-footer img{
-  width: 110px;
-  margin-bottom: 10px;
-}
-footer p{
-  font-size: 15px;
+  margin-bottom: 0px
 }
 @media(max-width: 750px){
   .views{

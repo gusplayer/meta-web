@@ -3,7 +3,9 @@
 
     <div class="uper_footer">
       <div class="uper_footer_content" >
-       <img src="../assets/presidencia.png" height="66px">
+       <a href="http://es.presidencia.gov.co/Paginas/presidencia.aspx" target="_blank">
+        <img src="../assets/presidencia.png" height="66px">
+       </a>
        <img src="../assets/99.jpg" height="66px">
        <img src="../assets/contraloria.png" height="66px">
        <img src="../assets/colciencias.jpg" height="66px">
@@ -17,20 +19,19 @@
         <div class="footer_content">
            <div class="footer_politicas">
              <h5>Politicas</h5>
-             <p>Condiciones de uso</p>
-             <p>Privacidad de datos</p>
+             <router-link to="/"><p>Condiciones de uso</p></router-link>
+             <router-link to="/"><p>Privacidad de datos</p></router-link>
            </div>
            <div class="footer_ayuda">
              <h5>Ayuda</h5>
-             <p>Contacto</p>
-             <p>Soporte</p>
-             <p>Noticias</p>
+             <router-link to="/"><p>Contacto</p></router-link>
+             <router-link to="/"><p>Soporte</p></router-link>
+            <router-link to="/"> <p>Noticias</p></router-link>
            </div>
            <div class="footer_popular">
-              <h5>Popular</h5>
-              <p>Prensa</p>
-              <p>Galerias</p>
-              <p>Documentos</p>
+              <h5>Accesibilidad</h5>
+              <router-link to="/"><p>Mapa de sitio</p></router-link>
+              <router-link to="/"><p>English version</p></router-link>
            </div>
            <div class="footer_contacto">
              <h5>Contacto</h5>
@@ -42,14 +43,11 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
            <div class="footer_siguenos">
              <h5>Siguenos</h5>
              <div class="footer_siguenos_icons">
-               <img src="../assets/facebook.png">
-               <img width="30px" src="../assets/google+.png">
-               <img src="../assets/twitter.png">
-               <img src="../assets/instagram.png">
+               <a href="https://www.facebook.com/GobMeta/" target="_blank"><img src="../assets/facebook.svg" ></a>
+               <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>
              </div>
              <span class="footer_siguenos_pbx">PBX: (+57) 8 681 85 00 | Línea Gratuita: 01 8000 129 202
                <br><br>Villavicencio, Colombia.</span>
-
 
            </div>
        </div>
@@ -59,18 +57,26 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
         <p></p>
       </div>
 
-      <div class="subfooter">
-        <div class="subfooter_content">
-          <div class="subfooter_content_left">
-            <router-link to="/inicio">Inicio </router-link>
-            <router-link to="/transparencia">Gobernación </router-link>
-            <router-link to="/transparencia">Prensa </router-link>
-            <router-link to="/transparencia">Transparencia </router-link>
-            <router-link to="/prensa">Prensa </router-link>
-          </div>
-          <div class="subfooter_content_right"><p>Copyright © Gobernación del Meta, 2017</p></div>
 
-        </div>
+
+
+
+      <div class="dark">
+          <div class="light">
+            <img src="../assets/foster.png"  height="55px">
+            <img src="../assets/lacharme.png"  height="26px">
+            <img src="../assets/parque.png"  height="38px">
+          </div>
+
+          <div class="light">
+
+            <p>Desarrollado por
+              <a href="http://fosterapps.com/" target="_blank">
+                 FosterApps.com
+              </a>
+              - Copyright © Gobernación del Meta
+            </p>
+          </div>
       </div>
     </div>
 
@@ -78,7 +84,6 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
 </template>
 
 <style scoped>
-
 
 .uper_footer{
   width: 100vw;
@@ -101,25 +106,25 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
   padding: 65px 0;
 }
 .footer p{
-  font-size: 16px;
+  font-size: 15px;
 	letter-spacing: 0.2px;
 	color: #4a4a4a;
 }
 .footer h5{
   font-weight: 300;
-	font-size: 24px;
+	font-size: 20px;
 	letter-spacing: 0.2px;
 	color: #4f6983;
   margin-bottom: 10px;
 }
 .footer_mail{
-  font-size: 16px;
+  font-size: 15px;
 	letter-spacing: 0.2px;
 	color: #128f2e;
   line-height: 35px;
 }
 .footer_direccion{
-  font-size: 16px;
+  font-size: 15px;
 	color: #6487ab;
   line-height: 1.6;
   margin-top: 15px;
@@ -134,7 +139,7 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
   line-height: 35px;
 }
 .footer_ayuda{
-  width: 200px;
+  width: 170px;
   line-height: 35px;
 }
 .footer_popular{
@@ -142,7 +147,7 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
   line-height: 35px;
 }
 .footer_contacto{
-  width: 350px;
+  width: 370px;
   display: flex;
   flex-direction: column;
 }
@@ -152,20 +157,23 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
 .footer_siguenos_icons{
   width: 60%;
   display: flex;
-  justify-content: space-between;
+  justify-content:  flex-start;
   margin-bottom: 52px;
-  margin-top: 20px
+  margin-top: 20px;
+}
+.footer_siguenos_icons img{
+  margin-right: 20px
 }
 .footer_siguenos_pbx{
   width: 236px;
 	height: 88px;
-	font-size: 16px;
+	font-size: 15px;
 	color: #6487ab;
   line-height: 1.6;
 }
 .line {
 	width: 100vw;
-	height: 1px;
+	height: 1.5px;
 	background-color: #e4f1fd;
 }
 .subfooter {
@@ -196,9 +204,37 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
 }
 .subfooter_content_right{
   font-size: 16px;
-	font-weight: bold;
+	font-weight: 300;
 	text-align: right;
 	color: #6487ab;
+}
+.dark{
+  max-width: 1200px;
+  width: 100%;
+  height:70px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin: 0 auto;
 
+}
+.light{
+  color: gray;
+  font-size: 15px;
+	font-weight: 300;
+	text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+.light a{
+  color: gray;
+  font-weight: 600;
+}
+.light img{
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    margin-right: 25px
 }
 </style>

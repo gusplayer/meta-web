@@ -42,6 +42,22 @@ export default new Router({
       path: '/prensa',
       name: 'prensa',
       component: Prensa
-    }
+    },
+    // {
+    //   path: '/ayuda',
+    //   name: 'ayuda',
+    //   component: Ayuda
+    // },
+    // {
+    //   path: '/soporte',
+    //   name: 'soporte',
+    //   component: Soporte
+    // },
+    // {
+    //   path: '/sitemap',
+    //   name: 'sitemap',
+    //   component: Sitemap
+    // },
+    //
   ]
 })

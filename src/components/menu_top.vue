@@ -1,58 +1,72 @@
 <template>
   <div id="menuTop">
-    <div class="encabezado">
-      <img src="../assets/logo.png">
-      <img :src="escudo">
+
+    <div class="encabezado_menu">
+      <span>Ayuda</span>
+      <span>Mapa del sitio</span>
+      <span>English version</span>
     </div>
-    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1"><router-link to="/">Inicio</router-link></el-menu-item>
-      <el-menu-item index="2"><router-link to="/gobierno">Gobierno</router-link></el-menu-item>
-      <el-submenu index="3">
-        <template slot="title">El Meta</template>
-        <el-menu-item index="2-1">item one</el-menu-item>
-        <el-menu-item index="2-2">item two</el-menu-item>
-        <el-menu-item index="2-3">item three</el-menu-item>
-      </el-submenu>
-      <el-menu-item index="4"><router-link to="/transparencia">Transparencia </router-link></el-menu-item>
-      <el-menu-item index="5"><router-link to="/prensa">Prensa</router-link></el-menu-item>
-      <el-menu-item index="6"><router-link to="atencion">Atencion al ciudadano</router-link></el-menu-item>
-    </el-menu>
-    <banner></banner>
+
+    <div class="encabezado_icons">
+      <span><b>A</b>-</span>
+      <span><b>A</b>+</span>
+      <a href="https://www.facebook.com/GobMeta/" target="_blank"><img src="../assets/facebook.svg" ></a>
+      <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>
+    </div>
+
+
   </div>
 </template>
 
 <script>
-  import banner from './banner.vue'
-  export default {
-    components: { banner },
-    data() {
-      return {
-        activeIndex: '1',
-        activeIndex2: '1',
-        escudo: require('../assets/escudo_colombia.png')
-      };
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
-  }
+
 </script>
 
 <style scoped>
 #menuTop{
-  top: 0;
-  width: 100vh;
-  justify-content: space-around;
+  max-width: 1300px;
+  width: 95%;
+  height: 70px;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-.encabezado{
+.encabezado_menu{
+  width: 280px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.el-menu-demo{
+.encabezado_menu span {
+	font-size: 14px;
+	font-weight: 500;
+	color: rgba(74, 74, 74, 0.87);
+}
+.encabezado_icons{
+  width: 150px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+.encabezado_icons img {
+	height:  16px;
+}
+.encabezado_icons span{
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(74, 74, 74, 0.87);
+}
+@media screen and (max-width: 600px) {
+  #menuTop{
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+  }
+  .encabezado_menu{
+    display: none
+  }
 }
 </style>
