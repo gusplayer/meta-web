@@ -1,20 +1,30 @@
 <template>
   <el-carousel :interval="9000" arrow="always" indicator-position="outside">
     <el-carousel-item v-for="item in items" :key="item">
-      <img :src="item">
+      <img :src="item.url">
     </el-carousel-item>
   </el-carousel>
 </template>
 
 <script>
+ import axios from 'axios';
  export default {
    name: 'bannerTop',
+   created(){
+     axios.get('http://intranet.meta.gov.co/banners/todas')
+     .then( response => {
+       this.items = response.data.banners;
+     })
+    //  .then (log => console.log(this.items))
+     .catch(e => {
+      this.errors.push(e)
+    })
+
+   },
    data(){
      return{
-       items: [
-         'http://www.meta.gov.co/web/sites/default/files/styles/slider_1200x400/public/Banner%20gobernacion%20sobre%20ruedas-01.png',
-         'http://www.meta.gov.co/web/sites/default/files/styles/slider_1200x400/public/banner_yo%20soy%20amcho-07.png'
-       ]
+       items: [],
+       errors: []
      }
    }
  }

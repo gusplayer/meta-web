@@ -18,10 +18,10 @@
           <div><span>Calendario eventos</span></div>
           <div><img src="../assets/calendar.jpg"></div>
         </div>
-        <div class="botones_banner_accion botones_banner_liquidacion">
-          <div><span>Liquidación impuesto vehiculos</span></div>
-          <div><img src="../assets/impuestoscar.png"></div>
-        </div>
+        <a href="#" class="botones_banner_accion botones_banner_liquidacion">
+           <div><span>Liquidación impuesto vehiculos</span></div>
+           <div><img src="../assets/impuestoscar.png"></div>
+        </a>
       </div>
 
       <div class="contenido">
@@ -221,8 +221,22 @@ export default {
 .botones_banner_calendario{
   background-color: #3fbef6;
 }
-.botones_banner_liquidacion{
+.botones_banner_liquidacion a:link{
   background-color: #818a89;
+}
+/* visited link */
+.botones_banner_liquidacion a:visited {
+    background-color: green;
+}
+
+/* mouse over link */
+.botones_banner_liquidacion a:hover {
+    background-color: hotpink;
+}
+
+/* selected link */
+.botones_banner_liquidacion a:active {
+    background-color: blue;
 }
 .contenido{
   width: 100%;
@@ -342,6 +356,7 @@ export default {
   justify-content: space-between;
 
 }
+
 .social_botones_cuadro{
   width: 32%;
   height: 500px;

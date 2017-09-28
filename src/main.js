@@ -6,8 +6,10 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import locale from 'element-ui/lib/locale/lang/es'
+import axios from 'axios';
 
 Vue.use(ElementUI, { locale })
+Vue.use(axios)
 
 Vue.config.productionTip = false
 
