@@ -6,22 +6,22 @@
       </div>
 
       <div class="botones_banner">
-        <div class="botones_banner_accion">
-          <div><span>Acción comunal y participación ciudadana</span></div>
-          <div><img src="../assets/business-person-silhouette-wearing-tie.png"></div>
-        </div>
-        <div class="botones_banner_accion botones_banner_regalias">
-          <div><span>Regalías Meta</span></div>
-          <div><img src="../assets/bitmap.png"></div>
-        </div>
-        <div class="botones_banner_accion botones_banner_calendario">
-          <div><span>Calendario eventos</span></div>
-          <div><img src="../assets/calendar.jpg"></div>
-        </div>
-        <a href="#" class="botones_banner_accion botones_banner_liquidacion">
-           <div><span>Liquidación impuesto vehiculos</span></div>
-           <div><img src="../assets/impuestoscar.png"></div>
-        </a>
+          <a href="#" class="botones_banner_accion">
+            <div><span>Acción comunal y participación ciudadana</span></div>
+            <img src="../assets/business-person-silhouette-wearing-tie.png">
+          </a>
+          <a href="#" class="botones_banner_accion botones_banner_regalias">
+            <div><span>Regalías Meta</span></div>
+            <img src="../assets/bitmap.png">
+          </a>
+          <a href="#" class="botones_banner_accion botones_banner_calendario">
+            <div><span>Calendario eventos</span></div>
+            <img src="../assets/calendar.jpg">
+          </a>
+          <a href="#" class="botones_banner_accion botones_banner_liquidacion">
+             <div><span>Liquidación impuesto vehiculos</span></div>
+             <img src="../assets/impuestoscar.png">
+          </a>
       </div>
 
       <div class="contenido">
@@ -190,27 +190,31 @@ export default {
 }
 .botones_banner{
   width: 100%;
-  height: 128px;
+  height: auto;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   margin-top: 30px
 }
 .botones_banner_accion{
-  max-width: 277px;
+  min-width: 199px;
   width: 100%;
   height: 128px;
   display: flex;
+  flex: 1;
   justify-content: space-around;
   align-items: center;
   background-color: #9b9b9b;
   box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+  margin: 5px;
 }
 .botones_banner_accion div{
-  padding: 25px;
+  padding: 20px;
 	font-size: 16px;
 	font-weight: 400;
 	color: #ffffff;
+}
+.botones_banner_accion img{
+  padding: 0px;
 }
 .botones_banner_regalias{
   background-color: #f5f5f5;
@@ -221,23 +225,9 @@ export default {
 .botones_banner_calendario{
   background-color: #3fbef6;
 }
-.botones_banner_liquidacion a:link{
-  background-color: #818a89;
-}
-/* visited link */
-.botones_banner_liquidacion a:visited {
-    background-color: green;
-}
 
-/* mouse over link */
-.botones_banner_liquidacion a:hover {
-    background-color: hotpink;
-}
 
-/* selected link */
-.botones_banner_liquidacion a:active {
-    background-color: blue;
-}
+
 .contenido{
   width: 100%;
   margin-top: 30px;
@@ -390,6 +380,44 @@ export default {
   width: 100%
 }
 @media screen and (max-width: 1100px) {
+  .botones_banner{
+    flex-wrap: wrap;
+  }
+  .botones_banner_accion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 90px
+  }
+  .botones_banner_accion img{
+    display: none;
+  }
+  .botones_banner_accion div{
+    padding: 0px;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+  }
+}
+@media screen and (max-width: 500px) {
+  .botones_banner_accion{
+    justify-content: space-between;
+    padding: 20px;
+    height: 60px
+  }
+  .botones_banner_accion img{
+    display: inline;
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .botones_banner_accion div{
+    display: inline;
+    text-align: left;
+    font-size: 14px
+  }
 }
 </style>
