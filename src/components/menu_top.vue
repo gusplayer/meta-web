@@ -4,16 +4,17 @@
     <div class="encabezado_menu">
       <span>Ayuda</span>
       <span>Mapa del sitio</span>
-      <span>English version</span>
+      <span>English</span>
+      <span>Contraste</span>
     </div>
 
     <div class="encabezado_icons">
+      <span><b>A</b></span>
       <span><b>A</b>-</span>
       <span><b>A</b>+</span>
       <a href="https://www.facebook.com/GobMeta/" target="_blank"><img src="../assets/facebook.svg" ></a>
       <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>
     </div>
-
 
   </div>
 </template>
@@ -33,7 +34,7 @@
   flex-wrap: wrap;
 }
 .encabezado_menu{
-  width: 280px;
+  width: 350px;
   display: flex;
   justify-content: space-between;
   align-items: center;

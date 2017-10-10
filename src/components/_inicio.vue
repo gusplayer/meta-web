@@ -26,45 +26,29 @@
 
       <div class="contenido">
         <div class="noticias">
-          <div class="noticias_contenedor">
-                  <img src="../assets/img.jpg">
+
+          <div class="noticias_contenedor" v-for="noticia in noticias" :key="noticias">
+                  <img v-if="noticia.imagenes[0]" :src="noticia.imagenes[0].nombre_imagen">
                   <div>
-                    <h2>Papa visito el llano</h2>
-                    <p>hola noticias</p>
+                    <h2>{{noticia.titulo}}</h2>
+                    <p>{{noticia.contenido}}</p>
                     <button type="button" name="button">Ver más</button>
                   </div>
           </div>
-          <div class="noticias_contenedor">
-                  <img src="../assets/img.jpg">
-                  <div>
-                    <h2>Papa visito el llano</h2>
-                    <p>hola noticias</p>
-                    <button type="button" name="button">Ver más</button>
+
+          <div class="card" >
+             <el-col :span="8" v-for="noticia in noticias" :key="noticias" class="card-col">
+                <el-card :body-style="{ padding: '0px' }">
+                  <img v-if="noticia.imagenes[0]" :src="noticia.imagenes[0].nombre_imagen" class="card-image">
+                  <div style="padding: 14px;">
+                    <span>{{noticia.titulo}}</span>
+                    <div class="card-bottom card-clearfix">
+                      <time class="time">{{noticia.fecha}}</time>
+                      <el-button type="text" class="card-button">Ver más</el-button>
+                    </div>
                   </div>
-          </div>
-          <div class="noticias_contenedor">
-                  <img src="../assets/img.jpg">
-                  <div>
-                    <h2>Papa visito el llano</h2>
-                    <p>hola noticias</p>
-                    <button type="button" name="button">Ver más</button>
-                  </div>
-          </div>
-          <div class="noticias_contenedor">
-                  <img src="../assets/img.jpg">
-                  <div>
-                    <h2>Papa visito el llano</h2>
-                    <p>hola noticias</p>
-                    <button type="button" name="button">Ver más</button>
-                  </div>
-          </div>
-          <div class="noticias_contenedor">
-                  <img src="../assets/img.jpg">
-                  <div>
-                    <h2>Papa visito el llano</h2>
-                    <p>hola noticias</p>
-                    <button type="button" name="button">Ver más</button>
-                  </div>
+                </el-card>
+              </el-col>
           </div>
 
         </div>
@@ -108,12 +92,15 @@
 
           <div class="lateral_line"><p></p></div>
 
+
           <iframe
           class="lateral_video"
-          src="https://www.youtube.com/embed/B8D31dhgGDQ?t=5"
-          frameborder="0"
-          allowfullscreen>
+          src="https://www.youtube.com/embed/8jtfXHadYIE"
+          frameborder="0" allowfullscreen>
           </iframe>
+
+          <div class="carrito">
+          </div>
 
         </div>
 
@@ -123,18 +110,13 @@
 
       <div class="social_botones">
 
-        <div class="social_botones_cuadro2">
-          <h2>Suscribete</h2>
-          <p>Dejanos tu correo electronico y recibe boletines de noticias</p>
-          <el-input placeholder="Escribe tu correo electronico" v-model="input"></el-input>
-          <el-button type="primary">Suscribete</el-button>
-        </div>
+
 
         <div class="social_botones_cuadro">
           <div id="fb-root"></div>
           <div class="fb-page" data-href="https://www.facebook.com/GobMeta/"
             data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
-            data-hide-cover="false" data-show-facepile="true" data-width="500">
+            data-hide-cover="false" data-show-facepile="true" data-width="500" style="width:100%">
             <blockquote cite="https://www.facebook.com/GobMeta/" class="fb-xfbml-parse-ignore">
             <a href="https://www.facebook.com/GobMeta/">Cargando Facebook...</a></blockquote>
           </div>
@@ -144,6 +126,12 @@
           <a class="twitter-timeline" href="https://twitter.com/marcela_amayag">Cargando Twitter...</a>
         </div>
 
+        <div class="social_botones_cuadro2">
+          <h2>Suscribete</h2>
+          <p>Dejanos tu correo electronico y recibe boletines de noticias</p>
+          <el-input placeholder="Escribe tu correo electronico" v-model="input"></el-input>
+          <el-button type="primary">Suscribete</el-button>
+        </div>
 
       </div>
   </div>
@@ -161,11 +149,23 @@
 
 
 import bannerTop from './banner.vue'
+import axios from 'axios';
 export default {
   components: {bannerTop},
+  created(){
+    axios.get('http://intranet.meta.gov.co/timeline/web')
+    .then( response => {
+      this.noticias = response.data.timeline;
+    })
+    .catch(e => {
+     this.errors.push(e)
+   })
+  },
   data(){
      return{
-           input: ''
+           input: '',
+           noticias: [],
+           errors:[]
            }
          }
 }
@@ -225,21 +225,24 @@ export default {
 .botones_banner_calendario{
   background-color: #3fbef6;
 }
-
-
+.botones_banner_liquidacion{
+  background-color: #818A89
+}
 
 .contenido{
   width: 100%;
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .noticias{
   display: flex;
   flex-direction: column;
 }
 .noticias_contenedor{
-  width: 755px;
+  max-width: 755px;
+  width: 100%;
 	height: 220px;
   display: flex;
   flex-direction: row;
@@ -259,7 +262,7 @@ export default {
   justify-content: space-between;
   align-items: flex-end;
 }
-.noticias_contenedor h2{
+.noticias_contenedor  h2{
 	font-size: 22px;
 	color: #4f6983;
   font-weight: 300;
@@ -283,8 +286,53 @@ export default {
   	font-weight: 500;
   	color: #128f2e;
 }
+
+.card{
+  display: flex;
+  display: none;
+  margin-top: 10px;
+
+}
+.card-col{
+  flex: 1;
+  max-width: 300px;
+  margin-bottom: 20px;
+
+}
+.card-time {
+    font-size: 13px;
+    color: #999;
+  }
+
+.card-bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+.card-button {
+    padding: 0;
+    float: right;
+  }
+
+.card-image {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
+.card-clearfix:before,
+.card-clearfix:after {
+      display: table;
+      content: "";
+  }
+
+.card-clearfix:after {
+      clear: both
+  }
+
 .lateral{
-  width: 384.1px;
+  max-width: 384.1px;
+  width: 100%;
 	background-color: #f6f6f6;
 	box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
   padding: 15px;
@@ -330,6 +378,7 @@ export default {
 }
 .lateral_cuadros {
 	width: 100%;
+  min-width: 40%;
 	background-color: #ffffff;
 	box-shadow: 0 2px 4px 0 #b7b5b7;
   padding: 10px;
@@ -340,28 +389,34 @@ export default {
 }
 .social_botones{
   width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
 }
 
 .social_botones_cuadro{
-  width: 32%;
+  display: flex;
+  flex: 1;
+  max-width: 32%;
+  min-width: 300px;
   height: 500px;
   background-color: #f6f6f6;
   box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
   overflow:auto;
+  margin-right: 0px
 }
 .social_botones_cuadro2{
-  width: 32%;
+  display: flex;
   height: 500px;
+  max-width: 385px;
+  min-width: 300px;
   background-color: #f6f6f6;
   box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
   overflow:auto;
   padding: 90px 40px;
-  display:flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -400,8 +455,54 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
+  .card{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    justify-content: space-between;
+  }
+  .lateral{
+    flex:1;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  .lateral_line_boton {
+  	max-width: 49%;
+    min-width: 360px;
+  }
+  .lateral_cuadros {
+  	max-width: 49%;
+    min-width: 360px;
+  }
+  .social_botones_cuadro2{
+    flex: 1;
+    max-width: 100%;
+    margin-top: 0px;
+    display: none;
+  }
+  .social_botones_cuadro{
+    flex: 1;
+    max-width: 48%;
+    margin-bottom: 15px;
+  }
+  .noticias{
+    width: 100%;
+    max-width: 1000px
+  }
+  .noticias_contenedor{
+    width: 100%;
+    max-width: 1000px;
+    display: none
+  }
+  .noticias_contenedor img{
+    height: 220px;
+    width: 300px;
+  }
+
 }
 @media screen and (max-width: 500px) {
   .botones_banner_accion{
@@ -418,6 +519,41 @@ export default {
     display: inline;
     text-align: left;
     font-size: 14px
+  }
+  .lateral_line_boton{
+    max-width: 100%;
+    min-width: 0px;
+  }
+  .lateral_line_boton img{
+    margin-right: 15px
+  }
+  .lateral_cuadros{
+    max-width: 100%;
+    min-width: 0px;
+
+  }
+  .social_botones_cuadro{
+    max-width: 100%;
+    margin-right: 0px;
+    min-width: 250px;
+  }
+  .social_botones_cuadro2{
+    height: 300px;
+    padding: 30px 40px;
+  }
+  .noticias_contenedor img{
+    max-height: auto;
+    max-width: 100%;
+  }
+  .noticias_contenedor{
+    display: none;
+  }
+  .noticias_card{
+    display: run-in;
+  }
+  .card-col{
+    width: 100%;
+    max-width: 500px
   }
 }
 </style>

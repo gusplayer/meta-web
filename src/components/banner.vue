@@ -1,5 +1,5 @@
 <template>
-  <el-carousel :interval="9000" arrow="always" indicator-position="outside">
+  <el-carousel :interval="9000" arrow="always" indicator-position="outside" >
     <el-carousel-item v-for="item in items" :key="item">
       <img :src="item.url">
     </el-carousel-item>
@@ -15,11 +15,9 @@
      .then( response => {
        this.items = response.data.banners;
      })
-    //  .then (log => console.log(this.items))
      .catch(e => {
       this.errors.push(e)
     })
-
    },
    data(){
      return{
@@ -31,20 +29,30 @@
 </script>
 
 <style>
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    margin: 0;
+
+  .el-carousel__item img {
+    width: 100%;
+    background-color: white
   }
 
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
 
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
+  .el-carousel__item {
+    background-color: white;
   }
   .el-carousel__container{
+    height: 400px;
+    background-color: white
   }
+@media screen and (max-width: 1100px) {
+  .el-carousel__container{
+    height: 300px
+  }
+}
+@media screen and (max-width: 500px) {
+  .el-carousel__container{
+    height: 125px;
+    margin-bottom: 0px
+
+  }
+}
 </style>
