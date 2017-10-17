@@ -11,7 +11,7 @@
  export default {
    name: 'bannerTop',
    created(){
-     axios.get('http://intranet.meta.gov.co/banners/todas')
+     axios.get('http://intranet.meta.gov.co/banners')
      .then( response => {
        this.items = response.data.banners;
      })

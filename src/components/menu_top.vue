@@ -2,8 +2,8 @@
   <div id="menuTop">
 
     <div class="encabezado_menu">
-      <span>Ayuda</span>
-      <span>Mapa del sitio</span>
+      <router-link to="/ayuda"><span>Ayuda</span></router-link>
+      <router-link to="/sitemap"><span>Mapa del sitio</span></router-link>
       <span>English</span>
       <span>Contraste</span>
     </div>

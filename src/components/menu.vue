@@ -5,19 +5,52 @@
       <img class="logo_colombia" src="../assets/colombia.png" />
     </div>
 
-    <el-menu :default-active="activeIndex2" class="el-menu-demo topnav" id="myTopnav" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1"><router-link to="/">Inicio</router-link></el-menu-item>
-      <el-menu-item index="2"><router-link to="/gobierno">Gobierno</router-link></el-menu-item>
+    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="1">
+        <router-link to="/">Inicio</router-link>
+      </el-menu-item>
+
+      <el-submenu index="2">
+        <template slot="title">
+          <router-link to="/gobierno">Nuestra entidad</router-link>
+        </template>
+        <el-menu-item index="2-1">
+          <router-link to="/contacto">Nuestra Gobernadora</router-link>
+        </el-menu-item>
+        <el-menu-item index="2-2">
+          <router-link to="/contacto">Gabiente de Gobierno</router-link>
+        </el-menu-item>
+        <el-menu-item index="2-3">
+          <router-link to="/contacto">Misión y visión</router-link>
+        </el-menu-item>
+        <el-menu-item index="2-4">
+          <router-link to="/contacto">Secretarías</router-link>
+        </el-menu-item>
+        <el-menu-item index="2-5">
+          <router-link to="/contacto">Impuestos</router-link>
+        </el-menu-item>
+      </el-submenu>
+
       <el-submenu index="3">
         <template slot="title">El Meta</template>
-        <el-menu-item index="2-1">item one</el-menu-item>
-        <el-menu-item index="2-2">item two</el-menu-item>
-        <el-menu-item index="2-3">item three</el-menu-item>
+        <el-menu-item index="3-1">Nuestro departamento</el-menu-item>
+        <el-menu-item index="3-3">Indicadores</el-menu-item>
       </el-submenu>
+
       <el-menu-item index="4"><router-link to="/transparencia">Documentación </router-link></el-menu-item>
       <el-menu-item index="5"><router-link to="/prensa">Prensa</router-link></el-menu-item>
-      <el-menu-item index="6"><router-link to="atencion">Atencion al ciudadano</router-link></el-menu-item>
-      <a href="javascript:void(0);" class="icon" v-on:click="myFunction">&#9776;</a>
+
+      <el-submenu index="6">
+        <template slot="title"><router-link to="contacto">Contáctanos</router-link></template>
+        <el-menu-item index="6-1">
+          <router-link to="/atencion">Atención al ciudadano</router-link>
+        </el-menu-item>
+        <el-menu-item index="6-2">
+          <router-link to="/contacto">Contactános</router-link>
+        </el-menu-item>
+
+      </el-submenu>
+
     </el-menu>
 
     <img class="search_icon" src="../assets/search.png" height="20px"/>
@@ -37,14 +70,7 @@ export default {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       },
-      myFunction() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "topnav") {
-              x.className += " responsive";
-          } else {
-              x.className = "topnav";
-          }
-       }
+
     }
 }
 
