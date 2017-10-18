@@ -5,14 +5,17 @@
       <img class="logo_colombia" src="../assets/colombia.png" />
     </div>
 
-    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu :default-active="activeIndex2" class="el-menu-demo topnav" mode="horizontal" @select="handleSelect" id="myTopnav">
+
+
+
       <el-menu-item index="1">
         <router-link to="/">Inicio</router-link>
       </el-menu-item>
 
       <el-submenu index="2">
         <template slot="title">
-          <router-link to="/gobierno">Nuestra entidad</router-link>
+          <router-link to="/entidad">Nuestra entidad</router-link>
         </template>
         <el-menu-item index="2-1">
           <router-link to="/contacto">Nuestra Gobernadora</router-link>
@@ -28,6 +31,9 @@
         </el-menu-item>
         <el-menu-item index="2-5">
           <router-link to="/contacto">Impuestos</router-link>
+        </el-menu-item>
+        <el-menu-item index="2-6">
+          <router-link to="entidad/transparencia">Transparencia</router-link>
         </el-menu-item>
       </el-submenu>
 
@@ -53,6 +59,8 @@
 
     </el-menu>
 
+    <a href="javascript:void(0);" class="icon" v-on:click="myFunction">&#9776;</a>
+
     <img class="search_icon" src="../assets/search.png" height="20px"/>
 
   </div>
@@ -70,6 +78,17 @@ export default {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       },
+      /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+      myFunction: function() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+              x.className += " responsive";
+              console.log("responsive");
+          } else {
+              x.className = "topnav";
+              console.log("topnav");
+          }
+       }
 
     }
 }
@@ -121,17 +140,18 @@ export default {
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 1000px) {
 
-  .topnav a,ul,li{
-    display: none;
-  }
   .search_icon{
     display: none;
   }
   .topnav a.icon {
     float: right;
     display: block;
+    font-size: 25px;
+    color: #008E3A;
   }
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive a.icon {
     position: absolute;
     right: 0;
@@ -141,6 +161,9 @@ export default {
     float: none;
     display: block;
     text-align: left;
+  }
+  .el-menu-demo{
+    justify-content: flex-end;
   }
 
 }

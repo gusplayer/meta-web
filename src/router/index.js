@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Inicio from '@/components/_inicio'
 import Meta from '@/components/_meta'
 import Galeria from '@/components/_galeria'
-import Gobierno from '@/components/_gobierno'
+import Entidad from '@/components/_entidad'
 import Atencion from '@/components/_atencion'
 import Prensa from '@/components/_prensa'
 import Transparencia from '@/components/_transparencia'
@@ -13,6 +13,7 @@ import Sitemap from '@/components/_sitemap'
 import Privacidad from '@/components/_privacidad'
 import Condiciones from '@/components/_condiciones'
 import Contacto from '@/components/_contacto'
+import Micrositio from '@/components/_micrositio'
 
 Vue.use(Router)
 
@@ -25,20 +26,22 @@ export default new Router({
       component: Inicio
     },
     {
-      path: '/gobierno',
-      name: 'gobierno',
-      component: Gobierno
+      path: '/entidad',
+      name: 'entidad',
+      component: Entidad,
+      children: [
+        {
+          path: 'transparencia',
+          component: Transparencia
+        }
+      ]
     },
     {
       path: '/meta',
       name: 'meta',
       component: Meta
     },
-    {
-      path: '/transparencia',
-      name: 'transparencia',
-      component: Transparencia
-    },
+
     {
       path: '/galeria',
       name: 'galeria',
@@ -79,6 +82,11 @@ export default new Router({
       name: 'sitemap',
       component: Sitemap
     },
+    {
+      path: '/micrositio/:id',
+      name: 'micrositio',
+      component: Micrositio
+    }
 
   ]
 })

@@ -1,5 +1,5 @@
 <template lang="html">
-   <h1> Soy transparenci</h1>
+  <h1>{{ $route.path }}</h1>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template lang="html">
-   <h1> Soy transparenci</h1>
+  gobernadora
 </template>
 
 <script>
