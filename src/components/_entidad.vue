@@ -1,6 +1,7 @@
 <template>
   <div >
 
-  <h1>gobierno</h1>
+  <h1>entidad</h1>
+  <router-view></router-view>
   </div>
 </template>

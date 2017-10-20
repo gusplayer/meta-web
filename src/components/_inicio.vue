@@ -153,6 +153,7 @@ import axios from 'axios';
 export default {
   components: {bannerTop},
   created(){
+    axios.defaults.headers.common['Access-Control-Allow-Origin'] = `*`;
     axios.get('http://intranet.meta.gov.co/timeline/web')
     .then( response => {
       this.noticias = response.data.timeline;

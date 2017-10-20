@@ -27,7 +27,6 @@ import menuPrincipal from './components/menu.vue'
 
 export default {
   components: { menuTop, footerWeb, menuPrincipal },
-  name: 'app'
 }
 </script>
 
@@ -45,11 +44,11 @@ export default {
 }
 .general{
   width: 100%;
-  min-height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #eeeeee;
+  min-height: calc(100vh - 400px)
 }
 .menu{
   width: 100%;

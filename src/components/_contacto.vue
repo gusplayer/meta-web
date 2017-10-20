@@ -1,17 +1,8 @@
 <template>
-  <div class="general">
+  <div class="principal">
 
-      <el-breadcrumb separator="/" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
-      <el-breadcrumb-item>contacto</el-breadcrumb-item>
-      </el-breadcrumb>
-
-      <div class="banner">
-        <div class="banner_text">
-          <h2>Canales de atención</h2><br>
-
-        </div>
-      </div>
+      <Breadcrumb></Breadcrumb>
+      <BannerMicro :texto="texto" :imagen="imagenBanner"></BannerMicro>
 
     <div class="contenido">
       <div class="texto">
@@ -49,14 +40,28 @@
 
   </div>
 
-
-
 </template>
+
+<script>
+import BannerMicro from './bannerMicro.vue'
+import Breadcrumb from './breadcrumb.vue'
+
+export default {
+  components: {BannerMicro, Breadcrumb},
+  name: 'app',
+  data(){
+    return{
+      texto:'Medios de Contacto',
+      imagenBanner:'http://www.meta.gov.co/web/sites/default/files/adjuntos/ocad/Banner_Planeacion.jpg'
+    }
+  }
+}
+</script>
 
 <style scoped>
 h2{
-  font-size: 35px;
-  font-weight: 400;
+  font-size: 30px;
+  font-weight: 600;
   color: #37474F;
 }
 p{
@@ -71,35 +76,19 @@ h3{
   color: #4a4a4a;
   letter-spacing: 0.2px;
 }
-.general{
-  max-width: 100%;
-  padding: 12px;
+.principal{
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white
+  background: white;
+  width: 100%;
+  padding: 12px
 }
 .breadcrumb{
   display: flex;
   align-self: flex-start;
   margin-bottom: 15px;
-}
-.banner{
-  display: flex;
-  width: 100%;
-  height: 300px;
-  background-size: cover;
-  background:url('https://images.pexels.com/photos/530024/pexels-photo-530024.jpeg?w=1240&h=auto&auto=compress&cs=tinysrgb');
-  margin-bottom: 20px;
-}
-.banner_text{
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-  padding: 15px;
-  height: 80px;
-  width: 100%;
-  background:rgba(255,255,255,0.6)
 }
 .contenido{
   display: flex;
@@ -110,17 +99,59 @@ h3{
 .texto{
   display: flex;
   flex: 1;
-  width: 49%;
   min-width: 400px;
-  box-shadow: 0 0 10px 0 rgba(94, 92, 92, 0.32);
-  padding: 18px;
-
+  box-shadow: 0 0 10px 0 rgba(94, 92, 92, 0.22);
+  padding: 28px;
+  margin-right: 20px
 }
 .google_maps{
   display: flex;
-  flex: 1;
-  width: 49%;
   min-width: 400px;
-  box-shadow: 0 0 10px 0 rgba(94, 92, 92, 0.32);
 }
+
+@media  screen and (max-width: 900px){
+
+.texto{
+  margin-right: 0px;
+  margin-bottom: 15px;
+}
+.google_maps{
+  flex: 1;
+  height: 400px;
+}
+.banner{
+  height: 280px;
+}
+
+}
+@media  screen and (max-width: 490px){
+  .banner_text{
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+    background:rgba(255,255,255,0.7)
+  }
+  .contenido{
+    flex-direction: column;
+  }
+  .texto{
+    width: 100%;
+    min-width: 100px;
+    box-sizing: border-box;
+  }
+  .google_maps{
+    min-width: 100px;
+    width: 100%
+  }
+  h2{
+    font-size: 18px;
+    font-weight: 500;
+    color: #37474F;
+  }
+  .banner{
+    max-height: 200px;
+  }
+
+}
+
 </style>

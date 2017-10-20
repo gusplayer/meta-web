@@ -14,6 +14,7 @@ import Privacidad from '@/components/_privacidad'
 import Condiciones from '@/components/_condiciones'
 import Contacto from '@/components/_contacto'
 import Micrositio from '@/components/_micrositio'
+import Gobernadora from '@/components/_gobernadora'
 
 Vue.use(Router)
 
@@ -26,15 +27,10 @@ export default new Router({
       component: Inicio
     },
     {
-      path: '/entidad',
-      name: 'entidad',
-      component: Entidad,
-      children: [
-        {
-          path: 'transparencia',
-          component: Transparencia
-        }
-      ]
+      path: '/entidad/transparencia',
+      name: 'transparencia',
+      component: Transparencia,
+
     },
     {
       path: '/meta',
@@ -86,6 +82,11 @@ export default new Router({
       path: '/micrositio/:id',
       name: 'micrositio',
       component: Micrositio
+    },
+    {
+      path: '/entidad/gobernadora',
+      name: 'gobernadora',
+      component: Gobernadora
     }
 
   ]
