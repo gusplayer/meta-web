@@ -85,11 +85,7 @@ h3{
   width: 100%;
   padding: 12px
 }
-.breadcrumb{
-  display: flex;
-  align-self: flex-start;
-  margin-bottom: 15px;
-}
+
 .contenido{
   display: flex;
   justify-content: space-between;
@@ -148,9 +144,7 @@ h3{
     font-weight: 500;
     color: #37474F;
   }
-  .banner{
-    max-height: 200px;
-  }
+
 
 }
 

@@ -28,10 +28,15 @@
         <div class="noticias">
 
           <div class="noticias_contenedor" v-for="noticia in noticias" :key="noticias">
-                  <img v-if="noticia.imagenes[0]" :src="noticia.imagenes[0].nombre_imagen">
+                  <img v-if="noticia.imagenes[0]"
+                  :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`">
                   <div>
                     <h2>{{noticia.titulo}}</h2>
-                    <p>{{noticia.contenido}}</p>
+                    <!-- <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p"> -->
+                      <div v-html="rawHtml">
+                        Message : {{ noticia.contenido }}
+                      </div>
+                   <!-- </div> -->
                     <button type="button" name="button">Ver más</button>
                   </div>
           </div>
@@ -64,7 +69,7 @@
             <span>Transparencia</span>
           </button>
           <button type="button" name="button" class="lateral_line_boton">
-            <img src="../assets/check.png" >
+            <img src="../assets/check.png">
             <span>Intranet</span>
           </button>
           <button type="button" name="button" class="lateral_line_boton">
@@ -147,7 +152,6 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-
 import bannerTop from './banner.vue'
 import axios from 'axios';
 export default {
@@ -168,7 +172,14 @@ export default {
            noticias: [],
            errors:[]
            }
-         }
+         },
+  methods:{
+    setcontenido(noticia){
+      setTimeout(() => {
+        document.getElementById(`setText${noticia.idTimeline}`).innerHTML = noticia.contenido;
+      }, 100)
+    }
+  }
 }
 </script>
 
@@ -268,7 +279,7 @@ export default {
 	color: #4f6983;
   font-weight: 300;
 }
-.noticias_contenedor p{
+.noticias_contenedor_p p{
 	font-size: 14px;
 	line-height: 2.02;
 	letter-spacing: 0.2px;

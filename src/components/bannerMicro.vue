@@ -2,7 +2,7 @@
   <div
   :style="styles"
   class="banner">
-    <div class="banner_text">
+    <div class="banner_text" v-show="texto">
       <h2>{{ texto }}</h2><br>
     </div>
   </div>
@@ -40,6 +40,12 @@ export default {
 @media  screen and (max-width: 900px){
   .banner{
     height: 280px;
+    background-repeat: no-repeat;
+  }
+}
+@media screen and  (max-width: 450px){
+  .banner{
+    height: 90px;
   }
 }
 </style>

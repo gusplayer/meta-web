@@ -1,7 +1,7 @@
 <template>
   <el-carousel :interval="9000" arrow="always" indicator-position="outside" >
     <el-carousel-item v-for="item in items" :key="item">
-      <img :src="item.url">
+      <img :src="`http://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
     </el-carousel-item>
   </el-carousel>
 </template>
