@@ -28,15 +28,16 @@
         <div class="noticias">
 
           <div class="noticias_contenedor" v-for="noticia in noticias" :key="noticias">
-                  <img v-if="noticia.imagenes[0]"
-                  :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`">
+                  <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
+                  :style="coverImagen(noticia)"
+                  >
+
+                  </div>
                   <div>
-                    <h2>{{noticia.titulo}}</h2>
+                    <h2>{{ noticia.titulo.substr(0,30) }}</h2>
                     <!-- <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p"> -->
-                      <div v-html="rawHtml">
-                        Message : {{ noticia.contenido }}
-                      </div>
-                   <!-- </div> -->
+                      <p v-html="contarPalabras(noticia.contenido)"></p>
+                    <!-- </div> -->
                     <button type="button" name="button">Ver más</button>
                   </div>
           </div>
@@ -157,7 +158,6 @@ import axios from 'axios';
 export default {
   components: {bannerTop},
   created(){
-    axios.defaults.headers.common['Access-Control-Allow-Origin'] = `*`;
     axios.get('http://intranet.meta.gov.co/timeline/web')
     .then( response => {
       this.noticias = response.data.timeline;
@@ -178,6 +178,15 @@ export default {
       setTimeout(() => {
         document.getElementById(`setText${noticia.idTimeline}`).innerHTML = noticia.contenido;
       }, 100)
+    },
+    contarPalabras(value){
+      if(value){
+        return value.substr(0,200)
+      }
+    },
+    coverImagen(value){
+      if(value.imagenes[0])
+        return `background-image:url('http://intranet.meta.gov.co/imagen_timeline/${value.imagenes[0].nombre_imagen}'); background-size:cover`;
     }
   }
 }
@@ -255,24 +264,30 @@ export default {
 .noticias_contenedor{
   max-width: 755px;
   width: 100%;
-	height: 220px;
+	height: 260px;
   display: flex;
   flex-direction: row;
 	background-color: #f6f6f6;
   margin-bottom: 20px;
   box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
 }
-.noticias_contenedor img{
-  height: 220px;
-  width: 300px;
+
+.noticias_contenedor_img{
+  max-width: 50%;
+  max-height: 100%;
 }
-.noticias_contenedor div{
+.noticias_contenedor div:last-child{
   width: 460px;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+}
+.noticias_contenedor_foto{
+  width: 350px;
+  height: auto;
+  padding: 0px;
 }
 .noticias_contenedor  h2{
 	font-size: 22px;
