@@ -29,9 +29,7 @@
 
           <div class="noticias_contenedor" v-for="noticia in noticias" :key="noticias">
                   <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
-                  :style="coverImagen(noticia)"
-                  >
-
+                  :style="coverImagen(noticia)">
                   </div>
                   <div>
                     <h2>{{ noticia.titulo.substr(0,30) }}</h2>
@@ -45,11 +43,15 @@
           <div class="card" >
              <el-col :span="8" v-for="noticia in noticias" :key="noticias" class="card-col">
                 <el-card :body-style="{ padding: '0px' }">
-                  <img v-if="noticia.imagenes[0]" :src="noticia.imagenes[0].nombre_imagen" class="card-image">
+                  <div class="card-contenedor-imagen">
+                    <img v-if="noticia.imagenes[0]"
+                    :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
+                    class="card-image">
+                  </div>
                   <div style="padding: 14px;">
-                    <span>{{noticia.titulo}}</span>
+                    <span class="card-titulo">{{noticia.titulo}}</span>
                     <div class="card-bottom card-clearfix">
-                      <time class="time">{{noticia.fecha}}</time>
+                      <time class="card-fecha">{{noticia.fecha}}</time>
                       <el-button type="text" class="card-button">Ver más</el-button>
                     </div>
                   </div>
@@ -59,7 +61,6 @@
 
         </div>
         <div class="lateral">
-
 
           <h2>Información Servicios</h2>
 
@@ -315,16 +316,7 @@ export default {
 }
 
 .card{
-  display: flex;
   display: none;
-  margin-top: 10px;
-
-}
-.card-col{
-  flex: 1;
-  max-width: 300px;
-  margin-bottom: 20px;
-
 }
 .card-time {
     font-size: 13px;
@@ -339,12 +331,6 @@ export default {
 .card-button {
     padding: 0;
     float: right;
-  }
-
-.card-image {
-    height: 100%;
-    width: auto;
-    display: block;
   }
 
 .card-clearfix:before,
@@ -486,9 +472,35 @@ export default {
   .card{
     display: flex;
     flex: 1;
-    flex-wrap: wrap;
     margin-bottom: 30px;
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .card-col{
+    display: flex;
+    max-width: 380px;
+    min-width: 250px;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+
+  }
+  .card-contenedor-imagen{
+    overflow: hidden;
+    height: 170px;
+  }
+  .card-image{
+    width: 100%;
+    display: block;
+  }
+  .card-titulo{
+    font-size: 11pt;
+  }
+  .card-fecha{
+    font-size: 13px;
+    color: #999;
   }
   .lateral{
     flex:1;
@@ -518,7 +530,10 @@ export default {
   }
   .noticias{
     width: 100%;
-    max-width: 1000px
+    max-width: 1000px;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   .noticias_contenedor{
     width: 100%;

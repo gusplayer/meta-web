@@ -40,17 +40,17 @@
     background-color: white;
   }
   .el-carousel__container{
-    height: 400px;
+    height: 400px !important;
     background-color: white
   }
 @media screen and (max-width: 1100px) {
   .el-carousel__container{
-    height: 300px
+    height: 300px !important
   }
 }
 @media screen and (max-width: 500px) {
   .el-carousel__container{
-    height: 125px;
+    height: 125px !important;
     margin-bottom: 0px
 
   }
