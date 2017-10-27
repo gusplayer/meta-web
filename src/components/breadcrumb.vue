@@ -1,7 +1,7 @@
 <template lang="html">
   <el-breadcrumb separator="/" class="breadcrumb">
   <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
-  <el-breadcrumb-item>{{$router}}</el-breadcrumb-item>
+  <el-breadcrumb-item>{{$route.name}}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 

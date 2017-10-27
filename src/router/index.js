@@ -15,6 +15,9 @@ import Condiciones from '@/components/_condiciones'
 import Contacto from '@/components/_contacto'
 import Micrositio from '@/components/_micrositio'
 import Gobernadora from '@/components/_gobernadora'
+import Documentacion from '@/components/_centroDocumentacion'
+import Convocatorias from '@/components/_convocatorias'
+import Calidad from '@/components/_gestionCalidad'
 
 Vue.use(Router)
 
@@ -30,7 +33,6 @@ export default new Router({
       path: '/entidad/transparencia',
       name: 'transparencia',
       component: Transparencia,
-
     },
     {
       path: '/meta',
@@ -87,6 +89,21 @@ export default new Router({
       path: '/entidad/gobernadora',
       name: 'gobernadora',
       component: Gobernadora
+    },
+    {
+      path: '/documentacion/documentos',
+      name: 'documentos',
+      component: Documentacion
+    },
+    {
+      path: '/documentacion/convocatorias',
+      name: 'convocatorias',
+      component: Convocatorias
+    },
+    {
+      path: '/documentacion/calidad',
+      name: 'calidad',
+      component: Calidad
     }
 
   ]

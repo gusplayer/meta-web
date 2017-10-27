@@ -1,24 +1,23 @@
 <template>
+
   <div class="prensa">
-    <div class="contenedor_buscador">
-      <el-input placeholder="Please input" v-model="input5" class="buscador">
-        <el-select v-model="select" slot="prepend" placeholder="Select">
-          <el-option label="Restaurant" value="1"></el-option>
-           <el-option label="Order No." value="2"></el-option>
-           <el-option label="Tel" value="3"></el-option>
-         </el-select>
-        <el-button slot="append" icon="search"></el-button>
-      </el-input>
-    </div>
-    <div class="contenedor_blog">
-        <el-col :span="7" v-for="item in items" :key="item.titulo" class="el-col" >
+
+    <Breadcrumb></Breadcrumb>
+    <BannerMicro :texto="texto" :imagen="imagenBanner"></BannerMicro>
+
+    <div class="card" >
+       <el-col :span="8" v-for="noticia in noticias" :key="noticias" class="card-col">
           <el-card :body-style="{ padding: '0px' }">
-            <img :src="item.foto" class="image">
+            <div class="card-contenedor-imagen">
+              <img v-if="noticia.imagenes[0]"
+              :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
+              class="card-image">
+            </div>
             <div style="padding: 14px;">
-              <span>{{items.titulo}}</span>
-              <div class="bottom clearfix">
-                <time class="time">Feb. 20 - 2015</time>
-                <el-button type="text" class="button">{{item.titulo}}</el-button>
+              <span class="card-titulo">{{noticia.titulo}}</span>
+              <div class="card-bottom card-clearfix">
+                <time class="card-fecha">{{noticia.fecha}}</time>
+                <el-button type="text" class="card-button">Ver más</el-button>
               </div>
             </div>
           </el-card>
@@ -26,47 +25,30 @@
     </div>
 
   </div>
+
 </template>
 
 <script>
+import axios from 'axios';
+import BannerMicro from './bannerMicro.vue'
+import Breadcrumb from './breadcrumb.vue'
 export default {
+  components: {BannerMicro, Breadcrumb},
+  created(){
+    axios.get('http://intranet.meta.gov.co/timeline/web')
+    .then( response => {
+      this.noticias = response.data.timeline;
+    })
+    .catch(e => {
+     this.errors.push(e)
+   })
+  },
   data() {
     return {
-      input3: '',
-      input4: '',
-      input5: '',
-      select: '',
-      items: [
-          {
-            titulo: 'Gobierno del meta el mejor',
-            foto:'https://images.pexels.com/photos/509819/pexels-photo-509819.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'
-          },
-          {
-            titulo: 'Gobierno del meta el mejor',
-            foto:'https://images.pexels.com/photos/509819/pexels-photo-509819.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'
-          },
-          {
-            titulo: 'Gobierno del meta el mejor',
-            foto:'https://images.pexels.com/photos/509819/pexels-photo-509819.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'
-          },
-          {
-            titulo: 'Gobierno del meta el mejor',
-            foto:'https://images.pexels.com/photos/509819/pexels-photo-509819.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'
-          },
-          {
-            titulo: 'Gobierno del meta el mejor',
-            foto:'https://images.pexels.com/photos/509819/pexels-photo-509819.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'
-          },
-          {
-            titulo: 'Gobierno del meta el mejor',
-            foto:'https://images.pexels.com/photos/509819/pexels-photo-509819.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'
-          },
-          {
-            titulo: 'Gobierno del meta el mejor',
-            foto:'https://images.pexels.com/photos/509819/pexels-photo-509819.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'
-          }
-      ]
-    };
+           noticias:[],
+           texto:'Prensa Gobernación',
+           imagenBanner:'https://images.pexels.com/photos/4458/cup-mug-desk-office.jpg?w=1260&h=750&auto=compress&cs=tinysrgb'
+           }
   }
 }
 </script>
@@ -124,4 +106,72 @@ export default {
   .clearfix:after {
       clear: both
   }
+  .card{
+    display: flex;
+    flex: 1;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .card-time {
+      font-size: 13px;
+      color: #999;
+    }
+
+  .card-bottom {
+      margin-top: 13px;
+      line-height: 12px;
+    }
+
+  .card-button {
+      padding: 0;
+      float: right;
+    }
+
+  .card-clearfix:before,
+  .card-clearfix:after {
+        display: table;
+        content: "";
+    }
+
+  .card-clearfix:after {
+        clear: both
+    }
+  .card-col{
+    display: flex;
+    max-width: 380px;
+    min-width: 250px;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+
+  }
+  .card-contenedor-imagen{
+    overflow: hidden;
+    height: 170px;
+  }
+  .card-image{
+    width: 100%;
+    display: block;
+  }
+  .card-titulo{
+    font-size: 11 pt;
+  }
+  .card-fecha{
+    font-size: 13px;
+    color: #999;
+  }
+
+@media screen and (max-width: 500px) {
+  .card-col{
+    width: 100%;
+    max-width: 500px
+  }
+  .card-contenedor-imagen{
+    overflow: hidden;
+    height: 210px;
+  }
+}
 </style>

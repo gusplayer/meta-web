@@ -1,6 +1,8 @@
 <template>
   <div class="general">
 
+
+
       <div class="banner">
         <bannerTop></bannerTop>
       </div>
@@ -318,30 +320,7 @@ export default {
 .card{
   display: none;
 }
-.card-time {
-    font-size: 13px;
-    color: #999;
-  }
 
-.card-bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
-
-.card-button {
-    padding: 0;
-    float: right;
-  }
-
-.card-clearfix:before,
-.card-clearfix:after {
-      display: table;
-      content: "";
-  }
-
-.card-clearfix:after {
-      clear: both
-  }
 
 .lateral{
   max-width: 384.1px;
@@ -476,6 +455,30 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
   }
+  .card-time {
+      font-size: 13px;
+      color: #999;
+    }
+
+  .card-bottom {
+      margin-top: 13px;
+      line-height: 12px;
+    }
+
+  .card-button {
+      padding: 0;
+      float: right;
+    }
+
+  .card-clearfix:before,
+  .card-clearfix:after {
+        display: table;
+        content: "";
+    }
+
+  .card-clearfix:after {
+        clear: both
+    }
   .card-col{
     display: flex;
     max-width: 380px;
@@ -496,7 +499,7 @@ export default {
     display: block;
   }
   .card-titulo{
-    font-size: 11pt;
+    font-size: 11 pt;
   }
   .card-fecha{
     font-size: 13px;
@@ -596,6 +599,10 @@ export default {
   .card-col{
     width: 100%;
     max-width: 500px
+  }
+  .card-contenedor-imagen{
+    overflow: hidden;
+    height: 190px;
   }
 }
 </style>

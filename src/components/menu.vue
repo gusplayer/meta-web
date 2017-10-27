@@ -45,19 +45,47 @@
         <el-menu-item index="3-3">Indicadores</el-menu-item>
       </el-submenu>
 
-      <el-menu-item index="4"><router-link to="/transparencia">Documentación </router-link></el-menu-item>
-      <el-menu-item index="5"><router-link to="/prensa">Prensa</router-link></el-menu-item>
+      <el-submenu index="4">
+        <template slot="title">Documentación</template>
+
+        <router-link to="/documentacion/documentos">
+          <el-menu-item index="4-1">Centro de Documentación</el-menu-item>
+        </router-link>
+
+        <router-link to="/documentacion/calidad">
+          <el-menu-item index="4-2">Gestión de Calidad</el-menu-item>
+        </router-link>
+
+        <router-link to="/documentacion/convocatorias">
+          <el-menu-item index="4-3">Convocatorias</el-menu-item>
+          </router-link>
+      </el-submenu>
+
+
+      <el-submenu index="5">
+        <template slot="title">Prensa</template>
+        <router-link to="/prensa">
+         <el-menu-item index="5-1">Noticias Gobernación</el-menu-item>
+        </router-link>
+        <a href="https://www.youtube.com/user/GobMeta/videos" target="_blank">
+         <el-menu-item index="5-2">Canal de videos</el-menu-item>
+        </a>
+        <router-link to="/prensa">
+         <el-menu-item index="5-3">Galeria de Audios</el-menu-item>
+        </router-link>
+
+      </el-submenu>
 
       <el-submenu index="6">
         <template slot="title">Contáctanos</template>
 
+        <router-link to="/contacto">
+        <el-menu-item index="6-2">Medios de Contacto</el-menu-item>
+        </router-link>
+
         <el-menu-item index="6-1">
           <router-link to="/atencion">Atención al ciudadano</router-link>
         </el-menu-item>
-
-        <router-link to="/contacto">
-        <el-menu-item index="6-2">Contactános</el-menu-item>
-        </router-link>
 
       </el-submenu>
 

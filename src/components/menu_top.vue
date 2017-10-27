@@ -1,10 +1,11 @@
 <template>
   <div id="menuTop">
 
+
+
     <div class="encabezado_menu">
-      <router-link to="/ayuda"><span>Ayuda</span></router-link>
+      <a href="http://www.meta.gov.co/web/" target="_blank"><el-button :plain="true" type="success">Versión anterior</el-button></a>
       <router-link to="/sitemap"><span>Mapa del sitio</span></router-link>
-      <span>English</span>
       <span>Contraste</span>
     </div>
 
@@ -14,6 +15,7 @@
       <span><b>A</b>+</span>
       <a href="https://www.facebook.com/GobMeta/" target="_blank"><img src="../assets/facebook.svg" ></a>
       <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>
+
     </div>
 
   </div>

@@ -2,6 +2,14 @@
 <div>
   <div class="general">
 
+    <el-alert
+    title="Bienvenido al nuevo sitio web de la Gobernación del Meta"
+    type="info"
+    description="Aun estamos en desarrollo, pronto sera el lanzamiento oficial. Si tienes alguna sugerencia, contactanos."
+    show-icon
+    class="alerta">
+    </el-alert>
+
 
       <menu-top ></menu-top>
 
@@ -67,6 +75,11 @@ export default {
   width: 1300px;
   display: flex;
   margin-bottom: 0px
+}
+.alerta{
+  font-size: 11pt;
+  max-width: 800px
+
 }
 @media(max-width: 750px){
   .views{
