@@ -104,7 +104,7 @@ export default new Router({
       path: '/documentacion/calidad',
       name: 'calidad',
       component: Calidad
-    }
+    },
 
   ]
 })
