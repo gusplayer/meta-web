@@ -1,22 +1,29 @@
 <template>
   <div class="principal">
-  <Breadcrumb></Breadcrumb>
-  <BannerMicro :imagen="`http://intranet.meta.gov.co/micrositios_banners/${datos.data[0].banners[0].banner}`"></BannerMicro>
+    <el-breadcrumb separator="/" class="breadcrumb">
+    <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
+    <el-breadcrumb-item>{{datos.data[0].titulo}}</el-breadcrumb-item>
+    </el-breadcrumb>
+  <BannerMicro :imagen="`http://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"></BannerMicro>
 
   <div class="contenido">
     <div class="texto">
       <div class="info_micrositio">
-        hola aqui va el video
+        <h2>{{datos.data[0].titulo}}</h2><br>
+        <p>hola aqui va el video</p>
+        {{$route.params.id}}
+        <br><br>
       </div>
 
       <el-collapse v-model="activeNames" @change="handleChange">
 
         <el-collapse-item :title="item.titulo" :name="item.id" v-for="item in datos.data[0].secciones">
           <div>
-            <el-tabs tab-position="top" style="height: 200px;" >
+            <el-tabs tab-position="top" style="height: auto;" >
                 <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
-                  <div class="">
-                    {{sub.titulo}}
+                  <br><h3>{{sub.titulo}}</h3><br>
+                  <div class="sub_texto" v-for="texto in sub.textos">
+                    <p v-html="texto.texto"> </p>
                   </div>
 
                   <div>
@@ -29,8 +36,8 @@
 
       </el-collapse>
 
-      <br><br>
-
+      <br>
+      <br><h2>Galeria</h2><br>
       <div class="galeria">
         <el-card :body-style="{ padding: '0px' }">
           <img src="https://images.pexels.com/photos/6496/man-person-jumping-desert.jpg?w=940&h=650&auto=compress&cs=tinysrgb" class="image">
@@ -41,27 +48,48 @@
         </el-card>
       </div>
 
+
+      <div class="contacto">
+        <br><h2>Contacto</h2><br>
+        <div class="contacto_telefono" v-if="datos.data[0].telefono">
+          <p><b>Telefono:</b> {{datos.data[0].telefono}}</p>
+        </div>
+
+        <div class="contacto_telefono" v-if="datos.data[0].direccion">
+          <p><b>Dirección:</b> {{datos.data[0].direccion}}</p>
+        </div>
+
+        <div class="contacto_telefono" v-if="datos.data[0].email">
+          <p><b>Correo electronico:</b> {{datos.data[0].email}}</p>
+        </div>
+
+
+        <div class="contacto_redes" v-if="datos.data[0].facebook">
+          <a :href="datos.data[0].facebook" target="_blank">
+            <img src="../assets/facebook.svg">
+          </a>
+          <a :href="datos.data[0].twitter" target="_blank">
+           <img src="../assets/twitter.svg" >
+          </a>
+        </div>
+      </div>
+
     </div>
 
     <div class="lateral">
+
+      <div class="social_botones_url_externa" v-for="boton in datos.data[0].url_externa">
+        <a :href="boton.url" target="_blank">
+          <img :src="`http://intranet.meta.gov.co/micrositio_img_urls/${boton.imagen}`" alt="">
+        </a>
+
+      </div>
+
 
       <div class="social_botones_cuadro">
         <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
       </div>
 
-      <div class="social_botones_cuadro">
-        <a class="twitter-timeline" href="https://twitter.com/marcela_amayag">Cargando Twitter...</a>
-      </div>
-
-      <div class="social_botones_cuadro">
-        <div id="fb-root"></div>
-        <div class="fb-page" data-href="https://www.facebook.com/GobMeta/"
-          data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
-          data-hide-cover="false" data-show-facepile="true" data-width="500" style="width:100%">
-          <blockquote cite="https://www.facebook.com/GobMeta/" class="fb-xfbml-parse-ignore">
-          <a href="https://www.facebook.com/GobMeta/">Cargando Facebook...</a></blockquote>
-        </div>
-      </div>
     </div>
 
   </div>
@@ -86,6 +114,7 @@ export default {
   components: {BannerMicro, Breadcrumb},
   name: 'app',
   created(){
+    // router.replace({$route.name: 'diferentes'});
     axios.get('http://intranet.meta.gov.co/api/micrositio/informacion/20')
     .then( response => {
       this.datos = response.data;
@@ -99,18 +128,31 @@ export default {
       imagenBanner:'http://www.meta.gov.co/web/sites/default/files/img_micrositios/Prensa-01.png',
       tabPosition: 'left',
       activeNames: ['1'],
-      datos: ''
+      datos: '',
     }
   }
 }
 </script>
 
 <style scoped>
+.breadcrumb{
+  display: flex;
+  align-self: flex-start;
+  margin-bottom: 15px;
+  background-color: #fafafa;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px
+}
 p{
-  font-size: 12pt;
+  font-size: 10pt;
   font-weight: 400;
   color: #4a4a4a;
   letter-spacing: 0.2px;
+}
+h1, h2, h3{
+  color: #48576a;
 }
 .principal{
   height: auto;
@@ -155,12 +197,27 @@ p{
 }
 .social_botones_cuadro{
   display: flex;
-  height: 500px;
+  height: 400px;
   max-width: 400px;
   background-color: #f6f6f6;
   box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
   overflow:auto;
   margin-bottom: 20px
+}
+.social_botones_url_externa{
+  display: flex;
+  height: auto;
+  max-width: 400px;
+  background-color: #f6f6f6;
+  box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  overflow:auto;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px
+}
+.social_botones_url_externa img{
+  width: 100%
 }
 .galeria{
   display: flex;
@@ -188,6 +245,15 @@ p{
 
 .clearfix:after {
     clear: both
+}
+.contacto_telefono{
+  margin-bottom: 4px
+}
+.contacto_redes {
+  margin-top: 10px
+}
+.contacto_redes a{
+  margin-right: 20px
 }
 @media screen and (max-width: 1000px) {
 

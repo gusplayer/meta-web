@@ -1,8 +1,6 @@
 <template>
   <div class="general">
 
-
-
       <div class="banner">
         <bannerTop></bannerTop>
       </div>
@@ -112,14 +110,9 @@
           </div>
 
         </div>
-
-
-
       </div>
 
       <div class="social_botones">
-
-
 
         <div class="social_botones_cuadro">
           <div id="fb-root"></div>

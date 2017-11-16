@@ -83,7 +83,7 @@ export default new Router({
     {
       path: '/micrositio/:id',
       name: 'micrositio',
-      component: Micrositio
+      component: Micrositio,
     },
     {
       path: '/entidad/gobernadora',

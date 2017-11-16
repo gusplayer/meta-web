@@ -5,11 +5,6 @@
   </el-breadcrumb>
 </template>
 
-<script>
-export default {
-}
-</script>
-
 <style scoped>
 
 .breadcrumb{
