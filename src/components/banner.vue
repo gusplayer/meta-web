@@ -11,7 +11,7 @@
  export default {
    name: 'bannerTop',
    created(){
-     axios.get('http://intranet.meta.gov.co/banners')
+     axios.get('http://intranet.meta.gov.co/web/banners')
      .then( response => {
        this.items = response.data.banners;
      })
@@ -34,8 +34,6 @@
     width: 100%;
     background-color: white
   }
-
-
   .el-carousel__item {
     background-color: white;
   }

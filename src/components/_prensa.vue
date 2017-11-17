@@ -35,7 +35,7 @@ import Breadcrumb from './breadcrumb.vue'
 export default {
   components: {BannerMicro, Breadcrumb},
   created(){
-    axios.get('http://intranet.meta.gov.co/timeline/web')
+    axios.get('http://intranet.meta.gov.co/web/timeline')
     .then( response => {
       this.noticias = response.data.timeline;
     })

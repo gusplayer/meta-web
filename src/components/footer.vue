@@ -7,6 +7,7 @@
         <img src="../assets/presidencia.png" >
        </a>
        <img src="../assets/99.jpg" >
+       <img src="../assets/urna.png" >       
        <img src="../assets/contraloria.png" >
        <img src="../assets/colciencias.jpg" >
        <img src="../assets/colombiacompra.png" >

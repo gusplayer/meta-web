@@ -4,50 +4,53 @@
     <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
     <el-breadcrumb-item>{{datos.data[0].titulo}}</el-breadcrumb-item>
     </el-breadcrumb>
-  <BannerMicro :imagen="`http://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"></BannerMicro>
+  <BannerMicro :imagen="`http://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"
+  v-if="datos.data[0].banners[0]">
+  </BannerMicro>
+
+  <!-- <el-carousel :interval="9000" arrow="always" indicator-position="outside" >
+    <el-carousel-item v-for="item in datos.data[0].banners[0].banner[0]" :key="item">
+      <img :src="`http://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
+    </el-carousel-item>
+  </el-carousel> -->
 
   <div class="contenido">
     <div class="texto">
       <div class="info_micrositio">
-        <h2>{{datos.data[0].titulo}}</h2><br>
-        <p>hola aqui va el video</p>
-        {{$route.params.id}}
+        <h2>{{datos.data[0].titulo}}</h2>
         <br><br>
       </div>
 
       <el-collapse v-model="activeNames" @change="handleChange">
 
-        <el-collapse-item :title="item.titulo" :name="item.id" v-for="item in datos.data[0].secciones">
-          <div>
+        <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="item in datos.data[0].secciones">
+            <div class="sub_texto" v-for="texto_seccion in item.textos">
+              <p v-html="texto_seccion.texto"> </p>
+            </div><br>
+            <div>
             <el-tabs tab-position="top" style="height: auto;" >
                 <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
                   <br><h3>{{sub.titulo}}</h3><br>
                   <div class="sub_texto" v-for="texto in sub.textos">
                     <p v-html="texto.texto"> </p>
                   </div>
-
-                  <div>
-                    {{sub.textos.texto}}
-                  </div>
+                  <div>{{sub.textos.texto}}</div>
                 </el-tab-pane>
             </el-tabs>
           </div>
         </el-collapse-item>
-
       </el-collapse>
 
-      <br>
-      <br><h2>Galeria</h2><br>
+      <br><br><h2 v-if="datos.data[0].galeria[0]">Galeria</h2><br>
       <div class="galeria">
-        <el-card :body-style="{ padding: '0px' }">
-          <img src="https://images.pexels.com/photos/6496/man-person-jumping-desert.jpg?w=940&h=650&auto=compress&cs=tinysrgb" class="image">
-        </el-card>
-
-        <el-card :body-style="{ padding: '0px' }">
-          <img src="https://images.pexels.com/photos/103123/pexels-photo-103123.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb" class="image">
-        </el-card>
-      </div>
-
+        <template>
+          <el-carousel :interval="6000" type="card" height="200px" style="width:100%">
+            <el-carousel-item v-for="foto in datos.data[0].galeria" :key="item">
+              <img :src="`http://intranet.meta.gov.co/micrositio_galeria/${foto.imagen}`" alt="titulo" width="100%">
+            </el-carousel-item>
+          </el-carousel>
+        </template>
+      </div><br>
 
       <div class="contacto">
         <br><h2>Contacto</h2><br>
@@ -82,11 +85,12 @@
         <a :href="boton.url" target="_blank">
           <img :src="`http://intranet.meta.gov.co/micrositio_img_urls/${boton.imagen}`" alt="">
         </a>
-
       </div>
 
+      <div class="social_botones_cuadro" v-for="iframe in datos.data[0].iframes" v-html="iframe.iframe">
+      </div>
 
-      <div class="social_botones_cuadro">
+      <div class="social_botones_google_maps">
         <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
       </div>
 
@@ -115,7 +119,7 @@ export default {
   name: 'app',
   created(){
     // router.replace({$route.name: 'diferentes'});
-    axios.get('http://intranet.meta.gov.co/api/micrositio/informacion/20')
+    axios.get(`http://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
     .then( response => {
       this.datos = response.data;
     })
@@ -130,6 +134,14 @@ export default {
       activeNames: ['1'],
       datos: '',
     }
+  },
+  methods:{
+    setTitle(value){
+       if(value){
+         value = value.toLowerCase();
+         return value.replace(/^\w|\s\w/g, l => l.toUpperCase())
+       }
+     },
   }
 }
 </script>
@@ -189,15 +201,15 @@ h1, h2, h3{
   min-width: 350px;
   flex-direction: column;
 }
-.google_maps{
+.social_botones_google_maps{
   display: flex;
   min-width: 300px;
-  height: 400px;
+  height: 300px;
   margin-bottom: 15px
 }
 .social_botones_cuadro{
   display: flex;
-  height: 400px;
+  max-height: 400px;
   max-width: 400px;
   background-color: #f6f6f6;
   box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
@@ -230,8 +242,6 @@ h1, h2, h3{
   flex: 1;
   height: 200px
 }
-
-
 .image {
   width: 100%;
   display: block;
@@ -255,6 +265,22 @@ h1, h2, h3{
 .contacto_redes a{
   margin-right: 20px
 }
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 200px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: white;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: white;
+  }
+
 @media screen and (max-width: 1000px) {
 
   .lateral {

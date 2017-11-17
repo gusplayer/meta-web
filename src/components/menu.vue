@@ -5,7 +5,8 @@
       <img class="logo_colombia" src="../assets/colombia.png" />
     </div>
 
-    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect" @open="handleOpen"
+      @close="handleClose">
 
       <router-link to="/">
         <el-menu-item index="1">Inicio</el-menu-item>
@@ -28,21 +29,88 @@
           <el-menu-item index="2-3">Gobernación</el-menu-item>
         </router-link>
 
-        <el-menu-item index="2-4">
-          <router-link to="/contacto">Secretarías</router-link>
-        </el-menu-item>
-        <el-menu-item index="2-5">
-          <router-link to="/contacto">Impuestos</router-link>
-        </el-menu-item>
-        <el-menu-item index="2-6">
-          <router-link to="/entidad/transparencia">Transparencia</router-link>
-        </el-menu-item>
+        <router-link to="/entidad/gobernadora">
+          <el-menu-item index="2-3">Secretarías</el-menu-item>
+        </router-link>
+
+        <router-link to="/entidad/gobernadora">
+          <el-menu-item index="2-3">Impuestos</el-menu-item>
+        </router-link>
+
+        <router-link to="/entidad/gobernadora">
+          <el-menu-item index="2-3">Transparencia</el-menu-item>
+        </router-link>
+
+        <el-submenu index="8">
+          <template slot="title">
+            Nuestra entidad
+          </template>
+          <router-link to="/entidad/gobernadora">
+            <el-menu-item index="8-1">Impuestos</el-menu-item>
+          </router-link>
+
+          <router-link to="/entidad/gobernadora">
+            <el-menu-item index="8-2">Transparencia</el-menu-item>
+          </router-link>
+        </el-submenu>
+
+        <router-link to="/entidad/gobernadora">
+          <el-menu-item index="2-3">Transparencia</el-menu-item>
+        </router-link>
+
       </el-submenu>
 
       <el-submenu index="3">
         <template slot="title">El Meta</template>
         <el-menu-item index="3-1">Nuestro departamento</el-menu-item>
         <el-menu-item index="3-3">Indicadores</el-menu-item>
+        <el-menu-item index="3-4">
+          <template slot="title">El Meta</template>
+          <el-menu-item index="3-1">Nuestro departamento</el-menu-item>
+          <el-menu-item index="3-3">Indicadores</el-menu-item>
+
+        </el-menu-item>
+      </el-submenu>
+
+      <el-submenu index="1">
+        <template slot="title">
+          <span>Navigator One</span>
+        </template>
+        <el-menu-item-group title="Group One">
+          <el-menu-item index="1-1">item one</el-menu-item>
+          <el-menu-item index="1-2">item otwo</el-menu-item>
+        </el-menu-item-group>
+
+        <el-menu-item-group title="Group Two">
+          <el-menu-item index="1-3">item three</el-menu-item>
+        </el-menu-item-group>
+
+          <el-submenu index="1-4">
+            <template slot="title">item four</template>
+            <el-menu-item index="1-4-1">item four one</el-menu-item>
+          </el-submenu>
+
+        <el-menu-item index="1-6">item five</el-menu-item>
+        <el-menu-item index="1-7">item six</el-menu-item>
+      </el-submenu>
+
+      <el-submenu index="9">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span slot="title">Navigator One</span>
+        </template>
+        <el-menu-item-group>
+          <span slot="title">Group One</span>
+          <el-menu-item index="1-1">item one</el-menu-item>
+          <el-menu-item index="1-2">item two</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="Group Two">
+          <el-menu-item index="1-3">item three</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <span slot="title">item four</span>
+          <el-menu-item index="1-4-1">item one</el-menu-item>
+        </el-submenu>
       </el-submenu>
 
       <el-submenu index="4">
@@ -137,6 +205,25 @@
                      Contacto
                     </el-menu-item>
                   </router-link>
+                </el-submenu>
+
+                <el-submenu index="7">
+                  <template slot="title">
+                    <span>Navigator One</span>
+                  </template>
+                  <el-menu-item-group title="Group One">
+                    <el-menu-item index="1-1">item one</el-menu-item>
+                    <el-menu-item index="1-2">item one</el-menu-item>
+                  </el-menu-item-group>
+                  <el-menu-item-group title="Group Two">
+                    <el-menu-item index="1-3">item three</el-menu-item>
+                  </el-menu-item-group>
+                  <el-submenu index="1-4">
+                    <template slot="title">item four</template>
+                    <el-menu-item index="1-4-1">item one</el-menu-item>
+                  </el-submenu>
+                  <el-menu-item index="1-6">item one</el-menu-item>
+                  <el-menu-item index="1-7">item one</el-menu-item>
                 </el-submenu>
 
             </el-menu>
@@ -236,6 +323,9 @@ export default {
     display: none;
 
 }
+.el-menu-vertical-demo{
+
+}
 
 @media screen and (max-width: 1000px) {
   #menuTop{
@@ -267,7 +357,6 @@ export default {
     display: flex;
     margin-top: 50px;
     width: 100%;
-    height: 100%;
     background-color: #e0e0e0;
     position: absolute;
     left: 0px;

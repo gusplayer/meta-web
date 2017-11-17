@@ -1,21 +1,18 @@
 <template>
   <div id="menuTop">
 
-
-
     <div class="encabezado_menu">
       <a href="http://www.meta.gov.co/web/" target="_blank"><el-button :plain="true" type="success">Versión anterior</el-button></a>
-      <router-link to="/sitemap"><span>Mapa del sitio</span></router-link>
-      <span>Contraste</span>
+      <!-- <router-link to="/sitemap"><span>Mapa del sitio</span></router-link>
+      <span>Contraste</span> -->
     </div>
 
     <div class="encabezado_icons">
-      <span><b>A</b></span>
+      <!-- <span><b>A</b></span>
       <span><b>A</b>-</span>
-      <span><b>A</b>+</span>
+      <span><b>A</b>+</span> -->
       <a href="https://www.facebook.com/GobMeta/" target="_blank"><img src="../assets/facebook.svg" ></a>
       <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>
-
     </div>
 
   </div>
@@ -47,7 +44,7 @@
 	color: rgba(74, 74, 74, 0.87);
 }
 .encabezado_icons{
-  width: 150px;
+  width: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;

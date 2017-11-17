@@ -32,11 +32,14 @@
                   :style="coverImagen(noticia)">
                   </div>
                   <div>
-                    <h2>{{ noticia.titulo.substr(0,30) }}</h2>
+                    <h2>{{ noticia.titulo }}</h2>
                     <!-- <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p"> -->
-                      <p v-html="contarPalabras(noticia.contenido)"></p>
+                      <!-- <p v-html="contarPalabras(noticia.contenido)"></p> -->
                     <!-- </div> -->
-                    <button type="button" name="button">Ver más</button>
+                    <div class="noticias_contenedor_bottom">
+                      <time class="card-fecha">{{noticia.fecha}}</time>
+                      <el-button class="card-button" size="small" round>Continuar leyendo</el-button>
+                    </div>
                   </div>
           </div>
 
@@ -154,7 +157,7 @@ import axios from 'axios';
 export default {
   components: {bannerTop},
   created(){
-    axios.get('http://intranet.meta.gov.co/timeline/web')
+    axios.get('http://intranet.meta.gov.co/web/timeline')
     .then( response => {
       this.noticias = response.data.timeline;
     })
@@ -177,7 +180,7 @@ export default {
     },
     contarPalabras(value){
       if(value){
-        return value.substr(0,200)
+        return value.substr(0,60)
       }
     },
     coverImagen(value){
@@ -267,7 +270,10 @@ export default {
   margin-bottom: 20px;
   box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
 }
-
+.noticias_contenedor_bottom{
+  display: flex;
+  flex-direction: row;
+}
 .noticias_contenedor_img{
   max-width: 50%;
   max-height: 100%;
@@ -281,7 +287,7 @@ export default {
   align-items: flex-end;
 }
 .noticias_contenedor_foto{
-  width: 350px;
+  width: 450px;
   height: auto;
   padding: 0px;
 }

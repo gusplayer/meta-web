@@ -2,13 +2,13 @@
 <div>
   <div class="general">
 
-    <el-alert
+    <!-- <el-alert
     title="Bienvenido al nuevo sitio web de la Gobernación del Meta"
     type="info"
     description="Aun estamos en desarrollo, pronto sera el lanzamiento oficial. Si tienes alguna sugerencia, contactanos."
     show-icon
     class="alerta">
-    </el-alert>
+    </el-alert> -->
 
 
       <menu-top ></menu-top>
@@ -80,6 +80,11 @@ export default {
   font-size: 11pt;
   max-width: 800px
 
+}
+.el-collapse-item .el-collapse-item__header{
+display: flex;
+align-items: center;
+line-height: initial
 }
 @media(max-width: 750px){
   .views{
