@@ -4,161 +4,21 @@
       <img class="logo_meta" src="../assets/logo.png" />
       <img class="logo_colombia" src="../assets/colombia.png" />
     </div>
-
-    <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect" @open="handleOpen"
-      @close="handleClose">
-
-      <router-link to="/">
-        <el-menu-item index="1">Inicio</el-menu-item>
-      </router-link>
-
-      <el-submenu index="2">
-        <template slot="title">
-          Nuestra entidad
-        </template>
-
-        <router-link to="/entidad/gobernadora">
-          <el-menu-item index="2-1">Nuestra Gobernadora</el-menu-item>
-        </router-link>
-
-        <router-link to="/entidad/gobernadora">
-          <el-menu-item index="2-2">Gabinete de Gobierno</el-menu-item>
-        </router-link>
-
-        <router-link to="/entidad/gobernadora">
-          <el-menu-item index="2-3">Gobernación</el-menu-item>
-        </router-link>
-
-        <router-link to="/entidad/gobernadora">
-          <el-menu-item index="2-3">Secretarías</el-menu-item>
-        </router-link>
-
-        <router-link to="/entidad/gobernadora">
-          <el-menu-item index="2-3">Impuestos</el-menu-item>
-        </router-link>
-
-        <router-link to="/entidad/gobernadora">
-          <el-menu-item index="2-3">Transparencia</el-menu-item>
-        </router-link>
-
-        <el-submenu index="8">
-          <template slot="title">
-            Nuestra entidad
-          </template>
-          <router-link to="/entidad/gobernadora">
-            <el-menu-item index="8-1">Impuestos</el-menu-item>
-          </router-link>
-
-          <router-link to="/entidad/gobernadora">
-            <el-menu-item index="8-2">Transparencia</el-menu-item>
-          </router-link>
-        </el-submenu>
-
-        <router-link to="/entidad/gobernadora">
-          <el-menu-item index="2-3">Transparencia</el-menu-item>
-        </router-link>
-
-      </el-submenu>
-
-      <el-submenu index="3">
-        <template slot="title">El Meta</template>
-        <el-menu-item index="3-1">Nuestro departamento</el-menu-item>
-        <el-menu-item index="3-3">Indicadores</el-menu-item>
-        <el-menu-item index="3-4">
-          <template slot="title">El Meta</template>
-          <el-menu-item index="3-1">Nuestro departamento</el-menu-item>
-          <el-menu-item index="3-3">Indicadores</el-menu-item>
-
-        </el-menu-item>
-      </el-submenu>
-
-      <el-submenu index="1">
-        <template slot="title">
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group title="Group One">
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item otwo</el-menu-item>
-        </el-menu-item-group>
-
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-
-          <el-submenu index="1-4">
-            <template slot="title">item four</template>
-            <el-menu-item index="1-4-1">item four one</el-menu-item>
-          </el-submenu>
-
-        <el-menu-item index="1-6">item five</el-menu-item>
-        <el-menu-item index="1-7">item six</el-menu-item>
-      </el-submenu>
-
-      <el-submenu index="9">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span slot="title">Navigator One</span>
-        </template>
-        <el-menu-item-group>
-          <span slot="title">Group One</span>
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <span slot="title">item four</span>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-
-      <el-submenu index="4">
-        <template slot="title">Documentación</template>
-
-        <router-link to="/documentacion/documentos">
-          <el-menu-item index="4-1">Centro de Documentación</el-menu-item>
-        </router-link>
-
-        <router-link to="/documentacion/calidad">
-          <el-menu-item index="4-2">Gestión de Calidad</el-menu-item>
-        </router-link>
-
-        <router-link to="/documentacion/convocatorias">
-          <el-menu-item index="4-3">Convocatorias</el-menu-item>
-          </router-link>
-      </el-submenu>
-
-
-      <el-submenu index="5">
-        <template slot="title">Prensa</template>
-        <router-link to="/prensa">
-         <el-menu-item index="5-1">Noticias Gobernación</el-menu-item>
-        </router-link>
-        <a href="https://www.youtube.com/user/GobMeta/videos" target="_blank">
-         <el-menu-item index="5-2">Canal de videos</el-menu-item>
-        </a>
-        <router-link to="/prensa">
-         <el-menu-item index="5-3">Galeria de Audios</el-menu-item>
-        </router-link>
-
-      </el-submenu>
-
-      <el-submenu index="6">
-        <template slot="title">Contáctanos</template>
-
-        <router-link to="/contacto">
-        <el-menu-item index="6-2">Medios de Contacto</el-menu-item>
-        </router-link>
-
-        <el-menu-item index="6-1">
-          <router-link to="/atencion">Atención al ciudadano</router-link>
-        </el-menu-item>
-
-      </el-submenu>
-
-    </el-menu>
-
+    <nav class="go_menu">
+      <ul class="go_menu_list">
+        <li class="go_menu_list_item" v-for="item in menuDefault"><router-link to="/inicio">{{ item.titulo }}<i class="el-icon-caret-bottom" v-show="item.haveChildren"></i></router-link>
+          <ul class="go_menu_sublist" v-if="item.haveChildren">
+            <li class="go_menu_list_item" v-for="subitem in item.children"><router-link to="/inicio">{{ subitem.titulo }}<i class="el-icon-caret-right" v-show="subitem.haveChildren"></i></router-link>
+              <ul class="go_menu_sublist" v-if="subitem.haveChildren">
+                <li class="go_menu_list_item" v-if="subitem.children" v-for="subitem2 in subitem.children"><router-link to="/inicio">{{ subitem2.titulo }}</router-link></li>
+                <li class="go_menu_list_item" v-if="subitem.childrenDynamic" v-for="item in filterMenu(subitem.id)"><router-link :to="`/micrositio/${item.id}`">{{ item.titulo }}</router-link></li>
+              </ul>
+            </li>
+            <li class="go_menu_list_item" v-if="item.childrenDynamic" v-for="subitem in filterMenu(item.id)"><router-link :to="`/micrositio/${subitem.id}`">{{ subitem.titulo }}</router-link></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 
     <!-- <a href="javascript:void(0);" class="icon" v-on:click="transition = !transition">&#9776;</a> -->
 
@@ -166,67 +26,25 @@
 
     <transition name="el-zoom-in-top">
         <div v-show="transition" class="menuresponsive">
-
-          <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" v-show="transition"  >
-            <el-menu-item index="1">
-              <router-link to="/">Inicio</router-link>
-            </el-menu-item>
-
-                <el-submenu index="2" >
-                  <template slot="title"></i>Nuestra entidad</template>
-                  <router-link to="/contacto">
-                    <el-menu-item index="2-1">
-                    Nuestra Gobernadora
-                    </el-menu-item>
-                  </router-link>
-                </el-submenu>
-
-                <el-submenu index="3" >
-                  <template slot="title"></i>El Meta</template>
-                  <router-link to="/contacto">
-                    <el-menu-item index="2-1">
-                    Nuestra Gobernadora
-                    </el-menu-item>
-                  </router-link>
-                </el-submenu>
-
-                <el-menu-item index="4">Documentación</el-menu-item>
-                <el-menu-item index="5">Prensa</el-menu-item>
-
-                <el-submenu index="6">
-                  <template slot="title"></i>Contáctanos</template>
-                  <router-link to="/contacto">
-                    <el-menu-item index="2-1">
-                     Atención al ciudadano
-                    </el-menu-item>
-                  </router-link>
-                  <router-link to="/contacto">
-                    <el-menu-item index="2-1">
-                     Contacto
-                    </el-menu-item>
-                  </router-link>
-                </el-submenu>
-
-                <el-submenu index="7">
-                  <template slot="title">
-                    <span>Navigator One</span>
-                  </template>
-                  <el-menu-item-group title="Group One">
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item one</el-menu-item>
-                  </el-menu-item-group>
-                  <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                  </el-menu-item-group>
-                  <el-submenu index="1-4">
-                    <template slot="title">item four</template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
+          <el-menu default-active="2" class="el-menu-vertical" v-show="transition">
+            <template v-for="(item, index) in menuDefault">
+              <el-menu-item v-if="!item.haveChildren" :index="index.toString()">
+                <router-link to="/">{{ item.titulo }}</router-link>
+              </el-menu-item>
+              <el-submenu v-else :index="index.toString()">
+                <span slot="title"></i>{{ item.titulo }}</span>
+                <template v-for="(item2, index2) in item.children">
+                  <el-menu-item v-if="!item2.haveChildren" :index="`${index}-${index2}`"><router-link to="/contacto">{{ item2.titulo }}</router-link></el-menu-item>
+                  <el-submenu v-else :index="`${index}-${index2}`">
+                    <span slot="title">{{ item2.titulo }}</span>
+                    <el-menu-item v-for="(item3, index3) in item2.children" :index="`${index}-${index2}-${index3}`">{{ item3.titulo }}</el-menu-item>
+                    <el-menu-item v-if="item2.childrenDynamic" v-for="(item3, index3) in filterMenu(item2.id)" :index="`${index}-${index2}-${index3}`"><router-link to="/contacto">{{ item3.titulo }}</router-link></el-menu-item>
                   </el-submenu>
-                  <el-menu-item index="1-6">item one</el-menu-item>
-                  <el-menu-item index="1-7">item one</el-menu-item>
-                </el-submenu>
-
-            </el-menu>
+                </template>
+                <el-menu-item v-if="item.childrenDynamic" v-for="(item2, index2) in filterMenu(item.id)" :index="`${index}-${index2}`"><router-link to="/contacto">{{ item2.titulo }}</router-link></el-menu-item>
+              </el-submenu>
+            </template>
+          </el-menu>
         </div>
     </transition>
 
@@ -247,12 +65,132 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+    created(){
+      axios.get('http://intranet.meta.gov.co/api/micrositio/listado').then((response) => {
+        this.menuDynamic = response.data.data;
+      })
+    },
     data() {
       return {
         activeIndex: '1',
         activeIndex2: '1',
-        transition: false
+        transition: false,
+        menuDefault: [
+          {
+            titulo: 'Inicio',
+            haveChildren: false,
+            childrenDynamic: false,
+          },{
+            titulo: 'Nuestra entidad',
+            haveChildren: true,
+            childrenDynamic: false,
+            children: [
+              {
+                titulo: 'Nuestra Gobernadora',
+                haveChildren: false,
+                childrenDynamic: false,
+              },{
+                titulo: 'Gabinete de gobierno',
+                haveChildren: false,
+                childrenDynamic: false,
+              },{
+                titulo: 'Elementos Estrategicos',
+                haveChildren: false,
+                childrenDynamic: false,
+              },{
+                titulo: 'Gestion de gobierno',
+                haveChildren: true,
+                children: [
+                  {
+                    titulo: 'Control y rendicion de cuentas',
+                    haveChildren: false,
+                    childrenDynamic: false,
+                  }
+                ],
+                childrenDynamic: false,
+              },{
+                id: '1',
+                titulo: 'Secretarías',
+                haveChildren: true,
+                childrenDynamic: true,
+              },{
+                id: '0',
+                titulo: 'Entidades decentralizadas',
+                haveChildren: true,
+                childrenDynamic: true,
+              },{
+                titulo: 'Plan de desarrollo',
+                haveChildren: false,
+                childrenDynamic: false,
+              },{
+                titulo: 'Control interno',
+                haveChildren: false,
+                childrenDynamic: false,
+              }
+            ]
+          },{
+            id: '0',
+            titulo: 'El Meta',
+            haveChildren: true,
+            children: [
+              {
+                titulo: 'Nuestro departamento',
+              },{
+                titulo: 'Municipios',
+              },{
+                titulo: 'Agremiaciones',
+              },{
+                titulo: 'Gobernadores',
+              },{
+                titulo: 'Mapas',
+              },{
+                titulo: 'Portal de niños'
+              }
+            ],
+            childrenDynamic: true,
+          },{
+            titulo: 'Documentación',
+            haveChildren: true,
+            children: [
+              {
+                titulo: 'Centro de documentation',
+              },{
+                titulo: 'Gestion de calidad',
+              },{
+                titulo: 'Politicas publicas',
+              },{
+                titulo: 'Convocatorias',
+              },{
+                titulo: 'Transparencia',
+              }
+            ],
+            childrenDynamic: false,
+          },{
+            titulo: 'Prensa',
+            haveChildren: true,
+            children: [
+              {
+                titulo: 'Archivo de noticias',
+              },{
+                titulo: 'Galeria fotografica',
+              },{
+                titulo: 'Galeria de videos',
+              },{
+                titulo: 'Galeria de audios',
+              },{
+                titulo: 'Manual de entidad de marca'
+              }
+            ],
+            childrenDynamic: false,
+          },{
+            titulo: 'Atencion al ciudadano',
+            haveChildren: false,
+            childrenDynamic: false,
+          }
+        ],
+        menuDynamic: [],
       };
     },
     watch:{
@@ -261,16 +199,9 @@ export default {
       }
     },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+      filterMenu(parameterMenu) {
+        return this.menuDynamic.filter(item => item.menu == parameterMenu)
       },
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-
     }
 }
 
@@ -285,6 +216,74 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  z-index: 11;
+}
+.go_menu *{
+  list-style: none;
+  color: #48576a;
+  font-size: 15px;
+}
+.go_menu{
+  margin: 0px 5px;
+}
+.go_menu_list{
+  display: flex;
+  align-items: flex-start;
+}
+.go_menu_list > .go_menu_list_item{
+  border-bottom: 5px solid transparent;
+}
+.go_menu_list > .go_menu_list_item:hover{
+  border-bottom: 5px solid #20a0ff;
+}
+.go_menu_list_item{
+  position: relative;
+  display: flex;
+}
+.go_menu_list_item a{
+  padding: 20px 18px;
+}
+.go_menu_list_item i{
+  margin-left: 5px;
+  font-size: 12px;
+  color: #97a8be;
+}
+.go_menu_list_item:hover{
+  background-color: #eef1f6;
+}
+.go_menu_sublist{
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0px;
+  width: 150%;
+  background-color: #FFF;
+  border: 1px solid #d1dbe5;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+}
+.go_menu_list_item > .go_menu_sublist{
+  visibility: hidden;
+  opacity: 0;
+  transition: .3s;
+}
+.go_menu_list_item:hover > .go_menu_sublist{
+  visibility: visible;
+  opacity: 1;
+}
+.go_menu_sublist .go_menu_list_item a{
+  padding: 15px 20px;
+}
+.go_menu_sublist .go_menu_list_item .go_menu_sublist{
+  top: 0;
+  left: calc(100% + 5px);
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transition: .3s;
+}
+.go_menu_sublist .go_menu_list_item:hover .go_menu_sublist{
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 .logo{
   width: 320px;
@@ -295,10 +294,10 @@ export default {
   margin-left: 10px;
 }
 .logo_meta{
-  height: 72px;
+  height: 70px;
 }
 .logo_colombia{
-  height: 66px;
+  height: 64px;
 }
 .el-menu-demo{
   width: 800px;
@@ -323,11 +322,14 @@ export default {
     display: none;
 
 }
-.el-menu-vertical-demo{
+.el-menu-vertical{
 
 }
 
 @media screen and (max-width: 1000px) {
+  .go_menu{
+    display: none;
+  }
   #menuTop{
     display: flex;
     justify-content: space-between;
@@ -364,7 +366,7 @@ export default {
     justify-content: center;
     padding: 10px
   }
-  .el-menu-vertical-demo{
+  .el-menu-vertical{
     width: 500px !important;
   }
 
