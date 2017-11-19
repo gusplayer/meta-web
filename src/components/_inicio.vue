@@ -6,11 +6,13 @@
       </div>
 
       <div class="botones_banner">
-          <a href="#" class="botones_banner_accion">
+          <a href="http://www.meta.gov.co/web/content/secretar%C3%ADa-de-gobierno"
+          class="botones_banner_accion" target="_blank">
             <div><span>Acción comunal y participación ciudadana</span></div>
             <img src="../assets/business-person-silhouette-wearing-tie.png">
           </a>
-          <a href="#" class="botones_banner_accion botones_banner_regalias">
+          <a href="http://www.meta.gov.co/web/content/secretar%C3%AD-t%C3%A9cnica-ocad-meta"
+          class="botones_banner_accion botones_banner_regalias" target="_blank">
             <div><span>Regalías Meta</span></div>
             <img src="../assets/bitmap.png">
           </a>
@@ -18,8 +20,9 @@
             <div><span>Calendario eventos</span></div>
             <img src="../assets/calendar.jpg">
           </a>
-          <a href="#" class="botones_banner_accion botones_banner_liquidacion">
-             <div><span>Liquidación impuesto vehiculos</span></div>
+          <a href="http://www.meta.gov.co/web/content/impuestos-departamentales-0"
+          class="botones_banner_accion botones_banner_liquidacion" target="_blank">
+             <div><span>Liquidación impuesto </span></div>
              <img src="../assets/impuestoscar.png">
           </a>
       </div>
@@ -32,14 +35,11 @@
                   :style="coverImagen(noticia)">
                   </div>
                   <div>
-                    <h2>{{ noticia.titulo }}</h2>
-                    <!-- <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p"> -->
-                      <!-- <p v-html="contarPalabras(noticia.contenido)"></p> -->
-                    <!-- </div> -->
-                    <div class="noticias_contenedor_bottom">
-                      <time class="card-fecha">{{noticia.fecha}}</time>
-                      <el-button class="card-button" size="small" round>Continuar leyendo</el-button>
+                    <h2 >{{ noticia.titulo }}</h2>
+                    <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p">
+                      <p v-html="contarPalabras(noticia.contenido)+'....'"></p>
                     </div>
+                        <el-button class="card-button" size="small" round>Ver más</el-button>
                   </div>
           </div>
 
@@ -65,9 +65,9 @@
         </div>
         <div class="lateral">
 
-          <h2>Información Servicios</h2>
+          <h2>Servicios</h2>
 
-          <div class="lateral_line"><p></p></div>
+          <!-- <div class="lateral_line"><p></p></div>
 
           <button type="button" name="button" class="lateral_line_boton">
             <img src="../assets/check.png" >
@@ -80,7 +80,7 @@
           <button type="button" name="button" class="lateral_line_boton">
             <img src="../assets/check.png" >
             <span>Regalias</span>
-          </button>
+          </button> -->
 
           <div class="lateral_line"><p></p></div>
 
@@ -109,8 +109,11 @@
           frameborder="0" allowfullscreen>
           </iframe>
 
-          <div class="carrito">
+          <div class="social_botones_google_maps">
+            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
           </div>
+
+
 
         </div>
       </div>
@@ -180,7 +183,7 @@ export default {
     },
     contarPalabras(value){
       if(value){
-        return value.substr(0,60)
+        return value.substr(0,150)
       }
     },
     coverImagen(value){
@@ -266,41 +269,45 @@ export default {
 	height: 260px;
   display: flex;
   flex-direction: row;
-	background-color: #f6f6f6;
+	background-color: #f6f7f9;
   margin-bottom: 20px;
   box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
 }
 .noticias_contenedor_bottom{
   display: flex;
-  flex-direction: row;
+  height: 150px
 }
 .noticias_contenedor_img{
   max-width: 50%;
   max-height: 100%;
 }
 .noticias_contenedor div:last-child{
-  width: 460px;
+  width: 400px;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
+  text-align: justify;
 }
 .noticias_contenedor_foto{
   width: 450px;
   height: auto;
   padding: 0px;
 }
+
 .noticias_contenedor  h2{
-	font-size: 22px;
+	font-size: 15px;
 	color: #4f6983;
-  font-weight: 300;
+  font-weight: 400;
+	line-height: 1.3;
 }
 .noticias_contenedor_p p{
-	font-size: 14px;
-	line-height: 2.02;
+	font-size: 12px;
+	line-height: 1.3;
 	letter-spacing: 0.2px;
 	color: #393939;
+  text-align: justify;
 }
 .noticias_contenedor button{
   	width: 110px;
@@ -324,7 +331,7 @@ export default {
 .lateral{
   max-width: 384.1px;
   width: 100%;
-	background-color: #f6f6f6;
+	background-color: #f6f7f9;
 	box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
   padding: 15px;
   display: flex;
@@ -340,7 +347,7 @@ export default {
   font-weight: 300;
 	color: #4f6983;
   display: flex;
-  align-self: flex-end;
+  align-self: center;
   margin-bottom: 5px
 }
 .lateral_line {
@@ -376,6 +383,12 @@ export default {
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-bottom: 15px
+}
+.social_botones_google_maps{
+  display: flex;
+  min-width: 300px;
+  height: 350px;
   margin-bottom: 15px
 }
 .social_botones{

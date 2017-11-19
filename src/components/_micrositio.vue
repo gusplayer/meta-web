@@ -24,27 +24,74 @@
       <el-collapse v-model="activeNames" @change="handleChange">
 
         <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="item in datos.data[0].secciones">
+
             <div class="sub_texto" v-for="texto_seccion in item.textos">
               <p v-html="texto_seccion.texto"> </p>
             </div><br>
-            <div>
-            <el-tabs tab-position="top" style="height: auto;" >
-                <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
-                  <br><h3>{{sub.titulo}}</h3><br>
-                  <div class="sub_texto" v-for="texto in sub.textos">
-                    <p v-html="texto.texto"> </p>
-                  </div>
-                  <div>{{sub.textos.texto}}</div>
-                </el-tab-pane>
-            </el-tabs>
-          </div>
+
+            <div class="secciones_docs" v-for="archivo in item.archivos">
+              <i class="el-icon-document"></i>
+              <div class="secciones_docs_descarga">
+                <p>{{archivo.titulo}}</p>
+
+                <a :href="`http://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                <el-button type="primary">Descarga</el-button>
+                </a>
+              </div>
+            </div>
+
+            <iframe v-for="video in item.videos"
+            width="640" height="360"
+            :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
+            frameborder="0" gesture="media"
+            allowfullscreen>
+            </iframe>
+
+            <div class="galeria" v-if="item.imagenes[0]">
+              <br><br><template>
+                <el-carousel :interval="12000" style="width:100%; max-width:700px,">
+                  <el-carousel-item v-for="foto in item.imagenes" :key="item">
+                    <img :src="`http://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
+                          width="auto" style="max-height:100%">
+                  </el-carousel-item>
+                </el-carousel>
+              </template>
+            </div><br>
+
+            <div class="social_botones_url_externa" v-for="item in item.urls">
+              <a :href="item.url" target="_blank">
+                <img :src="`http://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+              </a>
+            </div>
+
+
+
+            <div class="social_botones_cuadro"
+            v-for="iframe in item.iframes" v-html="iframe.iframe">
+            </div>
+
+            <el-button type="primary" icon="el-icon-delete">hola</el-button>
+            <i class="el-icon-delete"></i>
+
+              <div class="sub_secciones">
+                  <el-tabs tab-position="top" style="height: auto;" >
+                      <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
+                        <br><h3>{{sub.titulo}}</h3><br>
+                        <div class="sub_texto" v-for="texto in sub.textos">
+                          <p v-html="texto.texto"> </p>
+                        </div>
+                        <div>{{sub.textos.texto}}</div>
+                      </el-tab-pane>
+                  </el-tabs>
+              </div>
+
         </el-collapse-item>
       </el-collapse>
 
       <br><br><h2 v-if="datos.data[0].galeria[0]">Galeria</h2><br>
-      <div class="galeria">
+      <div class="galeria" v-if="datos.data[0].galeria[0]">
         <template>
-          <el-carousel :interval="6000" type="card" height="200px" style="width:100%">
+          <el-carousel :interval="7000" type="card" height="200px" style="width:100%">
             <el-carousel-item v-for="foto in datos.data[0].galeria" :key="item">
               <img :src="`http://intranet.meta.gov.co/micrositio_galeria/${foto.imagen}`" alt="titulo" width="100%">
             </el-carousel-item>
@@ -90,9 +137,7 @@
       <div class="social_botones_cuadro" v-for="iframe in datos.data[0].iframes" v-html="iframe.iframe">
       </div>
 
-      <div class="social_botones_google_maps">
-        <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
-      </div>
+
 
     </div>
 
@@ -127,6 +172,17 @@ export default {
      this.errors.push(e)
    })
   },
+  watch:{
+    "$route" (){
+      axios.get(`http://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+      .then( response => {
+        this.datos = response.data;
+      })
+      .catch(e => {
+       this.errors.push(e)
+     })
+    }
+  },
   data(){
     return{
       imagenBanner:'http://www.meta.gov.co/web/sites/default/files/img_micrositios/Prensa-01.png',
@@ -142,6 +198,16 @@ export default {
          return value.replace(/^\w|\s\w/g, l => l.toUpperCase())
        }
      },
+     videoYoutube(urlVideo){
+       let index;
+    			if(urlVideo.includes('?v=')){
+    				index = urlVideo.indexOf('?v=')+3;
+    			}else{
+    				index = urlVideo.indexOf('.be/')+4;
+    			}
+        	let idYoutube = urlVideo.substring(index);
+    			return idYoutube;
+     }
   }
 }
 </script>
@@ -209,12 +275,16 @@ h1, h2, h3{
 }
 .social_botones_cuadro{
   display: flex;
-  max-height: 400px;
+  max-height: 600px;
   max-width: 400px;
   background-color: #f6f6f6;
   box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
-  overflow:auto;
+  overflow:hidden;
   margin-bottom: 20px
+}
+.social_botones_cuadro iframe{
+  height: 100% !important;
+  width: 100% !im
 }
 .social_botones_url_externa{
   display: flex;
@@ -279,6 +349,27 @@ h1, h2, h3{
 
   .el-carousel__item:nth-child(2n+1) {
     background-color: white;
+  }
+  .el-carousel__container{
+    height: 500px !important;
+    display: flex;
+    justify-content: center;
+  }
+  .secciones_docs{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    align-items: center;
+    background-color: #f6f6f6;
+    box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  }
+  .secciones_docs_descarga{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    width: 100%
   }
 
 @media screen and (max-width: 1000px) {

@@ -6,11 +6,11 @@
     </div>
     <nav class="go_menu">
       <ul class="go_menu_list">
-        <li class="go_menu_list_item" v-for="item in menuDefault"><router-link to="/inicio">{{ item.titulo }}<i class="el-icon-caret-bottom" v-show="item.haveChildren"></i></router-link>
+        <li class="go_menu_list_item" v-for="item in menuDefault"><router-link :to="item.url">{{ item.titulo }}<i class="el-icon-caret-bottom" v-show="item.haveChildren"></i></router-link>
           <ul class="go_menu_sublist" v-if="item.haveChildren">
-            <li class="go_menu_list_item" v-for="subitem in item.children"><router-link to="/inicio">{{ subitem.titulo }}<i class="el-icon-caret-right" v-show="subitem.haveChildren"></i></router-link>
+            <li class="go_menu_list_item" v-for="subitem in item.children"><router-link :to="subitem.url">{{ subitem.titulo }}<i class="el-icon-caret-right" v-show="subitem.haveChildren"></i></router-link>
               <ul class="go_menu_sublist" v-if="subitem.haveChildren">
-                <li class="go_menu_list_item" v-if="subitem.children" v-for="subitem2 in subitem.children"><router-link to="/inicio">{{ subitem2.titulo }}</router-link></li>
+                <li class="go_menu_list_item" v-if="subitem.children" v-for="subitem2 in subitem.children"><router-link :to="subitem2.url">{{ subitem2.titulo }}</router-link></li>
                 <li class="go_menu_list_item" v-if="subitem.childrenDynamic" v-for="item in filterMenu(subitem.id)"><router-link :to="`/micrositio/${item.id}`">{{ item.titulo }}</router-link></li>
               </ul>
             </li>
@@ -29,19 +29,19 @@
           <el-menu default-active="2" class="el-menu-vertical" v-show="transition">
             <template v-for="(item, index) in menuDefault">
               <el-menu-item v-if="!item.haveChildren" :index="index.toString()">
-                <router-link to="/">{{ item.titulo }}</router-link>
+                <router-link :to="item.url">{{ item.titulo }}</router-link>
               </el-menu-item>
               <el-submenu v-else :index="index.toString()">
                 <span slot="title"></i>{{ item.titulo }}</span>
                 <template v-for="(item2, index2) in item.children">
-                  <el-menu-item v-if="!item2.haveChildren" :index="`${index}-${index2}`"><router-link to="/contacto">{{ item2.titulo }}</router-link></el-menu-item>
+                  <el-menu-item v-if="!item2.haveChildren" :index="`${index}-${index2}`"><router-link :to="item2.url">{{ item2.titulo }}</router-link></el-menu-item>
                   <el-submenu v-else :index="`${index}-${index2}`">
                     <span slot="title">{{ item2.titulo }}</span>
                     <el-menu-item v-for="(item3, index3) in item2.children" :index="`${index}-${index2}-${index3}`">{{ item3.titulo }}</el-menu-item>
                     <el-menu-item v-if="item2.childrenDynamic" v-for="(item3, index3) in filterMenu(item2.id)" :index="`${index}-${index2}-${index3}`"><router-link to="/contacto">{{ item3.titulo }}</router-link></el-menu-item>
                   </el-submenu>
                 </template>
-                <el-menu-item v-if="item.childrenDynamic" v-for="(item2, index2) in filterMenu(item.id)" :index="`${index}-${index2}`"><router-link to="/contacto">{{ item2.titulo }}</router-link></el-menu-item>
+                <el-menu-item v-if="item.childrenDynamic" v-for="(item2, index2) in filterMenu(item.id)" :index="`${index}-${index2}`"><router-link :to="item2.url">{{ item2.titulo }}</router-link></el-menu-item>
               </el-submenu>
             </template>
           </el-menu>
@@ -82,31 +82,39 @@ export default {
             titulo: 'Inicio',
             haveChildren: false,
             childrenDynamic: false,
+            url: "/"
           },{
             titulo: 'Nuestra entidad',
             haveChildren: true,
             childrenDynamic: false,
+            url: "/",
             children: [
               {
                 titulo: 'Nuestra Gobernadora',
                 haveChildren: false,
                 childrenDynamic: false,
+                url: "/",
               },{
                 titulo: 'Gabinete de gobierno',
                 haveChildren: false,
                 childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Elementos Estrategicos',
                 haveChildren: false,
                 childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Gestion de gobierno',
                 haveChildren: true,
+                childrenDynamic: false,
+                url: "/",
                 children: [
                   {
                     titulo: 'Control y rendicion de cuentas',
                     haveChildren: false,
                     childrenDynamic: false,
+                    url: "/"
                   }
                 ],
                 childrenDynamic: false,
@@ -115,25 +123,30 @@ export default {
                 titulo: 'Secretarías',
                 haveChildren: true,
                 childrenDynamic: true,
+                url: "/"
               },{
                 id: '0',
                 titulo: 'Entidades decentralizadas',
                 haveChildren: true,
                 childrenDynamic: true,
+                url: "/"
               },{
                 titulo: 'Plan de desarrollo',
                 haveChildren: false,
                 childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Control interno',
                 haveChildren: false,
                 childrenDynamic: false,
+                url: "/"
               }
             ]
           },{
             id: '0',
             titulo: 'El Meta',
             haveChildren: true,
+            url: "/",
             children: [
               {
                 titulo: 'Nuestro departamento',
@@ -153,6 +166,7 @@ export default {
           },{
             titulo: 'Documentación',
             haveChildren: true,
+            url: "/",
             children: [
               {
                 titulo: 'Centro de documentation',
@@ -170,6 +184,7 @@ export default {
           },{
             titulo: 'Prensa',
             haveChildren: true,
+            url: "/",
             children: [
               {
                 titulo: 'Archivo de noticias',
@@ -188,6 +203,7 @@ export default {
             titulo: 'Atencion al ciudadano',
             haveChildren: false,
             childrenDynamic: false,
+            url: "/",
           }
         ],
         menuDynamic: [],
