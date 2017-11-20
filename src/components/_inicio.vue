@@ -84,20 +84,24 @@
 
           <div class="lateral_line"><p></p></div>
 
+
+
           <div class="lateral_cuadros">
-            <img src="../assets/prensa-papa-2017-1.jpg">
+            <a href="http://www.meta.gov.co/web/content/gobernaci%C3%B3n-sobre-ruedas-2017" target="_blank">
+              <img src="../assets/gobierno-sobre-ruedas-01.jpg">
+            </a>
           </div>
 
           <div class="lateral_cuadros">
-            <img src="../assets/gobierno-sobre-ruedas-01.jpg">
+            <a href="http://lavozdelaesperanza.co/" target="_blank">
+              <img src="../assets/boton-1063.jpg">
+            </a>
           </div>
 
           <div class="lateral_cuadros">
-            <img src="../assets/boton-1063.jpg">
-          </div>
-
-          <div class="lateral_cuadros">
-            <img src="../assets/logo-ctpd-0-1.jpg">
+            <a href="http://www.meta.gov.co/web/content/consejo-territorial-de-planeci%C3%B3n-departamental" target="_blank">
+              <img src="../assets/logo-ctpd-0-1.jpg">
+            </a>
           </div>
 
           <div class="lateral_line"><p></p></div>
@@ -105,7 +109,7 @@
 
           <iframe
           class="lateral_video"
-          src="https://www.youtube.com/embed/8jtfXHadYIE"
+          src="https://www.youtube.com/embed/T0mKplezEFA?ecver=1"
           frameborder="0" allowfullscreen>
           </iframe>
 

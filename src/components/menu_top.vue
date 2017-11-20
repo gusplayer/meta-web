@@ -2,7 +2,7 @@
   <div id="menuTop">
 
     <div class="encabezado_menu">
-      <a href="http://www.meta.gov.co/web/" target="_blank"><el-button :plain="true" type="success">Versión anterior</el-button></a>
+      <a href="http://www.meta.gov.co/web/" target="_blank"><el-button type="warning">Versión anterior</el-button></a>
       <a href="http://intranet.meta.gov.co" target="_blank"><span>Intranet </span></a>
       <a href="#" target="_blank"><span>Manual de ayuda</span></a>
     </div>

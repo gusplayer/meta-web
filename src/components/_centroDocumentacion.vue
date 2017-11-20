@@ -4,10 +4,6 @@
     <Breadcrumb></Breadcrumb>
     <BannerMicro :texto="texto" :imagen="imagenBanner"></BannerMicro>
 
-
-
-
-
     <el-dialog title="Ingresar Contraseña" :visible.sync="getPassword" class="getPassword" :size="sizeDialog">
       <el-input type="password" placeholder="Contraseña" v-model="currentPassword"></el-input>
       <el-button type="primary" v-on:click="getFiles">Validar</el-button>
@@ -17,8 +13,6 @@
       <el-input type="password" placeholder="Contraseña" v-model="currentPassword"></el-input>
       <el-button type="primary" v-on:click="getContentFile">Validar</el-button>
     </el-dialog>
-
-
 
 
     <div class="documents">
@@ -61,14 +55,14 @@ import Breadcrumb from './breadcrumb.vue'
 export default {
   components: { BannerMicro, Breadcrumb },
   created(){
-    axios.get('http://intranet.meta.gov.co/carpetas').then((response) => {
+    axios.get('http://intranet.meta.gov.co/web/carpetas/listado').then((response) => {
       this.foldersData = response.data.carpetas;
     })
   },
   data(){
     return {
       texto:'Centro de Documentación',
-      imagenBanner:'https://images.pexels.com/photos/317385/pexels-photo-317385.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
+      imagenBanner:'https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
       foldersData: [],
       columns: [],
       newArray: [],
@@ -159,7 +153,7 @@ export default {
       if(this.currentIndex+1){
         this.columns = this.columns.slice(0, this.currentIndex + 1)
       }
-      axios.post('http://intranet.meta.gov.co/carpeta/ver', json).then((response) => {
+      axios.post('http://intranet.meta.gov.co/web/carpetas/ver', json).then((response) => {
         let newColumn = response.data.data.subcarpetas.concat(response.data.data.archivos);
         this.columns.push(newColumn);
         this.waitContent = false;
@@ -182,7 +176,7 @@ export default {
         contrasena: this.currentPassword
       }
       this.currentPassword = '';
-      axios.post('http://intranet.meta.gov.co/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
+      axios.post('http://intranet.meta.gov.co/web/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
         let image = btoa(
           new Uint8Array(response.data)
             .reduce((data, byte) => data + String.fromCharCode(byte), '')

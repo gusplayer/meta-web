@@ -18,6 +18,7 @@ import Gobernadora from '@/components/_gobernadora'
 import Documentacion from '@/components/_centroDocumentacion'
 import Convocatorias from '@/components/_convocatorias'
 import Calidad from '@/components/_gestionCalidad'
+import Redirect from '@/components/_redirect'
 
 Vue.use(Router)
 
@@ -87,12 +88,12 @@ export default new Router({
     },
     {
       path: '/entidad/gobernadora',
-      name: 'gobernadora',
+      name: 'Entidad / Gobernadora',
       component: Gobernadora
     },
     {
       path: '/documentacion/documentos',
-      name: 'documentos',
+      name: 'documentación / Centro de documentación',
       component: Documentacion
     },
     {
@@ -105,6 +106,12 @@ export default new Router({
       name: 'calidad',
       component: Calidad
     },
+    {
+      path:'/redirect',
+      name:'redirect',
+      component: Redirect
+    }
+
 
   ]
 })

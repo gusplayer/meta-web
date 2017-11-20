@@ -59,7 +59,7 @@
 <el-button class="icon2" @click="transition = !transition">&#9776; Menu</el-button>
 </transition>
 
-<img class="search_icon" src="../assets/search.png" height="20px"/>
+<!-- <img class="search_icon" src="../assets/search.png" height="20px"/> -->
 
 </div>
 </template>
@@ -93,7 +93,7 @@ export default {
                 titulo: 'Nuestra Gobernadora',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/",
+                url: "/entidad/gobernadora",
               },{
                 titulo: 'Gabinete de gobierno',
                 haveChildren: false,
@@ -150,16 +150,34 @@ export default {
             children: [
               {
                 titulo: 'Nuestro departamento',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Municipios',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Agremiaciones',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Gobernadores',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Mapas',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
-                titulo: 'Portal de niños'
+                titulo: 'Portal de niños',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               }
             ],
             childrenDynamic: true,
@@ -170,14 +188,29 @@ export default {
             children: [
               {
                 titulo: 'Centro de documentation',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/documentacion/documentos"
               },{
                 titulo: 'Gestion de calidad',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Politicas publicas',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Convocatorias',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Transparencia',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               }
             ],
             childrenDynamic: false,
@@ -188,14 +221,35 @@ export default {
             children: [
               {
                 titulo: 'Archivo de noticias',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/documentacion/documentos"
               },{
                 titulo: 'Galeria fotografica',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
                 titulo: 'Galeria de videos',
+                haveChildren: false,
+                childrenDynamic: false,
+                url:{
+                      name:'redirect',
+                      params: {
+                        link: 'https://www.youtube.com/user/GobMeta/videos',
+                        newtab:'false'
+                      }
+                    }
               },{
                 titulo: 'Galeria de audios',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               },{
-                titulo: 'Manual de entidad de marca'
+                titulo: 'Manual de identidad de marca',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: "/"
               }
             ],
             childrenDynamic: false,
@@ -203,7 +257,7 @@ export default {
             titulo: 'Atencion al ciudadano',
             haveChildren: false,
             childrenDynamic: false,
-            url: "/",
+            url: "/contacto",
           }
         ],
         menuDynamic: [],

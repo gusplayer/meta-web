@@ -8,7 +8,10 @@
     description="Aun estamos en desarrollo, pronto sera el lanzamiento oficial. Si tienes alguna sugerencia, contactanos."
     show-icon
     class="alerta">
+    <img src="/assets/banner1.jpg"
     </el-alert> -->
+
+    <el-button type="text" @click="open">Click to open the Message Box</el-button>
 
 
       <menu-top ></menu-top>
@@ -35,7 +38,17 @@ import menuPrincipal from './components/menu.vue'
 
 export default {
   components: { menuTop, footerWeb, menuPrincipal },
+  methods: {
+     open(){
+       this.$alert(
+         '<strong>This is <i>HTML</i> string</strong>',
+         'HTML String', {
+           dangerouslyUseHTMLString: true
+          });
+     }//open
+  }//methods
 }
+
 </script>
 
 <style>

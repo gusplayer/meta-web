@@ -64,14 +64,9 @@
               </a>
             </div>
 
-
-
             <div class="social_botones_cuadro"
             v-for="iframe in item.iframes" v-html="iframe.iframe">
             </div>
-
-            <el-button type="primary" icon="el-icon-delete">hola</el-button>
-            <i class="el-icon-delete"></i>
 
               <div class="sub_secciones">
                   <el-tabs tab-position="top" style="height: auto;" >
@@ -100,7 +95,7 @@
       </div><br>
 
       <div class="contacto">
-        <br><h2>Contacto</h2><br>
+        <!-- <br><h2>Contacto</h2><br> -->
         <div class="contacto_telefono" v-if="datos.data[0].telefono">
           <p><b>Telefono:</b> {{datos.data[0].telefono}}</p>
         </div>
