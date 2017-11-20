@@ -11,7 +11,7 @@
     <img src="/assets/banner1.jpg"
     </el-alert> -->
 
-    <el-button type="text" @click="open">Click to open the Message Box</el-button>
+    <!-- <el-button type="text" @click="open">Bienvenida</el-button> -->
 
 
       <menu-top ></menu-top>

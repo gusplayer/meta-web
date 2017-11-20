@@ -5,17 +5,16 @@
 <script>
 export default {
 
-  created(){
-    if(this.$route.params.newtab == "true")
+  beforeRouteEnter(to, from, next){
+    console.log(to)
+    if(to.params.newtab == "true")
     {
-      window.open(this.$route.params.link,'_blank')
+      window.open(to.params.link,'_blank');
+
     }
     else {
-      window.location = this.$route.params.link;
+      window.location = to.params.link;
     }
   }
 }
 </script>
-
-<style lang="css">
-</style>

@@ -1,7 +1,9 @@
 <template>
   <div id="menuTop">
     <div class="logo">
-      <img class="logo_meta" src="../assets/logo.png" />
+      <router-link to="/">
+        <img class="logo_meta" src="../assets/logo.png" />
+      </router-link>
       <img class="logo_colombia" src="../assets/colombia.png" />
     </div>
     <nav class="go_menu">
@@ -98,23 +100,47 @@ export default {
                 titulo: 'Gabinete de gobierno',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/gabinete-de-gobierno',
+                        newtab:'true'
+                      }
+                    }
               },{
                 titulo: 'Elementos Estrategicos',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/elementos-estrat%C3%A9gicos',
+                        newtab:'true'
+                      }
+                    }
               },{
                 titulo: 'Gestion de gobierno',
                 haveChildren: true,
                 childrenDynamic: false,
-                url: "/",
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/gesti%C3%B3n-de-gobierno',
+                        newtab:'true'
+                      }
+                    },
                 children: [
                   {
                     titulo: 'Control y rendicion de cuentas',
                     haveChildren: false,
                     childrenDynamic: false,
-                    url: "/"
+                    url:{
+                          name:'redirect',
+                          params: {
+                            link: 'http://www.meta.gov.co/web/content/rendici%C3%B3n-de-cuentas',
+                            newtab:'true'
+                          }
+                        },
                   }
                 ],
                 childrenDynamic: false,
@@ -134,12 +160,24 @@ export default {
                 titulo: 'Plan de desarrollo',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/plan-de-desarrollo',
+                        newtab:'true'
+                      }
+                    },
               },{
                 titulo: 'Control interno',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/Control-Interno',
+                        newtab:'true'
+                      }
+                    },
               }
             ]
           },{
@@ -152,7 +190,13 @@ export default {
                 titulo: 'Nuestro departamento',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/nuestro-departamento',
+                        newtab:'true'
+                      }
+                    },
               },{
                 titulo: 'Municipios',
                 haveChildren: false,
@@ -167,17 +211,29 @@ export default {
                 titulo: 'Gobernadores',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/gobernadores',
+                        newtab:'true'
+                      }
+                    },
               },{
                 titulo: 'Mapas',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/departamento-del-meta',
+                        newtab:'true'
+                      }
+                    },
               },{
                 titulo: 'Portal de niños',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: ""
               }
             ],
             childrenDynamic: true,
@@ -192,25 +248,38 @@ export default {
                 childrenDynamic: false,
                 url: "/documentacion/documentos"
               },{
-                titulo: 'Gestion de calidad',
-                haveChildren: false,
-                childrenDynamic: false,
-                url: "/"
-              },{
                 titulo: 'Politicas publicas',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/equidad-de-genero',
+                        newtab:'true'
+                      }
+                    },
               },{
                 titulo: 'Convocatorias',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/convocatorias',
+                        newtab:'true'
+                      }
+                    },
               },{
                 titulo: 'Transparencia',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url: {
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/trasparencia-y-acceso-la-informaci%C3%B3n-publica',
+                        newtab:'true'
+                      }
+                    },
               }
             ],
             childrenDynamic: false,
@@ -223,13 +292,15 @@ export default {
                 titulo: 'Archivo de noticias',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/documentacion/documentos"
-              },{
-                titulo: 'Galeria fotografica',
-                haveChildren: false,
-                childrenDynamic: false,
-                url: "/"
-              },{
+                url: "/prensa"
+              },
+              // {
+              //   titulo: 'Galeria fotografica',
+              //   haveChildren: false,
+              //   childrenDynamic: false,
+              //   url: "/"
+              // },
+              {
                 titulo: 'Galeria de videos',
                 haveChildren: false,
                 childrenDynamic: false,
@@ -237,14 +308,20 @@ export default {
                       name:'redirect',
                       params: {
                         link: 'https://www.youtube.com/user/GobMeta/videos',
-                        newtab:'false'
+                        newtab:'true'
                       }
                     }
               },{
                 titulo: 'Galeria de audios',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: "/"
+                url:{
+                      name:'redirect',
+                      params: {
+                        link: 'http://www.meta.gov.co/web/content/galeria-de-audios',
+                        newtab:'true'
+                      }
+                    }
               },{
                 titulo: 'Manual de identidad de marca',
                 haveChildren: false,

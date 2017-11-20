@@ -65,7 +65,13 @@
         </div>
         <div class="lateral">
 
-          <h2>Servicios</h2>
+          <iframe
+          class="lateral_video"
+          src="https://www.youtube.com/embed/T0mKplezEFA?ecver=1"
+          frameborder="0" allowfullscreen>
+          </iframe>
+
+          <br>
 
           <!-- <div class="lateral_line"><p></p></div>
 
@@ -85,6 +91,11 @@
           <div class="lateral_line"><p></p></div>
 
 
+          <div class="lateral_cuadros">
+            <a href="http://www.meta.gov.co/PlanDeDesarrollo/" target="_blank">
+              <img src="../assets/plan_desarrollo.gif">
+            </a>
+          </div>
 
           <div class="lateral_cuadros">
             <a href="http://www.meta.gov.co/web/content/gobernaci%C3%B3n-sobre-ruedas-2017" target="_blank">
@@ -104,18 +115,56 @@
             </a>
           </div>
 
-          <div class="lateral_line"><p></p></div>
-
-
-          <iframe
-          class="lateral_video"
-          src="https://www.youtube.com/embed/T0mKplezEFA?ecver=1"
-          frameborder="0" allowfullscreen>
-          </iframe>
-
-          <div class="social_botones_google_maps">
-            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
+          <div class="lateral_cuadros">
+            <a href="http://www.meta.gov.co/web/content/rendici%C3%B3n-de-cuentas" target="_blank">
+              <img src="../assets/rendicioncuentas.jpg">
+            </a>
           </div>
+
+          <div class="lateral_cuadros">
+            <a href="http://www.meta.gov.co/web/content/yo-soy-macho" target="_blank">
+              <img src="../assets/yosoymacho.gif">
+            </a>
+          </div>
+
+          <div class="lateral_cuadros">
+            <a href="http://www.meta.gov.co/web/content/banco-hv-control-interno" target="_blank">
+              <img src="../assets/control_interno.jpg">
+            </a>
+          </div>
+
+          <div class="lateral_cuadros">
+            <a href="http://190.26.195.246/NUEVOSAV2" target="_blank">
+              <img src="../assets/sifvi.png">
+            </a>
+          </div>
+
+          <div class="lateral_cuadros">
+            <a href="http://www.meta.gov.co/web/content/buzones-electr%C3%B3nicos" target="_blank">
+              <img src="../assets/notificaciones_judiciales.png">
+            </a>
+          </div>
+
+          <div class="lateral_cuadros">
+            <a href="http://www.meta.gov.co/web/content/convocatorias" target="_blank">
+              <img src="../assets/convocatorias.png">
+            </a>
+          </div>
+
+          <div class="lateral_cuadros">
+            <a href="http://www.meta.gov.co/web/content/trasparencia-y-acceso-la-informaci%C3%B3n-publica" target="_blank">
+              <img src="../assets/transparencia.png">
+            </a>
+          </div>
+
+          <!-- <div class="lateral_line"><p></p></div> -->
+
+
+
+
+          <!-- <div class="social_botones_google_maps">
+            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
+          </div> -->
 
 
 
@@ -138,11 +187,8 @@
           <a class="twitter-timeline" href="https://twitter.com/marcela_amayag">Cargando Twitter...</a>
         </div>
 
-        <div class="social_botones_cuadro2">
-          <h2>Suscribete</h2>
-          <p>Dejanos tu correo electronico y recibe boletines de noticias</p>
-          <el-input placeholder="Escribe tu correo electronico" v-model="input"></el-input>
-          <el-button type="primary">Suscribete</el-button>
+        <div class="social_botones_cuadro">
+          <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
         </div>
 
       </div>
@@ -274,7 +320,7 @@ export default {
   display: flex;
   flex-direction: row;
 	background-color: #f6f7f9;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
 }
 .noticias_contenedor_bottom{
@@ -382,12 +428,16 @@ export default {
 	width: 100%;
   min-width: 40%;
 	background-color: #ffffff;
-	box-shadow: 0 2px 4px 0 #b7b5b7;
-  padding: 10px;
+	box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+  padding: 7px;
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-bottom: 15px
+  margin-bottom: 0px
+}
+.lateral_cuadros img{
+	background-color: #ffffff;
+	box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
 }
 .social_botones_google_maps{
   display: flex;
@@ -397,7 +447,7 @@ export default {
 }
 .social_botones{
   width: 100%;
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
