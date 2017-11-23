@@ -7,6 +7,14 @@
 
     <div class="card" >
        <el-col :span="8" v-for="noticia in noticias" :key="noticias" class="card-col">
+         <router-link :to="{ name: 'noticia',
+                             params: {
+                               id: noticia.idTimeline,
+                               contenido: noticia.contenido,
+                               titulo: noticia.titulo,
+                               imagen: noticia.imagenes
+                             }
+                           }">
           <el-card :body-style="{ padding: '0px' }">
             <div class="card-contenedor-imagen">
               <img v-if="noticia.imagenes[0]"
@@ -20,7 +28,8 @@
                 <el-button type="text" class="card-button">Ver más</el-button>
               </div>
             </div>
-          </el-card>
+           </el-card>
+          </router-link>
         </el-col>
     </div>
 

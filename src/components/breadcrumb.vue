@@ -5,8 +5,7 @@
   </el-breadcrumb>
 </template>
 
-<style scoped>
-
+<style>
 .breadcrumb{
   display: flex;
   align-self: flex-start;

@@ -22,7 +22,6 @@
       </div>
 
       <el-collapse v-model="activeNames" @change="handleChange">
-
         <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="item in datos.data[0].secciones">
 
             <div class="sub_texto" v-for="texto_seccion in item.textos">
@@ -33,7 +32,6 @@
               <i class="el-icon-document"></i>
               <div class="secciones_docs_descarga">
                 <p>{{archivo.titulo}}</p>
-
                 <a :href="`http://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
                 <el-button type="primary">Descarga</el-button>
                 </a>
@@ -69,13 +67,105 @@
             </div>
 
               <div class="sub_secciones">
-                  <el-tabs tab-position="top" style="height: auto;" >
+                  <el-tabs type="border-card" tab-position="top" style="height: auto;" >
                       <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
+
                         <br><h3>{{sub.titulo}}</h3><br>
+
                         <div class="sub_texto" v-for="texto in sub.textos">
                           <p v-html="texto.texto"> </p>
                         </div>
-                        <div>{{sub.textos.texto}}</div>
+
+                        <iframe v-for="video in sub.videos"
+                        width="640" height="360"
+                        :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
+                        frameborder="0" gesture="media"
+                        allowfullscreen>
+                        </iframe>
+
+                        <div class="secciones_docs" v-for="archivo in sub.archivos">
+                          <i class="el-icon-document"></i>
+                          <div class="secciones_docs_descarga">
+                            <p>{{archivo.titulo}}</p>
+                            <a :href="`http://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                            <el-button type="primary">Descarga</el-button>
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="galeria" v-if="sub.imagenes[0]">
+                          <br><br><template>
+                            <el-carousel :interval="8000" style="width:100%; max-width:700px,">
+                              <el-carousel-item v-for="foto in sub.imagenes" :key="item">
+                                <img :src="`http://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
+                                      width="auto" style="max-height:100%">
+                              </el-carousel-item>
+                            </el-carousel>
+                          </template>
+                        </div><br>
+
+                        <div class="social_botones_cuadro"
+                        v-for="iframe in sub.iframes" v-html="iframe.iframe">
+                        </div>
+
+                        <div class="social_botones_url_externa" v-for="item in sub.urls">
+                          <a :href="item.url" target="_blank">
+                            <img :src="`http://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                          </a>
+                        </div>
+
+                        <div class="sub_sub_secciones">
+                            <el-tabs tab-position="left" style="height: auto;" >
+                                <el-tab-pane :label="subsub.titulo" v-for="subsub in sub.sub_secciones">
+
+                                  <br><h3>{{subsub.titulo}}</h3><br>
+
+                                  <div class="sub_texto" v-for="texto in subsub.textos">
+                                    <p v-html="texto.texto"> </p>
+                                  </div>
+
+                                  <iframe v-for="video in subsub.videos"
+                                  width="640" height="360"
+                                  :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
+                                  frameborder="0" gesture="media"
+                                  allowfullscreen>
+                                  </iframe>
+
+                                  <div class="secciones_docs" v-for="archivo in subsub.archivos">
+                                    <i class="el-icon-document"></i>
+                                    <div class="secciones_docs_descarga">
+                                      <p>{{archivo.titulo}}</p>
+                                      <a :href="`http://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                                      <el-button type="primary">Descarga</el-button>
+                                      </a>
+                                    </div>
+                                  </div>
+
+                                  <div class="galeria" v-if="subsub.imagenes[0]">
+                                    <br><br><template>
+                                      <el-carousel :interval="8000" style="width:100%; max-width:700px,">
+                                        <el-carousel-item v-for="foto in subsub.imagenes" :key="item">
+                                          <img :src="`http://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
+                                                width="auto" style="max-height:100%">
+                                        </el-carousel-item>
+                                      </el-carousel>
+                                    </template>
+                                  </div><br>
+
+                                  <div class="social_botones_cuadro"
+                                  v-for="iframe in subsub.iframes" v-html="iframe.iframe">
+                                  </div>
+
+                                  <div class="social_botones_url_externa" v-for="item in subsub.urls">
+                                    <a :href="item.url" target="_blank">
+                                      <img :src="`http://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                                    </a>
+                                  </div>
+
+                                </el-tab-pane>
+                            </el-tabs>
+                        </div>
+
                       </el-tab-pane>
                   </el-tabs>
               </div>
@@ -107,7 +197,6 @@
         <div class="contacto_telefono" v-if="datos.data[0].email">
           <p><b>Correo electronico:</b> {{datos.data[0].email}}</p>
         </div>
-
 
         <div class="contacto_redes" v-if="datos.data[0].facebook">
           <a :href="datos.data[0].facebook" target="_blank">

@@ -11,7 +11,7 @@
     <img src="/assets/banner1.jpg"
     </el-alert> -->
 
-    <!-- <el-button type="text" @click="open">Bienvenida</el-button> -->
+    <el-button type="text" @click="open" >Bienvenida</el-button>
 
 
       <menu-top ></menu-top>

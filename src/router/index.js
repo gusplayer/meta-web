@@ -19,6 +19,7 @@ import Documentacion from '@/components/_centroDocumentacion'
 import Convocatorias from '@/components/_convocatorias'
 import Calidad from '@/components/_gestionCalidad'
 import Redirect from '@/components/_redirect'
+import NoticiaDetalle from '@/components/_noticiaDetalle'
 
 Vue.use(Router)
 
@@ -50,6 +51,11 @@ export default new Router({
       path: '/prensa',
       name: 'prensa',
       component: Prensa
+    },
+    {
+      path: '/noticia',
+      name: 'noticia',
+      component: NoticiaDetalle
     },
     {
       path: '/privacidad',

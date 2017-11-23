@@ -86,9 +86,10 @@ export default {
             childrenDynamic: false,
             url: "/"
           },{
+            id: '1',
             titulo: 'Nuestra entidad',
             haveChildren: true,
-            childrenDynamic: false,
+            childrenDynamic: true,
             url: "/",
             children: [
               {
@@ -145,17 +146,31 @@ export default {
                 ],
                 childrenDynamic: false,
               },{
-                id: '1',
+                id: '2',
                 titulo: 'Secretarías',
                 haveChildren: true,
                 childrenDynamic: true,
                 url: "/"
               },{
-                id: '0',
+                id: '7',
                 titulo: 'Entidades decentralizadas',
                 haveChildren: true,
                 childrenDynamic: true,
-                url: "/"
+                url: "/",
+                children: [
+                  {
+                    titulo: 'Oficina promotora de paz',
+                    haveChildren: false,
+                    childrenDynamic: false,
+                    url:{
+                          name:'redirect',
+                          params: {
+                            link: 'http://www.meta.gov.co/web/content/oficina-promotora-de-paz',
+                            newtab:'true'
+                          }
+                        },
+                  }
+                ],
               },{
                 titulo: 'Plan de desarrollo',
                 haveChildren: false,
@@ -181,9 +196,10 @@ export default {
               }
             ]
           },{
-            id: '0',
+            id: '3',
             titulo: 'El Meta',
             haveChildren: true,
+            childrenDynamic: true,
             url: "/",
             children: [
               {
@@ -238,8 +254,10 @@ export default {
             ],
             childrenDynamic: true,
           },{
+            id:'4',
             titulo: 'Documentación',
             haveChildren: true,
+            childrenDynamic: true,
             url: "/",
             children: [
               {
@@ -284,8 +302,10 @@ export default {
             ],
             childrenDynamic: false,
           },{
+            id: '5',
             titulo: 'Prensa',
             haveChildren: true,
+            childrenDynamic: true,
             url: "/",
             children: [
               {
@@ -329,11 +349,11 @@ export default {
                 url: "/"
               }
             ],
-            childrenDynamic: false,
           },{
+            id: '6',
             titulo: 'Atencion al ciudadano',
-            haveChildren: false,
-            childrenDynamic: false,
+            haveChildren: true,
+            childrenDynamic: true,
             url: "/contacto",
           }
         ],

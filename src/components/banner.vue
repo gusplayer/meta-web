@@ -14,6 +14,7 @@
      axios.get('http://intranet.meta.gov.co/web/banners')
      .then( response => {
        this.items = response.data.banners;
+       this.items.reverse()
      })
      .catch(e => {
       this.errors.push(e)

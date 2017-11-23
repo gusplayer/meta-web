@@ -1,11 +1,33 @@
 <template>
   <div class="general">
 
+    <br>
+
       <div class="banner">
         <bannerTop></bannerTop>
       </div>
 
       <div class="botones_banner">
+          <a href="http://www.meta.gov.co/web/content/secretar%C3%ADa-de-gobierno"
+          class="botones_banner_movil" target="_blank">
+            <img src="../assets/iconos-web-1.png">
+          </a>
+
+          <a href="http://www.meta.gov.co/web/content/oficina-para-la-educaci%C3%B3n-superior"
+          class="botones_banner_movil ">
+            <img src="../assets/iconos-web-3.png">
+          </a>
+          <a href="http://www.meta.gov.co/web/content/impuestos-departamentales-0"
+          class="botones_banner_movil " target="_blank">
+             <img src="../assets/iconos-web-4.png">
+          </a>
+          <a href="http://www.meta.gov.co/web/content/secretar%C3%AD-t%C3%A9cnica-ocad-meta"
+          class="botones_banner_movil " target="_blank">
+            <img src="../assets/iconos-web-2.png">
+          </a>
+      </div>
+
+      <div class="botones_banner_responsive">
           <a href="http://www.meta.gov.co/web/content/secretar%C3%ADa-de-gobierno"
           class="botones_banner_accion" target="_blank">
             <div><span>Acción comunal y participación ciudadana</span></div>
@@ -30,35 +52,60 @@
       <div class="contenido">
         <div class="noticias">
 
-          <div class="noticias_contenedor" v-for="noticia in noticias" :key="noticias">
+          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, 7)" :key="noticias">
                   <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
                   :style="coverImagen(noticia)">
                   </div>
-                  <div>
+                  <div class="noticias_contenedor_texto">
                     <h2 >{{ noticia.titulo }}</h2>
                     <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p">
-                      <p v-html="contarPalabras(noticia.contenido)+'....'"></p>
+                      <p v-html="contarPalabras(noticia.contenido)+'...'"></p>
                     </div>
-                        <el-button class="card-button" size="small" round>Ver más</el-button>
+                    <div class="notcicias_bottom">
+
+                        <router-link :to="{ name: 'noticia',
+                                            params: {
+                                              id: noticia.idTimeline,
+                                              contenido: noticia.contenido,
+                                              titulo: noticia.titulo,
+                                              imagen: noticia.imagenes
+                                            }
+                                          }">
+                            <el-button type="success" plain>Seguir Leyendo</el-button>
+                        </router-link>
+                        <span class="noticia_fecha">{{noticia.fecha}}</span>
+                    </div>
                   </div>
           </div>
 
           <div class="card" >
-             <el-col :span="8" v-for="noticia in noticias" :key="noticias" class="card-col">
-                <el-card :body-style="{ padding: '0px' }">
-                  <div class="card-contenedor-imagen">
-                    <img v-if="noticia.imagenes[0]"
-                    :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
-                    class="card-image">
-                  </div>
-                  <div style="padding: 14px;">
-                    <span class="card-titulo">{{noticia.titulo}}</span>
-                    <div class="card-bottom card-clearfix">
-                      <time class="card-fecha">{{noticia.fecha}}</time>
-                      <el-button type="text" class="card-button">Ver más</el-button>
+             <el-col :span="8" v-for="noticia in noticias.slice(0, 5)" :key="noticias" class="card-col">
+               <router-link :to="{ name: 'noticia',
+                                   params: {
+                                     id: noticia.idTimeline,
+                                     contenido: noticia.contenido,
+                                     titulo: noticia.titulo,
+                                     imagen: noticia.imagenes
+                                   }
+                                 }">
+                  <el-card :body-style="{ padding: '0px' }">
+                    <div class="card-contenedor-imagen">
+                      <img v-if="noticia.imagenes[0]"
+                      :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
+                      class="card-image">
                     </div>
-                  </div>
-                </el-card>
+                    <div style="padding: 14px;">
+                      <span class="card-titulo">{{noticia.titulo}}</span>
+                      <div class="card-bottom card-clearfix">
+                        <time class="card-fecha">{{noticia.fecha}}</time>
+                        <router-link :to="{ name: '', params: {} }">
+                          <el-button type="text" class="card-button">Ver más</el-button>
+                        </router-link>
+
+                      </div>
+                    </div>
+                  </el-card>
+                </router-link>
               </el-col>
           </div>
 
@@ -197,18 +244,13 @@
 
 <script>
 
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=1513660055361840";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+
 
 import bannerTop from './banner.vue'
+import Breadcrumb from './breadcrumb.vue'
 import axios from 'axios';
 export default {
-  components: {bannerTop},
+  components: {bannerTop, Breadcrumb},
   created(){
     axios.get('http://intranet.meta.gov.co/web/timeline')
     .then( response => {
@@ -217,6 +259,14 @@ export default {
     .catch(e => {
      this.errors.push(e)
    })
+
+   (function(d, s, id) {
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) return;
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=1513660055361840";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
   },
   data(){
      return{
@@ -268,6 +318,9 @@ export default {
   justify-content: space-between;
   margin-top: 30px
 }
+.botones_banner_responsive{
+  display: none;
+}
 .botones_banner_accion{
   min-width: 199px;
   width: 100%;
@@ -288,6 +341,18 @@ export default {
 }
 .botones_banner_accion img{
   padding: 0px;
+}
+.botones_banner_movil{
+  min-width: 199px;
+  width: 100%;
+  height: 128px;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #9b9b9b;
+  box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+  margin: 5px;
 }
 .botones_banner_regalias{
   background-color: #f5f5f5;
@@ -319,9 +384,10 @@ export default {
 	height: 260px;
   display: flex;
   flex-direction: row;
-	background-color: #f6f7f9;
   margin-bottom: 15px;
-  box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+  border: 1px solid #d1dbe5;
+  border-radius: 4px;
+  box-shadow:  0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04)
 }
 .noticias_contenedor_bottom{
   display: flex;
@@ -331,14 +397,13 @@ export default {
   max-width: 50%;
   max-height: 100%;
 }
-.noticias_contenedor div:last-child{
+.noticias_contenedor_texto{
   width: 400px;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  text-align: justify;
 }
 .noticias_contenedor_foto{
   width: 450px;
@@ -347,19 +412,29 @@ export default {
 }
 
 .noticias_contenedor  h2{
-	font-size: 15px;
-	color: #4f6983;
+	font-size: 12pt;
   font-weight: 400;
 	line-height: 1.3;
 }
 .noticias_contenedor_p p{
-	font-size: 12px;
+	font-size: 10pt;
 	line-height: 1.3;
-	letter-spacing: 0.2px;
-	color: #393939;
-  text-align: justify;
+  color: gray
 }
-.noticias_contenedor button{
+.noticias_bottom{
+  display: flex;
+  width: 200px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.noticia_fecha{
+  font-size: 9pt;
+  color: gray;
+  align-self: flex-end;
+  margin-left: 90px
+}
+/*.noticias_contenedor button{
   	width: 110px;
   	height: 45px;
   	border: solid 1px #009d3d;
@@ -371,13 +446,11 @@ export default {
     font-size: 12px;
   	font-weight: 500;
   	color: #128f2e;
-}
+}*/
 
 .card{
   display: none;
 }
-
-
 .lateral{
   max-width: 384.1px;
   width: 100%;
@@ -494,6 +567,11 @@ export default {
 }
 @media screen and (max-width: 1100px) {
   .botones_banner{
+    flex-wrap: wrap;
+    display: none
+  }
+  .botones_banner_responsive{
+    display: flex;
     flex-wrap: wrap;
   }
   .botones_banner_accion{
@@ -616,6 +694,28 @@ export default {
 
 }
 @media screen and (max-width: 500px) {
+
+  .botones_banner{
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    justify-content: space-between;
+    margin-top: 30px
+  }
+  .botones_banner_responsive{
+    display: none;
+    flex-wrap: wrap;
+  }
+  .botones_banner_movil{
+    width: 40vw;
+    min-width: 40vw;
+    height: auto;
+    background: #ffffff
+  }
+  .botones_banner_movil img{
+    max-width: 100%
+  }
   .botones_banner_accion{
     justify-content: space-between;
     padding: 20px;

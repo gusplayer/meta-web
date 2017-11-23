@@ -7,7 +7,7 @@
         <img src="../assets/presidencia.png" >
        </a>
        <img src="../assets/99.jpg" >
-       <img src="../assets/urna.png" >       
+       <img src="../assets/urna.png" >
        <img src="../assets/contraloria.png" >
        <img src="../assets/colciencias.jpg" >
        <img src="../assets/colombiacompra.png" >
@@ -87,7 +87,7 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
 <style scoped>
 
 .uper_footer{
-  width: 100vw;
+  width: 100%;
   height: 90px;
   display: flex;
   justify-content: center;
@@ -109,7 +109,7 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
 }
 
 .footer{
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   padding: 65px 0;
@@ -184,12 +184,12 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
   line-height: 1.6;
 }
 .line {
-	width: 100vw;
+	width: 100%;
 	height: 1.5px;
 	background-color: #e4f1fd;
 }
 .subfooter {
-	width: 100vw;
+	width: 100%;
 	height: 99px;
   display: flex;
   justify-content: center;
@@ -252,7 +252,7 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
 }
 @media screen and (max-width: 1100px) {
   .uper_footer{
-    width: 100vw;
+    width: 100%;
     height: auto;
   }
 
@@ -275,7 +275,7 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
 }
 @media screen and (max-width: 500px) {
   .uper_footer{
-    width: 100vw;
+    width: 100%;
     height: auto;
   }
   .uper_footer_content{
