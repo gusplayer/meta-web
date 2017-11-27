@@ -70,7 +70,7 @@
 import axios from 'axios';
 export default {
     created(){
-      axios.get('http://intranet.meta.gov.co/api/micrositio/listado').then((response) => {
+      axios.get('https://intranet.meta.gov.co/api/micrositio/listado').then((response) => {
         this.menuDynamic = response.data.data;
       })
     },

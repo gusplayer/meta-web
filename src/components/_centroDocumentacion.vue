@@ -55,7 +55,7 @@ import Breadcrumb from './breadcrumb.vue'
 export default {
   components: { BannerMicro, Breadcrumb },
   created(){
-    axios.get('http://intranet.meta.gov.co/web/carpetas/listado').then((response) => {
+    axios.get('https://intranet.meta.gov.co/web/carpetas/listado').then((response) => {
       this.foldersData = response.data.carpetas;
     })
   },
@@ -117,7 +117,7 @@ export default {
       let json = {
         carpetas: result,
       }
-      axios.post('http://intranet.meta.gov.co/carpeta/ordenar', json).then((response) => {
+      axios.post('https://intranet.meta.gov.co/carpeta/ordenar', json).then((response) => {
       })
     },
     checkMove: function(evt){
@@ -153,7 +153,7 @@ export default {
       if(this.currentIndex+1){
         this.columns = this.columns.slice(0, this.currentIndex + 1)
       }
-      axios.post('http://intranet.meta.gov.co/web/carpetas/ver', json).then((response) => {
+      axios.post('https://intranet.meta.gov.co/web/carpetas/ver', json).then((response) => {
         let newColumn = response.data.data.subcarpetas.concat(response.data.data.archivos);
         this.columns.push(newColumn);
         this.waitContent = false;
@@ -176,7 +176,7 @@ export default {
         contrasena: this.currentPassword
       }
       this.currentPassword = '';
-      axios.post('http://intranet.meta.gov.co/web/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
+      axios.post('https://intranet.meta.gov.co/web/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
         let image = btoa(
           new Uint8Array(response.data)
             .reduce((data, byte) => data + String.fromCharCode(byte), '')
@@ -195,7 +195,7 @@ export default {
       }
     },
     deleteFolder(){
-      axios.delete(`http://intranet.meta.gov.co/carpetas/${this.currentFolderEdit.id}`).then((response) => {
+      axios.delete(`https://intranet.meta.gov.co/carpetas/${this.currentFolderEdit.id}`).then((response) => {
         document.getElementById(`folder${this.currentFolderEdit.id}`).style.display = "none";
         this.dialogEditFolder = false;
       })

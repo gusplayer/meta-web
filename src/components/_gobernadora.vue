@@ -60,7 +60,7 @@ export default {
   name: 'app',
   data(){
     return{
-      imagenBanner:'http://www.meta.gov.co/web/sites/default/files/img_micrositios/Perfil_Gober-01.png'
+      imagenBanner:'https://www.meta.gov.co/web/sites/default/files/img_micrositios/Perfil_Gober-01.png'
     }
   }
 }
@@ -151,7 +151,7 @@ p{
     margin-right: 0px;
     min-width: 290px;
     padding: 0px;
-    width: 100%; 
+    width: 100%;
   }
 }
 </style>

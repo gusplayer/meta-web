@@ -52,7 +52,7 @@ export default {
   data(){
     return{
       texto:'Medios de Contacto',
-      imagenBanner:'http://www.meta.gov.co/web/sites/default/files/adjuntos/ocad/Banner_Planeacion.jpg'
+      imagenBanner:'https://www.meta.gov.co/web/sites/default/files/adjuntos/ocad/Banner_Planeacion.jpg'
     }
   }
 }

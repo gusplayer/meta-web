@@ -1,7 +1,7 @@
 <template>
   <el-carousel :interval="9000" arrow="always" indicator-position="outside" >
     <el-carousel-item v-for="item in items" :key="item">
-      <img :src="`http://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
+      <img :src="`https://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -11,7 +11,7 @@
  export default {
    name: 'bannerTop',
    created(){
-     axios.get('http://intranet.meta.gov.co/web/banners')
+     axios.get('https://intranet.meta.gov.co/web/banners')
      .then( response => {
        this.items = response.data.banners;
        this.items.reverse()

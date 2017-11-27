@@ -18,9 +18,13 @@
           <el-card :body-style="{ padding: '0px' }">
             <div class="card-contenedor-imagen">
               <img v-if="noticia.imagenes[0]"
-              :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
+              :src="`https://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
+              class="card-image">
+              <img v-else
+              src="../assets/sinimagen.jpg"
               class="card-image">
             </div>
+
             <div style="padding: 14px;">
               <span class="card-titulo">{{noticia.titulo}}</span>
               <div class="card-bottom card-clearfix">
@@ -44,7 +48,7 @@ import Breadcrumb from './breadcrumb.vue'
 export default {
   components: {BannerMicro, Breadcrumb},
   created(){
-    axios.get('http://intranet.meta.gov.co/web/timeline')
+    axios.get('https://intranet.meta.gov.co/web/timeline')
     .then( response => {
       this.noticias = response.data.timeline;
     })

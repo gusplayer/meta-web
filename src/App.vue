@@ -1,21 +1,9 @@
 <template>
 <div>
+  <div id="fb-root"></div>
   <div class="general">
-
-    <!-- <el-alert
-    title="Bienvenido al nuevo sitio web de la Gobernación del Meta"
-    type="info"
-    description="Aun estamos en desarrollo, pronto sera el lanzamiento oficial. Si tienes alguna sugerencia, contactanos."
-    show-icon
-    class="alerta">
-    <img src="/assets/banner1.jpg"
-    </el-alert> -->
-
-    <el-button type="text" @click="open" >Bienvenida</el-button>
-
-
-      <menu-top ></menu-top>
-
+    <PopUp></PopUp>
+    <menu-top ></menu-top>
 
     <div class="contenedor">
 
@@ -32,21 +20,21 @@
 </template>
 
 <script>
+
+
+
 import menuTop from './components/menu_top.vue'
 import footerWeb from './components/footer.vue'
 import menuPrincipal from './components/menu.vue'
+import PopUp from './components/popup.vue';
 
 export default {
-  components: { menuTop, footerWeb, menuPrincipal },
-  methods: {
-     open(){
-       this.$alert(
-         '<strong>This is <i>HTML</i> string</strong>',
-         'HTML String', {
-           dangerouslyUseHTMLString: true
-          });
-     }//open
-  }//methods
+  created(){
+    
+  },
+  components: { menuTop, footerWeb, menuPrincipal, PopUp },
+
+
 }
 
 </script>
@@ -63,6 +51,7 @@ export default {
 .upload-demo, .upload-demo > .el-upload, .upload-demo .el-upload-dragger{
   width: 100%;
 }
+
 .general{
   width: 100%;
   display: flex;
@@ -99,9 +88,11 @@ display: flex;
 align-items: center;
 line-height: initial
 }
+
 @media(max-width: 750px){
   .views{
     width: 100%;
   }
+
 }
 </style>

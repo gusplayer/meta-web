@@ -169,7 +169,7 @@ export default {
       let json = {
         carpetas: result,
       }
-      axios.post('http://intranet.meta.gov.co/carpeta/ordenar', json).then((response) => {
+      axios.post('https://intranet.meta.gov.co/carpeta/ordenar', json).then((response) => {
       })
     },
     checkMove: function(evt){
@@ -205,7 +205,7 @@ export default {
       if(this.currentIndex+1){
         this.columns = this.columns.slice(0, this.currentIndex + 1)
       }
-      axios.post('http://intranet.meta.gov.co/carpeta/ver', json).then((response) => {
+      axios.post('https://intranet.meta.gov.co/carpeta/ver', json).then((response) => {
         let newColumn = response.data.data.subcarpetas.concat(response.data.data.archivos);
         this.columns.push(newColumn);
         this.waitContent = false;
@@ -228,7 +228,7 @@ export default {
         contrasena: this.currentPassword
       }
       this.currentPassword = '';
-      axios.post('http://intranet.meta.gov.co/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
+      axios.post('https://intranet.meta.gov.co/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
         let image = btoa(
           new Uint8Array(response.data)
             .reduce((data, byte) => data + String.fromCharCode(byte), '')
@@ -247,7 +247,7 @@ export default {
       }
     },
     deleteFolder(){
-      axios.delete(`http://intranet.meta.gov.co/carpetas/${this.currentFolderEdit.id}`).then((response) => {
+      axios.delete(`https://intranet.meta.gov.co/carpetas/${this.currentFolderEdit.id}`).then((response) => {
         document.getElementById(`folder${this.currentFolderEdit.id}`).style.display = "none";
         this.dialogEditFolder = false;
       })
@@ -280,7 +280,7 @@ export default {
         carpeta: this.newFolderId,
         contrasena: this.newFolderPassword
       }
-      axios.post('http://intranet.meta.gov.co/carpetas', json).then((response) => {
+      axios.post('https://intranet.meta.gov.co/carpetas', json).then((response) => {
         this.newFolderName = '';
         this.newFolderPassword = '';
         this.createFolderDialog = false;
@@ -311,7 +311,7 @@ export default {
           newFile.append('nombre', file.target.files[i].name)
           newFile.append('estado', 1)
           newFile.append('privado', 0)
-          axios.post('http://intranet.meta.gov.co/archivos', newFile, config).then((response) => {
+          axios.post('https://intranet.meta.gov.co/archivos', newFile, config).then((response) => {
             this.columns[this.currentPushData].push(response.data.data);
           }).catch((error) =>{
             this.$message.error('El archivo no subio al servidor, vuelve a intentarlo');
@@ -332,7 +332,7 @@ export default {
         estado: 1,
         carpeta: this.currentFolderEdit.parent_id,
       }
-      axios.post('http://intranet.meta.gov.co/carpetas/editar', json).then((response) => {
+      axios.post('https://intranet.meta.gov.co/carpetas/editar', json).then((response) => {
         this.dialogEditFolder = false;
       })
     },
@@ -341,7 +341,7 @@ export default {
       this.dialogDeleteFile = true;
     },
     deleteFile(){
-      axios.delete(`http://intranet.meta.gov.co/archivos/${this.currentIdFileDelete}`).then((response) => {
+      axios.delete(`https://intranet.meta.gov.co/archivos/${this.currentIdFileDelete}`).then((response) => {
         document.getElementById(`file${this.currentIdFileDelete}`).style.display = "none";
         this.dialogDeleteFile = false;
       })

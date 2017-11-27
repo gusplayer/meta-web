@@ -4,13 +4,13 @@
     <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
     <el-breadcrumb-item>{{datos.data[0].titulo}}</el-breadcrumb-item>
     </el-breadcrumb>
-  <BannerMicro :imagen="`http://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"
+  <BannerMicro :imagen="`https://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"
   v-if="datos.data[0].banners[0]">
   </BannerMicro>
 
   <!-- <el-carousel :interval="9000" arrow="always" indicator-position="outside" >
     <el-carousel-item v-for="item in datos.data[0].banners[0].banner[0]" :key="item">
-      <img :src="`http://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
+      <img :src="`https://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
     </el-carousel-item>
   </el-carousel> -->
 
@@ -32,7 +32,7 @@
               <i class="el-icon-document"></i>
               <div class="secciones_docs_descarga">
                 <p>{{archivo.titulo}}</p>
-                <a :href="`http://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
                 <el-button type="primary">Descarga</el-button>
                 </a>
               </div>
@@ -49,7 +49,7 @@
               <br><br><template>
                 <el-carousel :interval="12000" style="width:100%; max-width:700px,">
                   <el-carousel-item v-for="foto in item.imagenes" :key="item">
-                    <img :src="`http://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
+                    <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
                           width="auto" style="max-height:100%">
                   </el-carousel-item>
                 </el-carousel>
@@ -58,7 +58,7 @@
 
             <div class="social_botones_url_externa" v-for="item in item.urls">
               <a :href="item.url" target="_blank">
-                <img :src="`http://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
               </a>
             </div>
 
@@ -66,7 +66,7 @@
             v-for="iframe in item.iframes" v-html="iframe.iframe">
             </div>
 
-              <div class="sub_secciones">
+              <div class="sub_secciones" v-if="item.sub_secciones[0]">
                   <el-tabs type="border-card" tab-position="top" style="height: auto;" >
                       <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
 
@@ -87,7 +87,7 @@
                           <i class="el-icon-document"></i>
                           <div class="secciones_docs_descarga">
                             <p>{{archivo.titulo}}</p>
-                            <a :href="`http://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                            <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
                             <el-button type="primary">Descarga</el-button>
                             </a>
                           </div>
@@ -97,7 +97,7 @@
                           <br><br><template>
                             <el-carousel :interval="8000" style="width:100%; max-width:700px,">
                               <el-carousel-item v-for="foto in sub.imagenes" :key="item">
-                                <img :src="`http://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
+                                <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
                                       width="auto" style="max-height:100%">
                               </el-carousel-item>
                             </el-carousel>
@@ -110,12 +110,12 @@
 
                         <div class="social_botones_url_externa" v-for="item in sub.urls">
                           <a :href="item.url" target="_blank">
-                            <img :src="`http://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                            <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
                           </a>
                         </div>
 
                         <div class="sub_sub_secciones">
-                            <el-tabs tab-position="left" style="height: auto;" >
+                            <el-tabs tab-position="top" style="height: auto;" >
                                 <el-tab-pane :label="subsub.titulo" v-for="subsub in sub.sub_secciones">
 
                                   <br><h3>{{subsub.titulo}}</h3><br>
@@ -135,7 +135,7 @@
                                     <i class="el-icon-document"></i>
                                     <div class="secciones_docs_descarga">
                                       <p>{{archivo.titulo}}</p>
-                                      <a :href="`http://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                                      <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
                                       <el-button type="primary">Descarga</el-button>
                                       </a>
                                     </div>
@@ -145,7 +145,7 @@
                                     <br><br><template>
                                       <el-carousel :interval="8000" style="width:100%; max-width:700px,">
                                         <el-carousel-item v-for="foto in subsub.imagenes" :key="item">
-                                          <img :src="`http://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
+                                          <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
                                                 width="auto" style="max-height:100%">
                                         </el-carousel-item>
                                       </el-carousel>
@@ -158,7 +158,7 @@
 
                                   <div class="social_botones_url_externa" v-for="item in subsub.urls">
                                     <a :href="item.url" target="_blank">
-                                      <img :src="`http://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                                      <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
                                     </a>
                                   </div>
 
@@ -178,7 +178,7 @@
         <template>
           <el-carousel :interval="7000" type="card" height="200px" style="width:100%">
             <el-carousel-item v-for="foto in datos.data[0].galeria" :key="item">
-              <img :src="`http://intranet.meta.gov.co/micrositio_galeria/${foto.imagen}`" alt="titulo" width="100%">
+              <img :src="`https://intranet.meta.gov.co/micrositio_galeria/${foto.imagen}`" alt="titulo" width="100%">
             </el-carousel-item>
           </el-carousel>
         </template>
@@ -210,19 +210,15 @@
 
     </div>
 
-    <div class="lateral">
-
+    <div class="lateral" v-if="datos.data[0].menu_lateral == 1">
       <div class="social_botones_url_externa" v-for="boton in datos.data[0].url_externa">
         <a :href="boton.url" target="_blank">
-          <img :src="`http://intranet.meta.gov.co/micrositio_img_urls/${boton.imagen}`" alt="">
+          <img :src="`https://intranet.meta.gov.co/micrositio_img_urls/${boton.imagen}`" alt="">
         </a>
       </div>
 
       <div class="social_botones_cuadro" v-for="iframe in datos.data[0].iframes" v-html="iframe.iframe">
       </div>
-
-
-
     </div>
 
   </div>
@@ -231,13 +227,7 @@
 
 <script>
 
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=1513660055361840";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+
 
 import BannerMicro from './bannerMicro.vue'
 import Breadcrumb from './breadcrumb.vue'
@@ -248,7 +238,7 @@ export default {
   name: 'app',
   created(){
     // router.replace({$route.name: 'diferentes'});
-    axios.get(`http://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+    axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
     .then( response => {
       this.datos = response.data;
     })
@@ -258,7 +248,7 @@ export default {
   },
   watch:{
     "$route" (){
-      axios.get(`http://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+      axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
       .then( response => {
         this.datos = response.data;
       })

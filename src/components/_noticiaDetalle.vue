@@ -1,24 +1,29 @@
 <template lang="html">
   <div class="principal">
+    <div id="fb-root"></div>
     <el-breadcrumb separator="/" class="breadcrumb">
     <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
     <el-breadcrumb-item>Noticia</el-breadcrumb-item>
     </el-breadcrumb>
 
     <router-link to="/prensa">
-      <el-button type="info" plain> <-  Regresar a noticas</el-button>
+      <el-button type="info" plain> <-  Regresar a noticias</el-button>
     </router-link>
 
     <div class="noticia">
-      <img :src="`http://intranet.meta.gov.co/imagen_timeline/${$route.params.imagen[0].nombre_imagen}`">
+      <img :src="`https://intranet.meta.gov.co/imagen_timeline/${$route.params.imagen[0].nombre_imagen}`"
+      v-if="$route.params.imagen[0]">
       <h2>{{$route.params.titulo}}</h2><br>
       <p v-html="$route.params.contenido"></p>
     </div>
 
-    <router-link to="/prensa">
-      <el-button type="info" plain> <-  Regresar a noticas</el-button>
-    </router-link>
+    <!-- <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartir en Facebook</a></div> -->
 
+    <br>
+
+    <router-link to="/prensa">
+      <el-button type="info" plain> <-  Regresar a noticias</el-button>
+    </router-link>
   </div>
 </template>
 

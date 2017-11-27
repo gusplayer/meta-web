@@ -1,7 +1,6 @@
 <template>
   <div class="general">
-
-    <br>
+  <br>
 
       <div class="banner">
         <bannerTop></bannerTop>
@@ -53,9 +52,14 @@
         <div class="noticias">
 
           <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, 7)" :key="noticias">
+
                   <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
                   :style="coverImagen(noticia)">
                   </div>
+                  <div class="noticias_contenedor_foto" v-else
+                  :style="setStyle">
+                  </div>
+
                   <div class="noticias_contenedor_texto">
                     <h2 >{{ noticia.titulo }}</h2>
                     <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p">
@@ -71,7 +75,7 @@
                                               imagen: noticia.imagenes
                                             }
                                           }">
-                            <el-button type="success" plain>Seguir Leyendo</el-button>
+                            <el-button plain>Seguir Leyendo</el-button>
                         </router-link>
                         <span class="noticia_fecha">{{noticia.fecha}}</span>
                     </div>
@@ -91,9 +95,13 @@
                   <el-card :body-style="{ padding: '0px' }">
                     <div class="card-contenedor-imagen">
                       <img v-if="noticia.imagenes[0]"
-                      :src="`http://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
+                      :src="`https://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
+                      class="card-image">
+                      <img v-else
+                      src="../assets/sinimagen.jpg"
                       class="card-image">
                     </div>
+
                     <div style="padding: 14px;">
                       <span class="card-titulo">{{noticia.titulo}}</span>
                       <div class="card-bottom card-clearfix">
@@ -117,26 +125,8 @@
           src="https://www.youtube.com/embed/T0mKplezEFA?ecver=1"
           frameborder="0" allowfullscreen>
           </iframe>
-
           <br>
-
-          <!-- <div class="lateral_line"><p></p></div>
-
-          <button type="button" name="button" class="lateral_line_boton">
-            <img src="../assets/check.png" >
-            <span>Transparencia</span>
-          </button>
-          <button type="button" name="button" class="lateral_line_boton">
-            <img src="../assets/check.png">
-            <span>Intranet</span>
-          </button>
-          <button type="button" name="button" class="lateral_line_boton">
-            <img src="../assets/check.png" >
-            <span>Regalias</span>
-          </button> -->
-
           <div class="lateral_line"><p></p></div>
-
 
           <div class="lateral_cuadros">
             <a href="http://www.meta.gov.co/PlanDeDesarrollo/" target="_blank">
@@ -204,24 +194,13 @@
             </a>
           </div>
 
-          <!-- <div class="lateral_line"><p></p></div> -->
-
-
-
-
-          <!-- <div class="social_botones_google_maps">
-            <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
-          </div> -->
-
-
-
         </div>
       </div>
 
       <div class="social_botones">
 
         <div class="social_botones_cuadro">
-          <div id="fb-root"></div>
+          
           <div class="fb-page" data-href="https://www.facebook.com/GobMeta/"
             data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
             data-hide-cover="false" data-show-facepile="true" data-width="500" style="width:100%">
@@ -244,15 +223,12 @@
 
 <script>
 
-
-
 import bannerTop from './banner.vue'
-import Breadcrumb from './breadcrumb.vue'
 import axios from 'axios';
 export default {
-  components: {bannerTop, Breadcrumb},
+  components: {bannerTop},
   created(){
-    axios.get('http://intranet.meta.gov.co/web/timeline')
+    axios.get('https://intranet.meta.gov.co/web/timeline')
     .then( response => {
       this.noticias = response.data.timeline;
     })
@@ -260,13 +236,7 @@ export default {
      this.errors.push(e)
    })
 
-   (function(d, s, id) {
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) return;
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=1513660055361840";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+
   },
   data(){
      return{
@@ -288,7 +258,14 @@ export default {
     },
     coverImagen(value){
       if(value.imagenes[0])
-        return `background-image:url('http://intranet.meta.gov.co/imagen_timeline/${value.imagenes[0].nombre_imagen}'); background-size:cover`;
+
+        return `background-image:url('https://intranet.meta.gov.co/imagen_timeline/${value.imagenes[0].nombre_imagen}'); background-size:cover`;
+    }
+  },
+  computed:{
+    setStyle(){
+      let image = require('../assets/sinimagen.jpg');
+      return `background-image:url('${image}'); background-size:cover`;
     }
   }
 }

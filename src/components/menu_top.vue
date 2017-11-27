@@ -3,7 +3,7 @@
 
     <div class="encabezado_menu">
       <a href="http://www.meta.gov.co/web/" target="_blank"><el-button type="warning">Versión anterior</el-button></a>
-      <a href="http://intranet.meta.gov.co" target="_blank"><span>Intranet </span></a>
+      <a href="https://intranet.meta.gov.co" target="_blank"><span>Intranet </span></a>
       <a href="../../static/manual_intranet.pdf" target="_blank"><span>Manual de ayuda</span></a>
     </div>
 
