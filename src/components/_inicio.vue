@@ -200,7 +200,7 @@
       <div class="social_botones">
 
         <div class="social_botones_cuadro">
-          
+
           <div class="fb-page" data-href="https://www.facebook.com/GobMeta/"
             data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
             data-hide-cover="false" data-show-facepile="true" data-width="500" style="width:100%">
@@ -235,8 +235,6 @@ export default {
     .catch(e => {
      this.errors.push(e)
    })
-
-
   },
   data(){
      return{

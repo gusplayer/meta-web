@@ -1,9 +1,10 @@
 <template lang="html">
   <div class="principal">
-    <div id="fb-root"></div>
+
     <el-breadcrumb separator="/" class="breadcrumb">
     <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
-    <el-breadcrumb-item>Noticia</el-breadcrumb-item>
+    <el-breadcrumb-item :to="{ name: 'prensa'}">Noticias</el-breadcrumb-item>
+    <el-breadcrumb-item> No. {{noticias.idTimeline}}</el-breadcrumb-item>
     </el-breadcrumb>
 
     <router-link to="/prensa">
@@ -11,16 +12,18 @@
     </router-link>
 
     <div class="noticia">
-      <img :src="`https://intranet.meta.gov.co/imagen_timeline/${$route.params.imagen[0].nombre_imagen}`"
-      v-if="$route.params.imagen[0]">
-      <h2>{{$route.params.titulo}}</h2><br>
-      <p v-html="$route.params.contenido"></p>
+      <img :src="`https://intranet.meta.gov.co/imagen_timeline/${noticias.imagenes[0].nombre_imagen}`"
+      v-if="noticias.imagenes[0]">
+      <h2>{{noticias.titulo}}</h2><br>
+      <p v-html="noticias.contenido"></p>
+      <br>
+
+      <!-- <iframe
+      width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252157011&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"></iframe> -->
     </div>
 
     <!-- <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartir en Facebook</a></div> -->
-
     <br>
-
     <router-link to="/prensa">
       <el-button type="info" plain> <-  Regresar a noticias</el-button>
     </router-link>
@@ -29,12 +32,27 @@
 
 <script>
 import Breadcrumb from './breadcrumb.vue'
+import axios from 'axios';
 export default {
+  created(){
+    axios.get(`https://intranet.meta.gov.co/web/ver/timeline/${this.$route.params.id}`)
+    .then( response => {
+      this.noticias = response.data.timeline;
+    })
+    .catch(e => {
+     this.errors.push(e)
+   })
+  },
+  data(){
+    return{
+      noticias: []
+    }
+  },
   components: {Breadcrumb},
 }
 </script>
 
-<style>
+<style scoped>
 .principal{
   height: auto;
   display: flex;

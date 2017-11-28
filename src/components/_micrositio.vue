@@ -62,7 +62,7 @@
               </a>
             </div>
 
-            <div class="social_botones_cuadro"
+            <div class="iframe_cuadro"
             v-for="iframe in item.iframes" v-html="iframe.iframe">
             </div>
 
@@ -104,7 +104,7 @@
                           </template>
                         </div><br>
 
-                        <div class="social_botones_cuadro"
+                        <div class="iframe_cuadro"
                         v-for="iframe in sub.iframes" v-html="iframe.iframe">
                         </div>
 
@@ -356,9 +356,24 @@ h1, h2, h3{
   overflow:hidden;
   margin-bottom: 20px
 }
+.iframe_cuadro{
+  width: 100%;
+  background-color: #f6f6f6;
+  box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  overflow:hidden;
+  margin-bottom: 20px
+}
+
+.iframe_cuadro p iframe{
+  background-color: #f6f6f6;
+  box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  overflow:hidden;
+  margin-bottom: 100px
+}
+
 .social_botones_cuadro iframe{
   height: 100% !important;
-  width: 100% !im
+  width: 100% !important
 }
 .social_botones_url_externa{
   display: flex;

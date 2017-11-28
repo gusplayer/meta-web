@@ -20,11 +20,17 @@ import Convocatorias from '@/components/_convocatorias'
 import Calidad from '@/components/_gestionCalidad'
 import Redirect from '@/components/_redirect'
 import NoticiaDetalle from '@/components/_noticiaDetalle'
-
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  },
   routes: [
     {
       path: '/',
@@ -53,7 +59,7 @@ export default new Router({
       component: Prensa
     },
     {
-      path: '/noticia',
+      path: '/noticia/:id',
       name: 'noticia',
       component: NoticiaDetalle
     },
