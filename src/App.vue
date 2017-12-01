@@ -6,16 +6,14 @@
     <menu-top ></menu-top>
 
     <div class="contenedor">
-
       <div class="menu">
         <menuPrincipal></menuPrincipal>
       </div>
-
       <router-view></router-view>
     </div>
 
   </div>
-     <footerWeb></footerWeb>
+  <footerWeb></footerWeb>
 </div>
 </template>
 
@@ -28,13 +26,11 @@ import footerWeb from './components/footer.vue'
 import menuPrincipal from './components/menu.vue'
 import PopUp from './components/popup.vue';
 
+
+
 export default {
-  created(){
-    
-  },
+
   components: { menuTop, footerWeb, menuPrincipal, PopUp },
-
-
 }
 
 </script>

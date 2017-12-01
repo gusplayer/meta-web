@@ -35,11 +35,18 @@
               <router-link to="/"><p>English version</p></router-link>
            </div>
            <div class="footer_contacto">
-             <h5>Contacto</h5>
-             <span class="footer_mail">oficinaatencionalciudadano@meta.gov.co</span>
-             <span class="footer_mail">notificacionesjudiciales@meta.gov.co</span>
-             <span class="footer_direccion">Dirección: Carrera 33 N° 38-45 Plaza Libertadores - Centro, Ed Gobernación -
-Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00 p.m. - 5:30 </span>
+             <h5>Horarios</h5>
+             <!-- <span class="footer_mail">oficinaatencionalciudadano@meta.gov.co</span>
+             <span class="footer_mail">notificacionesjudiciales@meta.gov.co</span> -->
+             <span class="footer_direccion">
+- Entrada a visitantes lunes a viernes en días hábiles laborales de 8:00 am a 11.30 am y 2:00 pm a 5:30 pm.
+<br>
+- Oficina de atención al ciudadano lunes a viernes en días hábiles laborales 8 am a 12 m y 2 pm a 6 pm
+<br><br>
+- Oficina de Pasaportes lunes a viernes en días hábiles laborales de 7 am a 4 pm jornada continua
+<br><br>
+- Radicación de correspondencia lunes a viernes en días hábiles laborales 8 am a 11.30 am y 2 a 5:30 pm
+ </span>
            </div>
            <div class="footer_siguenos">
              <h5>Siguenos</h5>
@@ -48,6 +55,8 @@ Horario de Atención al Público: Lunes a Viernes: 8:00 a.m. - 11:30 a.m. y 2:00
                <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>
              </div>
              <span class="footer_siguenos_pbx">PBX: (+57) 8 681 85 00 | Línea Gratuita: 01 8000 129 202
+               <br><br>
+               Dirección: Carrera 33 N° 38-45 Plaza Libertadores - Centro, Ed Gobernación
                <br><br>Villavicencio, Colombia.</span>
 
            </div>

@@ -2,7 +2,7 @@
 
   <transition name="fade">
     <div class="pop-up" v-show="popup" >
-      <img src="../assets/bienvenida.png" height="auto" width="100%"><br>
+      <img src="../assets/1diciembre.jpg" height="auto" width="100%"><br>
       <el-button v-on:click="visiblePopUp">Continuar</el-button>
     </div>
   </transition>
@@ -14,7 +14,7 @@ export default {
 
   data(){
     return{
-      popup: false
+      popup: true
     }
   },
   methods:{
