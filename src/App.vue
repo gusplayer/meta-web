@@ -18,18 +18,12 @@
 </template>
 
 <script>
-
-
-
 import menuTop from './components/menu_top.vue'
 import footerWeb from './components/footer.vue'
 import menuPrincipal from './components/menu.vue'
 import PopUp from './components/popup.vue';
 
-
-
 export default {
-
   components: { menuTop, footerWeb, menuPrincipal, PopUp },
 }
 
