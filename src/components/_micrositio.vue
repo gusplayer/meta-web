@@ -19,12 +19,16 @@
       <div class="info_micrositio">
         <h2>{{datos.data[0].titulo}}</h2>
         <br><br>
+        <p v-html="datos.data[0].texto"></p>
+        <br><br>
       </div>
+
+
 
       <el-collapse v-model="activeNames" @change="handleChange">
         <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="item in datos.data[0].secciones">
 
-            <div class="sub_texto" v-for="texto_seccion in item.textos">
+            <div class="sub_texto" v-for="texto_seccion in item.textos" >
               <p v-html="texto_seccion.texto"> </p>
             </div><br>
 
@@ -46,7 +50,8 @@
             </iframe>
 
             <div class="galeria" v-if="item.imagenes[0]">
-              <br><br><template>
+              <br><br>
+              <template>
                 <el-carousel :interval="12000" style="width:100%; max-width:700px,">
                   <el-carousel-item v-for="foto in item.imagenes" :key="item">
                     <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
@@ -56,10 +61,12 @@
               </template>
             </div><br>
 
-            <div class="social_botones_url_externa" v-for="item in item.urls">
-              <a :href="item.url" target="_blank">
-                <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
-              </a>
+            <div class="social_btn" v-if="item.urls[0]">
+              <div class="social_botones_url_externa" v-for="item in item.urls" >
+                <a :href="item.url" target="_blank">
+                  <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                </a>
+              </div>
             </div>
 
             <div class="iframe_cuadro"
@@ -70,9 +77,9 @@
                   <el-tabs type="border-card" tab-position="top" style="height: auto;" >
                       <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
 
-                        <br><h3>{{sub.titulo}}</h3><br>
 
-                        <div class="sub_texto" v-for="texto in sub.textos">
+
+                        <div class="sub_texto" v-for="texto in sub.textos" v-if >
                           <p v-html="texto.texto"> </p>
                         </div>
 
@@ -108,19 +115,21 @@
                         v-for="iframe in sub.iframes" v-html="iframe.iframe">
                         </div>
 
-                        <div class="social_botones_url_externa" v-for="item in sub.urls">
-                          <a :href="item.url" target="_blank">
-                            <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
-                          </a>
+                        <div class="social_btn" v-if="sub.urls[0]">
+                            <div class="social_botones_url_externa" v-for="item in sub.urls">
+                              <a :href="item.url" target="_blank">
+                                <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                              </a>
+                            </div>
                         </div>
 
-                        <div class="sub_sub_secciones">
-                            <el-tabs tab-position="top" style="height: auto;" >
+                        <div class="sub_sub_secciones" v-if="sub.sub_secciones[0]">
+                            <el-tabs type="border-card" tab-position="top" style="height: auto;" >
                                 <el-tab-pane :label="subsub.titulo" v-for="subsub in sub.sub_secciones">
 
-                                  <br><h3>{{subsub.titulo}}</h3><br>
 
-                                  <div class="sub_texto" v-for="texto in subsub.textos">
+
+                                  <div class="sub_texto"  v-for="texto in subsub.textos">
                                     <p v-html="texto.texto"> </p>
                                   </div>
 
@@ -161,6 +170,60 @@
                                       <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
                                     </a>
                                   </div>
+
+
+                                        <div class="sub_sub_secciones">
+                                            <el-tabs tab-position="top" style="height: auto;" >
+                                                <el-tab-pane :label="subsub.titulo" v-for="subsub in subsub.sub_secciones">
+
+
+
+                                                  <div class="sub_texto" v-for="texto in subsub.textos">
+                                                    <p v-html="texto.texto"> </p>
+                                                  </div>
+
+                                                  <iframe v-for="video in subsub.videos"
+                                                  width="640" height="360"
+                                                  :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
+                                                  frameborder="0" gesture="media"
+                                                  allowfullscreen>
+                                                  </iframe>
+
+                                                  <div class="secciones_docs" v-for="archivo in subsub.archivos">
+                                                    <i class="el-icon-document"></i>
+                                                    <div class="secciones_docs_descarga">
+                                                      <p>{{archivo.titulo}}</p>
+                                                      <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                                                      <el-button type="primary">Descarga</el-button>
+                                                      </a>
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="galeria" v-if="subsub.imagenes[0]">
+                                                    <br><br><template>
+                                                      <el-carousel :interval="8000" style="width:100%; max-width:700px,">
+                                                        <el-carousel-item v-for="foto in subsub.imagenes" :key="item">
+                                                          <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
+                                                                width="auto" style="max-height:100%">
+                                                        </el-carousel-item>
+                                                      </el-carousel>
+                                                    </template>
+                                                  </div><br>
+
+                                                  <div class="social_botones_cuadro"
+                                                  v-for="iframe in subsub.iframes" v-html="iframe.iframe">
+                                                  </div>
+
+                                                  <div class="social_botones_url_externa" v-for="item in subsub.urls">
+                                                    <a :href="item.url" target="_blank">
+                                                      <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+                                                    </a>
+                                                  </div>
+
+                                                </el-tab-pane>
+                                            </el-tabs>
+                                        </div>
+
 
                                 </el-tab-pane>
                             </el-tabs>
@@ -375,17 +438,26 @@ h1, h2, h3{
   height: 100% !important;
   width: 100% !important
 }
+.social_btn{
+  display: flex;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 .social_botones_url_externa{
   display: flex;
   height: auto;
   max-width: 400px;
+  width: auto;
+  flex-wrap: wrap;
   background-color: #f6f6f6;
-  box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  box-shadow: 0 1px 1px 0 rgba(154, 152, 152, 0.5);
   overflow:auto;
-  margin-bottom: 20px;
   justify-content: center;
   align-items: center;
-  padding: 5px
+  padding: 5px 10px
+
 }
 .social_botones_url_externa img{
   width: 100%
