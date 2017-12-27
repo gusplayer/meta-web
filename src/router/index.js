@@ -21,6 +21,8 @@ import Calidad from '@/components/_gestionCalidad'
 import Redirect from '@/components/_redirect'
 import NoticiaDetalle from '@/components/_noticiaDetalle'
 import ListadoConvocatorias from '@/components/_listadoConvocatorias'
+import CategoriasConvocatorias from '@/components/_categoriasConvocatorias'
+import DetallesConvocatorias from '@/components/_detallesConvocatorias'
 Vue.use(Router)
 
 export default new Router({
@@ -112,19 +114,24 @@ export default new Router({
     {
       path: '/documentacion/convocatorias',
       name: 'convocatorias',
-      component: Convocatorias,
+      component: CategoriasConvocatorias,
       children: [
         {
         path: '/listado/:id',
         component: ListadoConvocatorias
-        }
+        },
+        {
+        path: '/detalles/:id',
+        component: DetallesConvocatorias
+        },
+
       ]
     },
-    {
-      path: '/documentacion/convocatorias/listado',
-      name: 'listadoConvocatorias',
-      component: ListadoConvocatorias
-    },
+    // {
+    //   path: '/documentacion/convocatorias/listado',
+    //   name: 'listadoConvocatorias',
+    //   component: ListadoConvocatorias
+    // },
     {
       path: '/documentacion/calidad',
       name: 'calidad',

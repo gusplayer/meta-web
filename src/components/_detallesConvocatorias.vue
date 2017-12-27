@@ -3,15 +3,46 @@
 
     <el-breadcrumb separator="/" class="breadcrumb">
       <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
-      <el-breadcrumb-item>Convocatorias</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/documentacion/convocatorias' }">Convocatorias</el-breadcrumb-item>
+      <el-breadcrumb-item>Educación</el-breadcrumb-item>
     </el-breadcrumb>
 
     <BannerMicro :imagen="`https://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"
     v-if="datos.data[0].banners[0]">"></BannerMicro>
 
     <h2>Convocatorias</h2>
+    <b>Educacion / Convocatoria No. 12443</b>
 
-    <router-view></router-view>
+
+    <div class="contenido">
+
+      <el-table
+        :data="tableData"
+        border
+        style="width: 100%">
+        <el-table-column
+          prop="date"
+          label="Fecha Publicación"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="Titulo "
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="Descripción">
+        </el-table-column>
+        <el-table-column
+          label="">
+          <template slot-scope="scope">
+              <el-button size="medium" type="info" plain icon="el-icon-search">Ver detalles</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+
+    </div>
 
   </div>
 </template>
@@ -41,8 +72,30 @@ export default {
     return {
       imagenBanner: 'https://intranet.meta.gov.co/imagen_banners/33-blob',
       datos: '',
+      tableData: [{
+        date: '2016-05-03',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Home'
+      }, {
+        date: '2016-05-02',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Office'
+      }, {
+        date: '2016-05-04',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Home'
+      }, {
+        date: '2016-05-01',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+        tag: 'Office'
+      }]
     }
   },
+
 }
 </script>
 
@@ -64,7 +117,7 @@ p{
   color: #4a4a4a;
   letter-spacing: 0.2px;
 }
-h1, h2, h3{
+h1, h2, h3, b{
   color: #48576a;
 }
 .principal{

@@ -7,22 +7,9 @@
       </div>
 
       <div class="botones_banner">
-          <a href="http://www.meta.gov.co/web/content/secretar%C3%ADa-de-gobierno"
+          <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key"
           class="botones_banner_movil" target="_blank">
-            <img src="../assets/iconos-web-1.png">
-          </a>
-
-          <a href="http://www.meta.gov.co/web/content/oficina-para-la-educaci%C3%B3n-superior"
-          class="botones_banner_movil ">
-            <img src="../assets/iconos-web-3.png">
-          </a>
-          <a href="http://www.meta.gov.co/web/content/impuestos-departamentales-0"
-          class="botones_banner_movil " target="_blank">
-             <img src="../assets/iconos-web-4.png">
-          </a>
-          <a href="http://www.meta.gov.co/web/content/secretar%C3%AD-t%C3%A9cnica-ocad-meta"
-          class="botones_banner_movil " target="_blank">
-            <img src="../assets/iconos-web-2.png">
+            <img :src="`https://intranet.meta.gov.co/web_urls_navegacion/${botones.imagen}`">
           </a>
       </div>
 
@@ -51,7 +38,7 @@
       <div class="contenido">
         <div class="noticias">
 
-          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, 7)" :key="noticias">
+          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, 7)" :key="noticias.key">
 
                   <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
                   :style="coverImagen(noticia)">
@@ -122,7 +109,7 @@
 
           <iframe
           class="lateral_video"
-          src="https://www.youtube.com/embed/T0mKplezEFA?ecver=1"
+          :src="`https://www.youtube.com/embed/${video_youtube.data.url}`"
           frameborder="0" allowfullscreen>
           </iframe>
           <br>
@@ -194,6 +181,12 @@
             </a>
           </div>
 
+          <div class="lateral_cuadros">
+            <a href="http://190.26.195.243/default.aspx?path=cdpubapp" target="_blank">
+              <img src="../assets/pqrsd.jpg" width="250px">
+            </a>
+          </div>
+
         </div>
       </div>
 
@@ -229,17 +222,21 @@ export default {
   components: {bannerTop},
   created(){
     axios.get('https://intranet.meta.gov.co/web/timeline')
-    .then( response => {
-      this.noticias = response.data.timeline;
-    })
-    .catch(e => {
-     this.errors.push(e)
-   })
+    .then(response => {this.noticias = response.data.timeline});
+
+    axios.get('https://intranet.meta.gov.co/web/url_navegacion/listado')
+    .then(response => {this.botones_banner = response.data});
+  },
+  mounted(){
+    axios.get('https://intranet.meta.gov.co/web/url_youtube')
+    .then(response => {this.video_youtube = response.data})
   },
   data(){
      return{
            input: '',
            noticias: [],
+           botones_banner: [],
+           video_youtube:'',
            errors:[]
            }
          },
@@ -258,6 +255,16 @@ export default {
       if(value.imagenes[0])
 
         return `background-image:url('https://intranet.meta.gov.co/imagen_timeline/${value.imagenes[0].nombre_imagen}'); background-size:cover`;
+    },
+    videoYoutube(urlVideo){
+      let index;
+         if(urlVideo.includes('?v=')){
+           index = urlVideo.indexOf('?v=')+3;
+         }else{
+           index = urlVideo.indexOf('.be/')+4;
+         }
+         let idYoutube = urlVideo.substring(index);
+         return idYoutube;
     }
   },
   computed:{
@@ -291,7 +298,10 @@ export default {
   height: auto;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px
+  margin-top: 30px;
+}
+.botones_banner img{
+  width: 100%
 }
 .botones_banner_responsive{
   display: none;
