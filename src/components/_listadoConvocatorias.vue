@@ -1,21 +1,10 @@
 <template lang="html">
   <div class="principal">
 
-    <el-breadcrumb separator="/" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/documentacion/convocatorias' }"">Convocatorias</el-breadcrumb-item>
-      <el-breadcrumb-item>Convocatorias</el-breadcrumb-item>
-    </el-breadcrumb>
-
-    <BannerMicro :imagen="`https://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"
-    v-if="datos.data[0].banners[0]">"></BannerMicro>
-
-    <h2>Convocatorias</h2>
-    <b>Educacion</b>
+    <b>Educacion</b><br />
 
 
     <div class="contenido">
-
       <el-table
         :data="tableData"
         border
@@ -41,7 +30,6 @@
           </template>
         </el-table-column>
       </el-table>
-
     </div>
 
   </div>

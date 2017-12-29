@@ -16,12 +16,12 @@ import Contacto from '@/components/_contacto'
 import Micrositio from '@/components/_micrositio'
 import Gobernadora from '@/components/_gobernadora'
 import Documentacion from '@/components/_centroDocumentacion'
-import Convocatorias from '@/components/_convocatorias'
 import Calidad from '@/components/_gestionCalidad'
 import Redirect from '@/components/_redirect'
 import NoticiaDetalle from '@/components/_noticiaDetalle'
-import ListadoConvocatorias from '@/components/_listadoConvocatorias'
+import Convocatorias from '@/components/_convocatorias'
 import CategoriasConvocatorias from '@/components/_categoriasConvocatorias'
+import ListadoConvocatorias from '@/components/_listadoConvocatorias'
 import DetallesConvocatorias from '@/components/_detallesConvocatorias'
 Vue.use(Router)
 
@@ -113,15 +113,18 @@ export default new Router({
     },
     {
       path: '/documentacion/convocatorias',
-      name: 'convocatorias',
-      component: CategoriasConvocatorias,
+      component: Convocatorias,
       children: [
         {
-        path: '/listado/:id',
+        path: '/',
+        component:CategoriasConvocatorias
+        },
+        {
+        path: 'listado/:id',
         component: ListadoConvocatorias
         },
         {
-        path: '/detalles/:id',
+        path: 'detalles/:id',
         component: DetallesConvocatorias
         },
 

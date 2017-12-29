@@ -59,8 +59,8 @@ export default {
   data() {
     return {
            noticias:[],
-           texto:'Prensa Gobernación',
-           imagenBanner:'https://images.pexels.com/photos/4458/cup-mug-desk-office.jpg?w=1260&h=750&auto=compress&cs=tinysrgb'
+           texto:null,
+           imagenBanner:require('../assets/prensa.jpg')
            }
   }
 }

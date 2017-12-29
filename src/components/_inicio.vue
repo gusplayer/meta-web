@@ -14,31 +14,16 @@
       </div>
 
       <div class="botones_banner_responsive">
-          <a href="http://www.meta.gov.co/web/content/secretar%C3%ADa-de-gobierno"
+          <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key"
           class="botones_banner_accion" target="_blank">
-            <div><span>Acción comunal y participación ciudadana</span></div>
-            <img src="../assets/business-person-silhouette-wearing-tie.png">
-          </a>
-          <a href="http://www.meta.gov.co/web/content/secretar%C3%AD-t%C3%A9cnica-ocad-meta"
-          class="botones_banner_accion botones_banner_regalias" target="_blank">
-            <div><span>Regalías Meta</span></div>
-            <img src="../assets/bitmap.png">
-          </a>
-          <a href="#" class="botones_banner_accion botones_banner_calendario">
-            <div><span>Calendario eventos</span></div>
-            <img src="../assets/calendar.jpg">
-          </a>
-          <a href="http://www.meta.gov.co/web/content/impuestos-departamentales-0"
-          class="botones_banner_accion botones_banner_liquidacion" target="_blank">
-             <div><span>Liquidación impuesto </span></div>
-             <img src="../assets/impuestoscar.png">
+            <div><span>{{botones.titulo}}</span></div>
           </a>
       </div>
 
       <div class="contenido">
         <div class="noticias">
 
-          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, 7)" :key="noticias.key">
+          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, 7)" :key="noticia.idTimeline">
 
                   <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
                   :style="coverImagen(noticia)">
@@ -70,7 +55,7 @@
           </div>
 
           <div class="card" >
-             <el-col :span="8" v-for="noticia in noticias.slice(0, 5)" :key="noticias" class="card-col">
+             <el-col :span="8" v-for="noticia in noticias.slice(0, 5)" :key="noticia.key" class="card-col">
                <router-link :to="{ name: 'noticia',
                                    params: {
                                      id: noticia.idTimeline,
@@ -108,82 +93,16 @@
         <div class="lateral">
 
           <iframe
-          class="lateral_video"
+          class="lateral_video" v-if="video_youtube"
           :src="`https://www.youtube.com/embed/${video_youtube.data.url}`"
           frameborder="0" allowfullscreen>
           </iframe>
           <br>
           <div class="lateral_line"><p></p></div>
 
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/PlanDeDesarrollo/" target="_blank">
-              <img src="../assets/plan_desarrollo.gif">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/gobernaci%C3%B3n-sobre-ruedas-2017" target="_blank">
-              <img src="../assets/gobierno-sobre-ruedas-01.jpg">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://lavozdelaesperanza.co/" target="_blank">
-              <img src="../assets/boton-1063.jpg">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/consejo-territorial-de-planeci%C3%B3n-departamental" target="_blank">
-              <img src="../assets/logo-ctpd-0-1.jpg">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/rendici%C3%B3n-de-cuentas" target="_blank">
-              <img src="../assets/rendicioncuentas.jpg">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/yo-soy-macho" target="_blank">
-              <img src="../assets/yosoymacho.gif">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/banco-hv-control-interno" target="_blank">
-              <img src="../assets/control_interno.jpg">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://190.26.195.246/NUEVOSAV2" target="_blank">
-              <img src="../assets/sifvi.png">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/buzones-electr%C3%B3nicos" target="_blank">
-              <img src="../assets/notificaciones_judiciales.png">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/convocatorias" target="_blank">
-              <img src="../assets/convocatorias.png">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://www.meta.gov.co/web/content/trasparencia-y-acceso-la-informaci%C3%B3n-publica" target="_blank">
-              <img src="../assets/transparencia.png">
-            </a>
-          </div>
-
-          <div class="lateral_cuadros">
-            <a href="http://190.26.195.243/default.aspx?path=cdpubapp" target="_blank">
-              <img src="../assets/pqrsd.jpg" width="250px">
+          <div class="lateral_cuadros" v-for="servicio in servicios.urls" :key= "servicio.id">
+            <a :href="servicio.url" target="_blank">
+              <img :src="`https://intranet.meta.gov.co/web_img_urls/${servicio.imagen}`" width="100%">
             </a>
           </div>
 
@@ -226,6 +145,11 @@ export default {
 
     axios.get('https://intranet.meta.gov.co/web/url_navegacion/listado')
     .then(response => {this.botones_banner = response.data});
+
+    axios.get('https://intranet.meta.gov.co/web/urls_externas/listado')
+    .then(response => {this.servicios = response.data});
+
+
   },
   mounted(){
     axios.get('https://intranet.meta.gov.co/web/url_youtube')
@@ -236,7 +160,8 @@ export default {
            input: '',
            noticias: [],
            botones_banner: [],
-           video_youtube:'',
+           servicios: [],
+           video_youtube: null,
            errors:[]
            }
          },

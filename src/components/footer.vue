@@ -3,15 +3,9 @@
 
     <div class="uper_footer">
       <div class="uper_footer_content" >
-       <a href="http://es.presidencia.gov.co/Paginas/presidencia.aspx" target="_blank">
-        <img src="../assets/presidencia.png" >
-       </a>
-       <img src="../assets/99.jpg" >
-       <img src="../assets/urna.png" >
-       <img src="../assets/contraloria.png" >
-       <img src="../assets/colciencias.jpg" >
-       <img src="../assets/colombiacompra.png" >
-       <img src="../assets/gobiernoenlinea.png" >
+        <a v-for="feet in footers.data" :key="feet.id">
+          <img :src="`https://intranet.meta.gov.co/footer_img/${feet.imagen}`" >
+        </a>
      </div>
     </div>
 
@@ -67,8 +61,6 @@
         <p></p>
       </div>
 
-
-
       <div class="dark">
           <div class="light">
             <img class="light_img_foster" src="../assets/foster.png"  height="55px">
@@ -92,6 +84,23 @@
 
   </div>
 </template>
+
+<script>
+import axios from 'axios';
+export default {
+  created() {
+    axios.get('https://intranet.meta.gov.co/web/footer/listado')
+      .then(response => {
+        this.footers = response.data
+      });
+  },
+  data() {
+    return {
+      footers: [],
+    }
+  }
+}
+</script>
 
 <style scoped>
 

@@ -298,7 +298,12 @@ export default {
                         newtab:'true'
                       }
                     },
-              }
+              },{
+                titulo: 'Convocatorias',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: '/documentacion/convocatorias',
+              },
             ],
             childrenDynamic: false,
           },{

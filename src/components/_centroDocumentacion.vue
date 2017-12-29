@@ -61,8 +61,8 @@ export default {
   },
   data(){
     return {
-      texto:'Centro de Documentación',
-      imagenBanner:'https://images.pexels.com/photos/12064/pexels-photo-12064.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
+      texto:null,
+      imagenBanner: require("../assets/documentacion.jpg"),
       foldersData: [],
       columns: [],
       newArray: [],
