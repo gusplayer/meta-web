@@ -22,6 +22,16 @@
           <h2>Documentos</h2>
           <p>Organiza y encuentra tus archivos</p>
         </div>
+
+        <div style="display:flex; flex-wrap:wrap; flex-direction:space-between">
+          <div class="" style="width:80%">
+            <p>Selecciona una carpeta <i class="material-icons folder_icon" style="color:rgb(68, 132, 190); margin-bottom:-15px">folder_open</i> o un archivo <i class="material-icons" style="color: rgb(204, 169, 21)">insert_drive_file</i> <br /><br />Navega entre carpetas con las flechas de tu teclado o la barra en la parte de abajo, recuerda que a medida que abres carpetas puede desplazarte hace la derecha para ver mas contenido</p>
+          </div>
+          <div class="" style="width:20%">
+            <img src="../assets/teclas2.jpg" width="60%">
+          </div>
+        </div>
+
         <hr>
       </div>
       <div id="columns" class="documents_columns">

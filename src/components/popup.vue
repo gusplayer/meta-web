@@ -37,10 +37,11 @@ export default {
   justify-content: center;
   background-color: rgba(33, 47, 61, 0.9);
   position: fixed;
-  z-index: 100
+  z-index: 100;
 }
 .pop-up img{
-  width: 750px
+  max-height: 80vh;
+  width: auto
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .80s

@@ -23,8 +23,6 @@
         <br><br>
       </div>
 
-
-
       <el-collapse v-model="activeNames" @change="handleChange">
         <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="item in datos.data[0].secciones">
 
@@ -75,11 +73,11 @@
 
               <div class="sub_secciones" v-if="item.sub_secciones[0]">
                   <el-tabs type="border-card" tab-position="top" style="height: auto;" >
-                      <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones">
+                      <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones" class="reverse" >
 
 
 
-                        <div class="sub_texto" v-for="texto in sub.textos" v-if >
+                        <div class="sub_texto" v-for="texto in sub.textos">
                           <p v-html="texto.texto"> </p>
                         </div>
 
@@ -125,7 +123,7 @@
 
                         <div class="sub_sub_secciones" v-if="sub.sub_secciones[0]">
                             <el-tabs type="border-card" tab-position="top" style="height: auto;" >
-                                <el-tab-pane :label="subsub.titulo" v-for="subsub in sub.sub_secciones">
+                                <el-tab-pane :label="subsub.titulo" v-for="subsub in sub.sub_secciones" class="reverse">
 
 
 
@@ -174,7 +172,7 @@
 
                                         <div class="sub_sub_secciones">
                                             <el-tabs tab-position="top" style="height: auto;" >
-                                                <el-tab-pane :label="subsub.titulo" v-for="subsub in subsub.sub_secciones">
+                                                <el-tab-pane :label="subsub.titulo" v-for="subsub in subsub.sub_secciones" class="reverse">
 
 
 
@@ -344,8 +342,8 @@ export default {
     			}
         	let idYoutube = urlVideo.substring(index);
     			return idYoutube;
-     }
-  }
+     },
+  },
 }
 </script>
 
@@ -532,6 +530,11 @@ h1, h2, h3{
     margin-left: 30px;
     width: 100%
   }
+  .reverse{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
 
 @media screen and (max-width: 1000px) {
 

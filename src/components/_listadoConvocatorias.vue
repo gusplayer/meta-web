@@ -3,12 +3,19 @@
 
     <b>Educacion</b><br />
 
+    <div class="submenu">
+      <router-link :to="{path: '/documentacion/convocatorias'}">
+        <el-button size="medium" type="warning" plain icon="el-icon-back">Volver a Categorias</el-button>
+      </router-link>
+    </div>
+
 
     <div class="contenido">
       <el-table
         :data="tableData"
         border
         style="width: 100%">
+
         <el-table-column
           prop="date"
           label="Fecha Publicación"
@@ -26,7 +33,9 @@
         <el-table-column
           label="">
           <template slot-scope="scope">
-            <el-button size="medium" type="info" plain icon="el-icon-search">Ver detalles</el-button>
+            <router-link :to="{path: '/documentacion/convocatorias/detalles/:id'}">
+              <el-button size="medium" type="success" plain icon="el-icon-search">Ver detalles</el-button>
+            </router-link>
           </template>
         </el-table-column>
       </el-table>
@@ -87,7 +96,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 
 .breadcrumb{
   display: flex;
@@ -122,6 +131,11 @@ h1, h2, h3, b{
   flex-wrap: wrap;
   margin-top: 10px;
   width: 100%
+}
+.submenu{
+  width: 100%;
+  display: flex;
+  padding:5px 8px ;
 }
 .card{
   display: flex;

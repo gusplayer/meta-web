@@ -81,7 +81,6 @@
                         <router-link :to="{ name: '', params: {} }">
                           <el-button type="text" class="card-button">Ver más</el-button>
                         </router-link>
-
                       </div>
                     </div>
                   </el-card>
@@ -91,7 +90,6 @@
 
         </div>
         <div class="lateral">
-
           <iframe
           class="lateral_video" v-if="video_youtube"
           :src="`https://www.youtube.com/embed/${video_youtube.data.url}`"
@@ -105,7 +103,6 @@
               <img :src="`https://intranet.meta.gov.co/web_img_urls/${servicio.imagen}`" width="100%">
             </a>
           </div>
-
         </div>
       </div>
 

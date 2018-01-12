@@ -1,6 +1,7 @@
 <template lang="html">
 
     <div class="contenido">
+
         <div class="card" >
            <el-col :span="8" class="card-col" v-for="id in datos.data[0].secciones" :key="id.key">
              <router-link :to="{path: '/documentacion/convocatorias/listado/:id'}">

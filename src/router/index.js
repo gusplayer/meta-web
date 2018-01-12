@@ -117,7 +117,8 @@ export default new Router({
       children: [
         {
         path: '/',
-        component:CategoriasConvocatorias
+        component:CategoriasConvocatorias,
+        name:CategoriasConvocatorias
         },
         {
         path: 'listado/:id',

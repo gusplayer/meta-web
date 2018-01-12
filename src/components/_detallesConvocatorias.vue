@@ -1,50 +1,48 @@
 <template lang="html">
-  <div class="principal">
 
-    <el-breadcrumb separator="/" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/documentacion/convocatorias' }">Convocatorias</el-breadcrumb-item>
-      <el-breadcrumb-item>Educación</el-breadcrumb-item>
-    </el-breadcrumb>
+<div class="principal">
 
-    <BannerMicro :imagen="`https://intranet.meta.gov.co/micrositio_banners/${datos.data[0].banners[0].banner}`"
-    v-if="datos.data[0].banners[0]">"></BannerMicro>
+<b>Información detallada: Convocatoria No. 1232</b><br />
 
-    <h2>Convocatorias</h2>
-    <b>Educacion / Convocatoria No. 12443</b>
-
+<div class="submenu">
+  <router-link :to="{path: '/documentacion/convocatorias'}">
+    <el-button size="medium" type="info" plain icon="el-icon-back">Volver a Categorias</el-button>
+  </router-link>
+  <router-link :to="{path: '/documentacion/convocatorias/listado/:id'}">
+    <span style="margin: 5px 7px -10px; font-size: 22px; font-weight: 200; color: #bfc1c3">/</span>
+    <el-button size="medium" type="warning" plain icon="el-icon-back">Volver a Listado</el-button>
+  </router-link>
+</div>
+<hr>
 
     <div class="contenido">
 
-      <el-table
-        :data="tableData"
-        border
-        style="width: 100%">
-        <el-table-column
-          prop="date"
-          label="Fecha Publicación"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="Titulo "
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="Descripción">
-        </el-table-column>
-        <el-table-column
-          label="">
-          <template slot-scope="scope">
-              <el-button size="medium" type="info" plain icon="el-icon-search">Ver detalles</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
+      <div class="convocatoria">
+
+        <div class="convocatoria_texto">
+          <div class="convocatoria_texto_titulo">
+            <h1>Convocatoria de Doctorados Nacionales 2017</h1>
+          </div>
+          <br />
+          <div class="convocatoria_texto_cotenido">
+            <b>Descripción:</b>
+            <p>Apoyar la formación de investigadores colombianos en los programas doctorales incluidos en los bancos de elegibles definitivos de las Convocatorias No. 727 Doctorados Nacionales 2015 y No. 767 Doctorados Nacionales Jóvenes 2016, a través de la constitución de un banco de potenciales beneficiarios, resultado de la validación del interés por parte de los aspirantes no financiados en la convocatoria 757 de 2016.</p>
+          </div>
+
+        </div>
+        <div class="convocatoria_documento">
+
+        </div>
+        <div class="convocatoria_video">
+
+        </div>
+
+      </div>
 
     </div>
-
   </div>
+
+</div>
 </template>
 
 <script>
@@ -99,7 +97,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 
 .breadcrumb{
   display: flex;
@@ -134,6 +132,11 @@ h1, h2, h3, b{
   flex-wrap: wrap;
   margin-top: 10px;
   width: 100%
+}
+.submenu{
+  width: 100%;
+  display: flex;
+  padding:5px 8px ;
 }
 .card{
   display: flex;
@@ -191,6 +194,22 @@ h1, h2, h3, b{
 .card-fecha{
   font-size: 13px;
   color: #999;
+}
+.convocatoria{
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  box-shadow: 0 0 5px 0 rgba(94, 92, 92, 0.32);
+  padding: 20px
+}
+.convocatoria_texto{
+
+}
+.convocatoria_texto_titulo{
+
+}
+.convocatoria_video{
+
 }
 
 </style>
