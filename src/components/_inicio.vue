@@ -1,7 +1,6 @@
 <template>
   <div class="general">
   <br>
-
       <div class="banner">
         <bannerTop></bannerTop>
       </div>
@@ -98,11 +97,15 @@
           <br>
           <div class="lateral_line"><p></p></div>
 
-          <div class="lateral_cuadros" v-for="servicio in servicios.urls" :key= "servicio.id">
-            <a :href="servicio.url" target="_blank">
-              <img :src="`https://intranet.meta.gov.co/web_img_urls/${servicio.imagen}`" width="100%">
-            </a>
+          <div  style="display:flex; flex-direction: column-reverse; margin: 0px; padding: 2px; border: 0">
+            <div class="lateral_cuadros" v-for="servicio in servicios.urls" :key= "servicio.id">
+              <a :href="servicio.url" target="_blank" style="width:100%">
+                <img :src="`https://intranet.meta.gov.co/web_img_urls/${servicio.imagen}`" width="100%" style="width:100%">
+              </a>
+            </div>
           </div>
+
+
         </div>
       </div>
 
@@ -116,6 +119,7 @@
             <blockquote cite="https://www.facebook.com/GobMeta/" class="fb-xfbml-parse-ignore">
             <a href="https://www.facebook.com/GobMeta/">Cargando Facebook...</a></blockquote>
           </div>
+
         </div>
 
         <div class="social_botones_cuadro">
@@ -225,9 +229,11 @@ export default {
 .botones_banner img{
   width: 100%
 }
-.botones_banner_responsive{
+.botones_banner_responsive a{
   display: none;
+  transition: 1s
 }
+
 .botones_banner_accion{
   min-width: 199px;
   width: 100%;
@@ -239,6 +245,10 @@ export default {
   background-color: #9b9b9b;
   box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
   margin: 5px;
+  transition: 1s
+}
+.botones_banner_accion a:hover{
+  transform: scale(1.05);
 }
 .botones_banner_accion div{
   padding: 20px;
@@ -258,8 +268,15 @@ export default {
   justify-content: space-around;
   align-items: center;
   background-color: #9b9b9b;
-  box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+  box-shadow: 0 1px 4px 0 rgba(164, 160, 160, 0.9);
   margin: 5px;
+}
+.botones_banner_movil{
+  transition: 1s
+}
+.botones_banner_movil:hover{
+  transform: scale(1.03);
+  filter: drop-shadow(10px 9px 8px rgba(0,0,0,0.6));
 }
 .botones_banner_regalias{
   background-color: #f5f5f5;
@@ -408,16 +425,23 @@ export default {
 	width: 100%;
   min-width: 40%;
 	background-color: #ffffff;
-	box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
-  padding: 7px;
+  padding: 8px 15px;
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-bottom: 0px
+  margin-bottom: 0px;
+}
+.lateral_cuadros a{
+  transition: 1s
+}
+.lateral_cuadros a:hover{
+  filter: grayscale(90%);
+  transform: scale(1.05);
 }
 .lateral_cuadros img{
 	background-color: #ffffff;
 	box-shadow: 0 1px 4px 0 rgba(118, 118, 118, 0.38);
+  width: 100%
 }
 .social_botones_google_maps{
   display: flex;
@@ -432,9 +456,7 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-
 }
-
 .social_botones_cuadro{
   display: flex;
   flex: 1;
@@ -444,7 +466,7 @@ export default {
   background-color: #f6f6f6;
   box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
   overflow:auto;
-  margin-right: 0px
+  margin-right: 0px;
 }
 .social_botones_cuadro2{
   display: flex;
