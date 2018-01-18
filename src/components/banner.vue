@@ -1,7 +1,9 @@
 <template>
   <el-carousel :interval="9000" arrow="always" indicator-position="outside" >
     <el-carousel-item v-for="item in items">
-      <img :src="`https://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
+      <a :href="item.url" class="banner-url">
+        <img :src="`https://intranet.meta.gov.co/imagen_banners/${item.imagen}`">
+      </a>
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -29,7 +31,7 @@
  }
 </script>
 
-<style>
+<style >
 
   .el-carousel__item img {
     width: 100%;
@@ -41,6 +43,13 @@
   .el-carousel__container{
     height: 400px !important;
     background-color: white
+  }
+  .banner-url img{
+    transition: all 500ms ease-in-out;
+  }
+  .banner-url img:hover{
+    filter:  saturate(1.5);
+    transform: scale(1.05);
   }
 @media screen and (max-width: 1100px) {
   .el-carousel__container{

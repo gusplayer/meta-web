@@ -77,9 +77,9 @@
                       <span class="card-titulo">{{noticia.titulo}}</span>
                       <div class="card-bottom card-clearfix">
                         <time class="card-fecha">{{noticia.fecha}}</time>
-                        <router-link :to="{ name: '', params: {} }">
+
                           <el-button type="text" class="card-button">Ver más</el-button>
-                        </router-link>
+
                       </div>
                     </div>
                   </el-card>
@@ -250,6 +250,10 @@ export default {
 .botones_banner_accion a:hover{
   transform: scale(1.05);
 }
+.botones_banner_accion a img:hover{
+  transform: scale(1.05);
+  filter:  saturate(5);
+}
 .botones_banner_accion div{
   padding: 20px;
 	font-size: 16px;
@@ -276,7 +280,7 @@ export default {
 }
 .botones_banner_movil:hover{
   transform: scale(1.03);
-  filter: drop-shadow(10px 9px 8px rgba(0,0,0,0.6));
+  filter:  saturate(1.5);
 }
 .botones_banner_regalias{
   background-color: #f5f5f5;

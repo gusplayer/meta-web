@@ -1,9 +1,18 @@
 <template>
 
   <transition name="fade">
-    <div class="pop-up" v-show="popup" >
-      <img src="../assets/1diciembre.jpg" height="auto" width="100%"><br>
-      <el-button v-on:click="visiblePopUp">Continuar</el-button>
+    <div class="pop-up" v-if="popup" >
+      <div class="pop-up-image" v-if="imagen" >
+        <img :src="imagen" height="auto" width="100%">
+     </div>
+      <div class="pop-up-video" v-else-if="video" >
+        <iframe
+         v-if="video"
+        :src="`https://www.youtube.com/embed/${video}?autoplay=1`"
+        frameborder="0" allowfullscreen width="100%">
+        </iframe>
+      </div>
+      <br><el-button v-on:click="visiblePopUp">Continuar</el-button>
     </div>
   </transition>
 
@@ -14,7 +23,9 @@ export default {
 
   data(){
     return{
-      popup: false
+      popup: true,
+      imagen: "",
+      video: "OsruQoXPoX8"
     }
   },
   methods:{
@@ -38,10 +49,17 @@ export default {
   background-color: rgba(33, 47, 61, 0.9);
   position: fixed;
   z-index: 100;
+  padding: 20px
 }
-.pop-up img{
+
+.pop-up-image img{
   max-height: 80vh;
-  width: auto
+}
+.pop-up-video{
+}
+.pop-up-video iframe{
+	height:500px;
+	width:750px;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .80s
@@ -55,6 +73,10 @@ export default {
     width: 100%;
     height: auto;
     padding: 5px;
+  }
+  .pop-up-video iframe{
+  	height:260px;
+  	width:380px;
   }
 }
 </style>
