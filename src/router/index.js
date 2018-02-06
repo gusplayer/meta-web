@@ -41,7 +41,7 @@ export default new Router({
       component: Inicio
     },
     {
-      path: '/entidad/transparencia',
+      path: '/transparencia',
       name: 'transparencia',
       component: Transparencia,
     },

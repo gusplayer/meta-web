@@ -23,7 +23,7 @@ export default {
 
   data(){
     return{
-      popup: true,
+      popup: false,
       imagen: "",
       video: "OsruQoXPoX8"
     }

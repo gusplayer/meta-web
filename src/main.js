@@ -11,7 +11,6 @@ Vue.use(ElementUI, { locale })
 Vue.use(VueAnalytics, { id: 'UA-98864338-1', router })
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

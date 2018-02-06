@@ -202,14 +202,4 @@ h1, h2, h3, b{
   box-shadow: 0 0 5px 0 rgba(94, 92, 92, 0.32);
   padding: 20px
 }
-.convocatoria_texto{
-
-}
-.convocatoria_texto_titulo{
-
-}
-.convocatoria_video{
-
-}
-
 </style>

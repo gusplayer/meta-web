@@ -8,15 +8,15 @@
     </div>
     <nav class="go_menu">
       <ul class="go_menu_list">
-        <li class="go_menu_list_item" v-for="item in menuDefault"><router-link :to="item.url">{{ item.titulo }}<i class="el-icon-caret-bottom" v-show="item.haveChildren"></i></router-link>
+        <li class="go_menu_list_item" v-for="(item,index) in menuDefault" :key="index"><router-link :to="item.url">{{ item.titulo }}<i class="el-icon-caret-bottom" v-show="item.haveChildren"></i></router-link>
           <ul class="go_menu_sublist" v-if="item.haveChildren">
-            <li class="go_menu_list_item" v-for="subitem in item.children"><router-link :to="subitem.url">{{ subitem.titulo }}<i class="el-icon-caret-right" v-show="subitem.haveChildren"></i></router-link>
+            <li class="go_menu_list_item" v-for="(subitem,index) in item.children" :key="index"><router-link :to="subitem.url">{{ subitem.titulo }}<i class="el-icon-caret-right" v-show="subitem.haveChildren"></i></router-link>
               <ul class="go_menu_sublist" v-if="subitem.haveChildren">
-                <li class="go_menu_list_item" v-if="subitem.children" v-for="subitem2 in subitem.children"><router-link :to="subitem2.url">{{ subitem2.titulo }}</router-link></li>
-                <li class="go_menu_list_item" v-if="subitem.childrenDynamic" v-for="item in filterMenu(subitem.id)"><router-link :to="`/micrositio/${item.id}`">{{ item.titulo }}</router-link></li>
+                <li class="go_menu_list_item" v-if="subitem.children" v-for="(subitem2,index) in subitem.children" :key="index"><router-link :to="subitem2.url">{{ subitem2.titulo }}</router-link></li>
+                <li class="go_menu_list_item" v-if="subitem.childrenDynamic" v-for="(item,index) in filterMenu(subitem.id)" :key="index"><router-link :to="`/micrositio/${item.id}`">{{ item.titulo }}</router-link></li>
               </ul>
             </li>
-            <li class="go_menu_list_item" v-if="item.childrenDynamic" v-for="subitem in filterMenu(item.id)"><router-link :to="`/micrositio/${subitem.id}`">{{ subitem.titulo }}</router-link></li>
+            <li class="go_menu_list_item" v-if="item.childrenDynamic" v-for="(subitem,index) in filterMenu(item.id)" :key="index"><router-link :to="`/micrositio/${subitem.id}`">{{ subitem.titulo }}</router-link></li>
           </ul>
         </li>
       </ul>
@@ -142,6 +142,18 @@ export default {
                             newtab:'true'
                           }
                         },
+                  },
+                  {
+                    titulo: 'Plan de Accion general y plan operativo anual de inversiones (POAI)',
+                    haveChildren: false,
+                    childrenDynamic: false,
+                    url:{
+                          name:'redirect',
+                          params: {
+                            link: 'https://meta.gov.co/micrositio/53',
+                            newtab:'false'
+                          }
+                        },
                   }
                 ],
                 childrenDynamic: false,
@@ -153,7 +165,7 @@ export default {
                 url: "/"
               },{
                 id: '7',
-                titulo: 'Entidades decentralizadas',
+                titulo: 'Institutos y Gerencias',
                 haveChildren: true,
                 childrenDynamic: true,
                 url: "/",
@@ -303,6 +315,12 @@ export default {
                 haveChildren: false,
                 childrenDynamic: false,
                 url: '/documentacion/convocatorias',
+              },
+              {
+                titulo: 'Transparencia',
+                haveChildren: false,
+                childrenDynamic: false,
+                url: '/transparencia',
               },
             ],
             childrenDynamic: false,

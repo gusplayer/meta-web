@@ -1,12 +1,18 @@
 <template>
 
-  <div class="prensa">
+  <div class="prensa"
+  v-loading="loading"
+    element-loading-text="Cargando Noticias.."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)">
 
     <Breadcrumb></Breadcrumb>
     <BannerMicro :texto="texto" :imagen="imagenBanner"></BannerMicro>
 
+    <center><el-input style="width:350px" placeholder="Buscar" prefix-icon="el-icon-search" v-model="search"></el-input></center>
+
     <div class="card" >
-       <el-col :span="8" v-for="noticia in noticias" :key="noticias" class="card-col">
+       <el-col :span="8" v-for="(noticia,index) in filterData" :key="index" class="card-col">
          <router-link :to="{ name: 'noticia',
                              params: {
                                id: noticia.idTimeline,
@@ -23,7 +29,7 @@
               <img v-else
               src="../assets/sinimagen.jpg"
               class="card-image">
-            </div>
+            </div>            
 
             <div style="padding: 14px;">
               <span class="card-titulo">{{noticia.titulo}}</span>
@@ -36,6 +42,8 @@
           </router-link>
         </el-col>
     </div>
+
+    <center><el-input style="width:350px" placeholder="Buscar" prefix-icon="el-icon-search" v-model="search"></el-input></center>
 
   </div>
 
@@ -51,6 +59,7 @@ export default {
     axios.get('https://intranet.meta.gov.co/web/timeline')
     .then( response => {
       this.noticias = response.data.timeline;
+      this.loading = false
     })
     .catch(e => {
      this.errors.push(e)
@@ -60,8 +69,19 @@ export default {
     return {
            noticias:[],
            texto:null,
-           imagenBanner:require('../assets/prensa.jpg')
+           imagenBanner:require('../assets/prensa.jpg'),
+           search: '',
+           loading: true
+
            }
+  },
+  computed: {
+     filterData: function(){
+       let algo = this.noticias.filter( (dato) => {let tittle = dato.titulo.toUpperCase(); 
+                                               return tittle.includes(this.search.toUpperCase()) 
+                                              });
+                                            return algo.slice(0,42)
+     },
   }
 }
 </script>

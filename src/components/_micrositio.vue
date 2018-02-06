@@ -24,13 +24,13 @@
       </div>
 
       <el-collapse v-model="activeNames" @change="handleChange">
-        <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="item in datos.data[0].secciones">
+        <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="(item,index) in datos.data[0].secciones" :key="index">
 
-            <div class="sub_texto" v-for="texto_seccion in item.textos" >
+            <div class="sub_texto" v-for="(texto_seccion,index) in item.textos" :key="index">
               <p v-html="texto_seccion.texto"> </p>
             </div><br>
 
-            <div class="secciones_docs" v-for="archivo in item.archivos">
+            <div class="secciones_docs" v-for="(archivo,index) in item.archivos" :key="index">
               <i class="el-icon-document"></i>
               <div class="secciones_docs_descarga">
                 <p>{{archivo.titulo}}</p>
@@ -40,7 +40,7 @@
               </div>
             </div>
 
-            <iframe v-for="video in item.videos"
+            <iframe v-for="(video,index) in item.videos" :key="index"
             width="640" height="360"
             :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
             frameborder="0" gesture="media"
@@ -51,7 +51,7 @@
               <br><br>
               <template>
                 <el-carousel :interval="12000" style="width:100%; max-width:700px,">
-                  <el-carousel-item v-for="foto in item.imagenes" :key="item">
+                  <el-carousel-item v-for="(foto,index) in item.imagenes" :key="index">
                     <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
                           width="auto" style="max-height:100%">
                   </el-carousel-item>
@@ -60,7 +60,7 @@
             </div><br>
 
             <div class="social_btn" v-if="item.urls[0]">
-              <div class="social_botones_url_externa" v-for="item in item.urls" >
+              <div class="social_botones_url_externa" v-for="(item,index) in item.urls" :key="index" >
                 <a :href="item.url" target="_blank">
                   <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
                 </a>
@@ -68,27 +68,27 @@
             </div>
 
             <div class="iframe_cuadro"
-            v-for="iframe in item.iframes" v-html="iframe.iframe">
+            v-for="(iframe,index) in item.iframes" v-html="iframe.iframe" :key="index">
             </div>
 
               <div class="sub_secciones" v-if="item.sub_secciones[0]">
                   <el-tabs type="border-card" tab-position="top" style="height: auto;" >
-                      <el-tab-pane :label="sub.titulo" v-for="sub in item.sub_secciones" class="reverse" >
+                      <el-tab-pane :label="sub.titulo" v-for="(sub,index) in item.sub_secciones" :key="index" class="reverse" >
 
 
 
-                        <div class="sub_texto" v-for="texto in sub.textos">
+                        <div class="sub_texto" v-for="(texto,index) in sub.textos" :key="index">
                           <p v-html="texto.texto"> </p>
                         </div>
 
-                        <iframe v-for="video in sub.videos"
+                        <iframe v-for="(video,index) in sub.videos" :key="index"
                         width="640" height="360"
                         :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
                         frameborder="0" gesture="media"
                         allowfullscreen>
                         </iframe>
 
-                        <div class="secciones_docs" v-for="archivo in sub.archivos">
+                        <div class="secciones_docs" v-for="(archivo, index) in sub.archivos" :key="index">
                           <i class="el-icon-document"></i>
                           <div class="secciones_docs_descarga">
                             <p>{{archivo.titulo}}</p>
@@ -101,7 +101,7 @@
                         <div class="galeria" v-if="sub.imagenes[0]">
                           <br><br><template>
                             <el-carousel :interval="8000" style="width:100%; max-width:700px,">
-                              <el-carousel-item v-for="foto in sub.imagenes" :key="item">
+                              <el-carousel-item v-for="(foto, index) in sub.imagenes" :key="index">
                                 <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
                                       width="auto" style="max-height:100%">
                               </el-carousel-item>
@@ -110,11 +110,11 @@
                         </div><br>
 
                         <div class="iframe_cuadro"
-                        v-for="iframe in sub.iframes" v-html="iframe.iframe">
+                        v-for="(iframe,index) in sub.iframes" v-html="iframe.iframe" :key="index">
                         </div>
 
                         <div class="social_btn" v-if="sub.urls[0]">
-                            <div class="social_botones_url_externa" v-for="item in sub.urls">
+                            <div class="social_botones_url_externa" v-for="(item,index) in sub.urls" :key="index">
                               <a :href="item.url" target="_blank">
                                 <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
                               </a>
@@ -123,22 +123,22 @@
 
                         <div class="sub_sub_secciones" v-if="sub.sub_secciones[0]">
                             <el-tabs type="border-card" tab-position="top" style="height: auto;" >
-                                <el-tab-pane :label="subsub.titulo" v-for="subsub in sub.sub_secciones" class="reverse">
+                                <el-tab-pane :label="subsub.titulo" v-for="(subsub,index) in sub.sub_secciones" class="reverse" :key="index">
 
 
 
-                                  <div class="sub_texto"  v-for="texto in subsub.textos">
+                                  <div class="sub_texto"  v-for="(texto, index) in subsub.textos" :key="index">
                                     <p v-html="texto.texto"> </p>
                                   </div>
 
-                                  <iframe v-for="video in subsub.videos"
+                                  <iframe v-for="(video,index) in subsub.videos" :key="index"
                                   width="640" height="360"
                                   :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
                                   frameborder="0" gesture="media"
                                   allowfullscreen>
                                   </iframe>
 
-                                  <div class="secciones_docs" v-for="archivo in subsub.archivos">
+                                  <div class="secciones_docs" v-for="(archivo, index) in subsub.archivos" :key="index">
                                     <i class="el-icon-document"></i>
                                     <div class="secciones_docs_descarga">
                                       <p>{{archivo.titulo}}</p>
@@ -151,7 +151,7 @@
                                   <div class="galeria" v-if="subsub.imagenes[0]">
                                     <br><br><template>
                                       <el-carousel :interval="8000" style="width:100%; max-width:700px,">
-                                        <el-carousel-item v-for="foto in subsub.imagenes" :key="item">
+                                        <el-carousel-item v-for="(foto,index) in subsub.imagenes" :key="index">
                                           <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
                                                 width="auto" style="max-height:100%">
                                         </el-carousel-item>
@@ -160,10 +160,10 @@
                                   </div><br>
 
                                   <div class="social_botones_cuadro"
-                                  v-for="iframe in subsub.iframes" v-html="iframe.iframe">
+                                  v-for="(iframe,index) in subsub.iframes" v-html="iframe.iframe" :key="index">
                                   </div>
 
-                                  <div class="social_botones_url_externa" v-for="item in subsub.urls">
+                                  <div class="social_botones_url_externa" v-for="(item, index) in subsub.urls" :key="index">
                                     <a :href="item.url" target="_blank">
                                       <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
                                     </a>
@@ -172,22 +172,22 @@
 
                                         <div class="sub_sub_secciones">
                                             <el-tabs tab-position="top" style="height: auto;" >
-                                                <el-tab-pane :label="subsub.titulo" v-for="subsub in subsub.sub_secciones" class="reverse">
+                                                <el-tab-pane :label="subsub.titulo" v-for="(subsub,index) in subsub.sub_secciones" class="reverse" :key="index">
 
 
 
-                                                  <div class="sub_texto" v-for="texto in subsub.textos">
+                                                  <div class="sub_texto" v-for="(texto,index) in subsub.textos" :key="index">
                                                     <p v-html="texto.texto"> </p>
                                                   </div>
 
-                                                  <iframe v-for="video in subsub.videos"
+                                                  <iframe v-for="(video,index) in subsub.videos" :key="index"
                                                   width="640" height="360"
                                                   :src="`https://www.youtube.com/embed/${videoYoutube(video.video)}`"
                                                   frameborder="0" gesture="media"
                                                   allowfullscreen>
                                                   </iframe>
 
-                                                  <div class="secciones_docs" v-for="archivo in subsub.archivos">
+                                                  <div class="secciones_docs" v-for="(archivo,index) in subsub.archivos" :key="index">
                                                     <i class="el-icon-document"></i>
                                                     <div class="secciones_docs_descarga">
                                                       <p>{{archivo.titulo}}</p>
@@ -200,7 +200,7 @@
                                                   <div class="galeria" v-if="subsub.imagenes[0]">
                                                     <br><br><template>
                                                       <el-carousel :interval="8000" style="width:100%; max-width:700px,">
-                                                        <el-carousel-item v-for="foto in subsub.imagenes" :key="item">
+                                                        <el-carousel-item v-for="(foto,index) in subsub.imagenes" :key="index">
                                                           <img :src="`https://intranet.meta.gov.co/secciones_imagenes/${foto.imagen}`"
                                                                 width="auto" style="max-height:100%">
                                                         </el-carousel-item>
@@ -209,10 +209,10 @@
                                                   </div><br>
 
                                                   <div class="social_botones_cuadro"
-                                                  v-for="iframe in subsub.iframes" v-html="iframe.iframe">
+                                                  v-for="(iframe,index) in subsub.iframes" v-html="iframe.iframe" :key="index">
                                                   </div>
 
-                                                  <div class="social_botones_url_externa" v-for="item in subsub.urls">
+                                                  <div class="social_botones_url_externa" v-for="(item,index) in subsub.urls" :key="index">
                                                     <a :href="item.url" target="_blank">
                                                       <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
                                                     </a>
@@ -238,7 +238,7 @@
       <div class="galeria" v-if="datos.data[0].galeria[0]">
         <template>
           <el-carousel :interval="7000" type="card" height="200px" style="width:100%">
-            <el-carousel-item v-for="foto in datos.data[0].galeria" :key="item">
+            <el-carousel-item v-for="(foto,index) in datos.data[0].galeria" :key="index">
               <img :src="`https://intranet.meta.gov.co/micrositio_galeria/${foto.imagen}`" alt="titulo" width="100%">
             </el-carousel-item>
           </el-carousel>
@@ -272,13 +272,13 @@
     </div>
 
     <div class="lateral" v-if="datos.data[0].menu_lateral == 1">
-      <div class="social_botones_url_externa" v-for="boton in datos.data[0].url_externa">
+      <div class="social_botones_url_externa" v-for="(boton,index) in datos.data[0].url_externa" :key="index">
         <a :href="boton.url" target="_blank">
           <img :src="`https://intranet.meta.gov.co/micrositio_img_urls/${boton.imagen}`" alt="">
         </a>
       </div>
 
-      <div class="social_botones_cuadro" v-for="iframe in datos.data[0].iframes" v-html="iframe.iframe">
+      <div class="social_botones_cuadro" v-for="(iframe,index) in datos.data[0].iframes" :key="index" v-html="iframe.iframe">
       </div>
     </div>
 
@@ -392,9 +392,6 @@ h1, h2, h3{
   height: 100%;;
   text-align: justify;
   flex-direction: column;
-}
-.info_micrositio{
-
 }
 .lateral{
   display: flex;
