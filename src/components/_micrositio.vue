@@ -1,5 +1,5 @@
 <template>
-  <div class="principal">
+  <div class="principal" v-loading="loading">
     <el-breadcrumb separator="/" class="breadcrumb">
     <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
     <el-breadcrumb-item>{{datos.data[0].titulo}}</el-breadcrumb-item>
@@ -298,14 +298,17 @@ export default {
   components: {BannerMicro, Breadcrumb},
   name: 'app',
   created(){
-    // router.replace({$route.name: 'diferentes'});
     axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
     .then( response => {
       this.datos = response.data;
-    })
-    .catch(e => {
-     this.errors.push(e)
-   })
+        console.log(this.datos.data[0].url_redireccion)
+        if(this.datos.data[0].url_redireccion == null)
+        {
+          setTimeout( (()=>this.loading = false), 3000)
+          
+        }
+        else {  window.location = this.datos.data[0].url_redireccion  }
+    })   
   },
   watch:{
     "$route" (){
@@ -324,6 +327,7 @@ export default {
       tabPosition: 'left',
       activeNames: ['1'],
       datos: '',
+      loading: true
     }
   },
   methods:{

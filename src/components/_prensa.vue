@@ -87,10 +87,6 @@ export default {
 </script>
 
 <style scoped>
-  .prensa{
-
-  }
-
   .contenedor_blog{
     display: flex;
     flex-wrap: wrap;

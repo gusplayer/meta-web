@@ -2,7 +2,7 @@
 
 <div class="principal">
 
-<b>Información detallada: Convocatoria No. 1232</b><br />
+<b>{{det.titulo}}</b><br />
 
 <div class="submenu">
   <router-link :to="{path: '/documentacion/convocatorias'}">
@@ -20,13 +20,37 @@
       <div class="convocatoria">
 
         <div class="convocatoria_texto">
-          <div class="convocatoria_texto_titulo">
-            <h1>Convocatoria de Doctorados Nacionales 2017</h1>
-          </div>
+         
+            <div class="convocatoria_texto_titulo">
+            <h1>{{det.titulo}}</h1>
+            <span>Fecha: {{ det.created_at }}</span>
+            </div>
+          
           <br />
           <div class="convocatoria_texto_cotenido">
             <b>Descripción:</b>
-            <p>Apoyar la formación de investigadores colombianos en los programas doctorales incluidos en los bancos de elegibles definitivos de las Convocatorias No. 727 Doctorados Nacionales 2015 y No. 767 Doctorados Nacionales Jóvenes 2016, a través de la constitución de un banco de potenciales beneficiarios, resultado de la validación del interés por parte de los aspirantes no financiados en la convocatoria 757 de 2016.</p>
+            <p> {{ det.textos[0].texto }} ds ds d sf dfdf dlf sljkfsdlkfsdklf sdlkf sdfkjs djklaf dñgfjgñjsag jsdañgdañ</p>
+          </div>
+          <br>          
+
+          <div class="secciones_docs" v-for="(archivo, index) in det.archivos" :key="index">
+            <i class="el-icon-document"></i>
+            <div class="secciones_docs_descarga">
+              <p>{{archivo.titulo}}</p>
+              <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+              <el-button type="primary">Descarga</el-button>
+              </a>
+            </div>
+          </div><br>
+
+          <div class="social_botones_cuadro"
+                v-for="(iframe,index) in det.iframes" v-html="iframe.iframe" :key="index">
+          </div>
+
+          <div class="social_botones_url_externa" v-for="(item, index) in det.urls" :key="index">
+             <a :href="item.url" target="_blank">
+              <img :src="`https://intranet.meta.gov.co/secciones_images_url_externas/${item.imagen}`" alt="">
+            </a>
           </div>
 
         </div>
@@ -46,50 +70,49 @@
 </template>
 
 <script>
-import BannerMicro from './bannerMicro.vue'
-import Breadcrumb from './breadcrumb.vue'
-import axios from 'axios';
+import BannerMicro from "./bannerMicro.vue";
+import Breadcrumb from "./breadcrumb.vue";
+import axios from "axios";
 
 export default {
   components: {
     BannerMicro,
     Breadcrumb
   },
-  name: 'app',
+  name: "app",
   created() {
     //do something after creating vue instance
-    axios.get('https://intranet.meta.gov.co/api/micrositio/informacion/47')
+    axios
+      .get("https://intranet.meta.gov.co/api/micrositio/informacion/47")
       .then(response => {
-        this.detalles = response.data
-        this.detalles = this.detalles.data[0].secciones
-        this.det = this.detalles.map( (a) => 
-            { 
-              let finder = a.sub_secciones.filter( b =>  b.id == this.$route.params.id);
-              return finder              
-            }
-        )
-        this.det = this.det.filter( a => a != '')
-        this.det = this.det[0]
-        this.det = this.det[0]
+        this.detalles = response.data;
+        this.detalles = this.detalles.data[0].secciones;
+        this.det = this.detalles.map(a => {
+          let finder = a.sub_secciones.filter(
+            b => b.id == this.$route.params.id
+          );
+          return finder;
+        });
+        this.det = this.det.filter(a => a != "");
+        this.det = this.det[0];
+        this.det = this.det[0];
         // this.detalles = this.det[0]
       })
       .catch(e => {
-        this.errors.push(e)
-      })
+        this.errors.push(e);
+      });
   },
   data() {
     return {
-      detalles: '',
-      det: ''
-    }
-  },
-
-}
+      detalles: "",
+      det: ""
+    };
+  }
+};
 </script>
 
 <style lang="css" scoped>
-
-.breadcrumb{
+.breadcrumb {
   display: flex;
   align-self: flex-start;
   margin-bottom: 15px;
@@ -97,38 +120,41 @@ export default {
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 15px
+  padding-left: 15px;
 }
-p{
+p {
   font-size: 10pt;
   font-weight: 400;
   color: #4a4a4a;
   letter-spacing: 0.2px;
 }
-h1, h2, h3, b{
+h1,
+h2,
+h3,
+b {
   color: #48576a;
 }
-.principal{
+.principal {
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: white;
   width: 100%;
-  padding: 12px
+  padding: 12px;
 }
-.contenido{
+.contenido {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  width: 100%
+  width: 100%;
 }
-.submenu{
+.submenu {
   width: 100%;
   display: flex;
-  padding:5px 8px ;
+  padding: 5px 8px;
 }
-.card{
+.card {
   display: flex;
   flex: 1;
   margin-bottom: 30px;
@@ -136,30 +162,30 @@ h1, h2, h3, b{
   flex-wrap: wrap;
 }
 .card-time {
-    font-size: 13px;
-    color: #999;
-  }
+  font-size: 13px;
+  color: #999;
+}
 
 .card-bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
+  margin-top: 13px;
+  line-height: 12px;
+}
 
 .card-button {
-    padding: 0;
-    float: right;
-  }
+  padding: 0;
+  float: right;
+}
 
 .card-clearfix:before,
 .card-clearfix:after {
-      display: table;
-      content: "";
-  }
+  display: table;
+  content: "";
+}
 
 .card-clearfix:after {
-      clear: both
-  }
-.card-col{
+  clear: both;
+}
+.card-col {
   display: flex;
   max-width: 380px;
   min-width: 250px;
@@ -168,28 +194,46 @@ h1, h2, h3, b{
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 10px;
-
 }
-.card-contenedor-imagen{
+.card-contenedor-imagen {
   overflow: hidden;
   height: 170px;
 }
-.card-image{
+.card-image {
   width: 100%;
   display: block;
 }
-.card-titulo{
+.card-titulo {
   font-size: 11 pt;
 }
-.card-fecha{
+.card-fecha {
   font-size: 13px;
   color: #999;
 }
-.convocatoria{
+.convocatoria {
   display: flex;
   width: 100%;
   margin-top: 10px;
   box-shadow: 0 0 5px 0 rgba(94, 92, 92, 0.32);
-  padding: 20px
+  padding: 20px;
 }
+ .secciones_docs{
+    display: flex;
+    flex-direction: row;
+    max-width: 600px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    align-items: center;
+    background-color: #f6f6f6;
+    box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  }
+  .secciones_docs_descarga{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30px;
+    width: 100%;
+    padding: 10px
+  }
 </style>

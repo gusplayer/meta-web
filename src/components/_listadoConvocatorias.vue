@@ -10,15 +10,15 @@
     </div>
 
 
-    <div class="contenido">
+    <div class="contenido" >
       <el-table
         type="index"
-        :data="listado[0].sub_secciones"
+        :data="listado"
         border
         key
         index
-        style="width: 100%">
-
+        style="width: 100%"
+        v-loading=load>
         <el-table-column
           prop="created_at"
           label="Fecha Publicación"
@@ -43,7 +43,6 @@
         </el-table-column>
       </el-table>
     </div>
-
   </div>
 </template>
 
@@ -65,14 +64,19 @@ export default {
         this.listado = response.data
         this.listado = this.listado.data[0].secciones
         this.listado = this.listado.filter( a => a.id == this.$route.params.id )
+        this.listado = this.listado[0].sub_secciones
+        this.listado = this.listado.reverse()
+        
       })
       .catch(e => {
         this.errors.push(e)
       })
+      this.load = false
   },
   data() {
     return {
       listado: '',
+      load: true
     }
   },
 
