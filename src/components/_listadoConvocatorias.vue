@@ -12,8 +12,11 @@
 
     <div class="contenido">
       <el-table
+        type="index"
         :data="listado[0].sub_secciones"
         border
+        key
+        index
         style="width: 100%">
 
         <el-table-column
@@ -33,7 +36,7 @@
         <el-table-column
           label="">
           <template slot-scope="scope">
-            <router-link :to="{path: `/documentacion/convocatorias/detalles/${listado[0].sub_secciones[0].id}`}">
+            <router-link :to="{path: `/documentacion/convocatorias/detalles/${scope.row.id}`}">
               <el-button size="medium" type="success" plain icon="el-icon-search">Ver detalles</el-button>
             </router-link>
           </template>

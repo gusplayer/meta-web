@@ -8,7 +8,7 @@
   <router-link :to="{path: '/documentacion/convocatorias'}">
     <el-button size="medium" type="info" plain icon="el-icon-back">Volver a Categorias</el-button>
   </router-link>
-  <router-link :to="{path: '/documentacion/convocatorias/listado/:id'}">
+  <router-link :to="{path: `/documentacion/convocatorias/listado/${det.parent_id}`}">
     <span style="margin: 5px 7px -10px; font-size: 22px; font-weight: 200; color: #bfc1c3">/</span>
     <el-button size="medium" type="warning" plain icon="el-icon-back">Volver a Listado</el-button>
   </router-link>
@@ -62,12 +62,16 @@ export default {
       .then(response => {
         this.detalles = response.data
         this.detalles = this.detalles.data[0].secciones
-        this.det = this.detalles.filter( (a) => 
+        this.det = this.detalles.map( (a) => 
             { 
-              return a.sub_secciones.filter( b =>  b.id == this.$route.params.id) 
-              
+              let finder = a.sub_secciones.filter( b =>  b.id == this.$route.params.id);
+              return finder              
             }
         )
+        this.det = this.det.filter( a => a != '')
+        this.det = this.det[0]
+        this.det = this.det[0]
+        // this.detalles = this.det[0]
       })
       .catch(e => {
         this.errors.push(e)
