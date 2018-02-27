@@ -10,7 +10,6 @@ export default {
     if(to.params.newtab == "true")
     {
       window.open(to.params.link,'_blank');
-
     }
     else {
       window.location = to.params.link;

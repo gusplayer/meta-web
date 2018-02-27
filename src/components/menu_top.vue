@@ -5,12 +5,17 @@
       <a href="http://www.meta.gov.co/web/" target="_blank"><el-button type="warning">Versión anterior</el-button></a>
       <a href="https://intranet.meta.gov.co" target="_blank"><span>Intranet </span></a>
       <a href="../../static/manual_intranet.pdf" target="_blank"><span>Manual de ayuda</span></a>
+
     </div>
 
+    
+
     <div class="encabezado_icons">
-      <!-- <span><b>A</b></span>
+      <Buscador/>
+      <span><b>A</b></span>
       <span><b>A</b>-</span>
-      <span><b>A</b>+</span> -->
+      <span><b>A</b>+</span>
+      
       <a href="https://www.facebook.com/GobMeta/" target="_blank"><img src="../assets/facebook.svg" ></a>
       <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>
     </div>
@@ -19,6 +24,13 @@
 </template>
 
 <script>
+import Buscador from './buscador.vue';
+export default {
+  components: {
+    Buscador
+  },
+  name: 'app',
+}
 
 </script>
 
@@ -44,7 +56,7 @@
 	color: rgba(74, 74, 74, 0.87);
 }
 .encabezado_icons{
-  width: 50px;
+  width: 350px;
   display: flex;
   justify-content: space-between;
   align-items: center;

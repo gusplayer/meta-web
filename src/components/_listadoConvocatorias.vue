@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="principal">
 
-    <b>Educacion</b><br />
+    <b>{{listado[0].titulo}}</b><br />
 
     <div class="submenu">
       <router-link :to="{path: '/documentacion/convocatorias'}">
@@ -12,28 +12,28 @@
 
     <div class="contenido">
       <el-table
-        :data="tableData"
+        :data="listado[0].sub_secciones"
         border
         style="width: 100%">
 
         <el-table-column
-          prop="date"
+          prop="created_at"
           label="Fecha Publicación"
           width="180">
         </el-table-column>
         <el-table-column
-          prop="name"
+          prop="titulo"
           label="Titulo Convocatoria"
           width="180">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="textos[0].texto"
           label="Descripción">
         </el-table-column>
         <el-table-column
           label="">
           <template slot-scope="scope">
-            <router-link :to="{path: '/documentacion/convocatorias/detalles/:id'}">
+            <router-link :to="{path: `/documentacion/convocatorias/detalles/${listado[0].sub_secciones[0].id}`}">
               <el-button size="medium" type="success" plain icon="el-icon-search">Ver detalles</el-button>
             </router-link>
           </template>
@@ -59,7 +59,9 @@ export default {
     //do something after creating vue instance
     axios.get('https://intranet.meta.gov.co/api/micrositio/informacion/47')
       .then(response => {
-        this.datos = response.data
+        this.listado = response.data
+        this.listado = this.listado.data[0].secciones
+        this.listado = this.listado.filter( a => a.id == this.$route.params.id )
       })
       .catch(e => {
         this.errors.push(e)
@@ -67,29 +69,7 @@ export default {
   },
   data() {
     return {
-      imagenBanner: 'https://intranet.meta.gov.co/imagen_banners/33-blob',
-      datos: '',
-      tableData: [{
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Home'
-      }, {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Office'
-      }, {
-        date: '2016-05-04',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Home'
-      }, {
-        date: '2016-05-01',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Office'
-      }]
+      listado: '',
     }
   },
 

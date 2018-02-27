@@ -1,10 +1,10 @@
 <template lang="html">
 
-    <div class="contenido">
+    <div class="contenido" v-loading=loadin>
 
         <div class="card" >
            <el-col :span="8" class="card-col" v-for="id in datos.data[0].secciones" :key="id.key">
-             <router-link :to="{path: '/documentacion/convocatorias/listado/:id'}">
+             <router-link :to="{path: `/documentacion/convocatorias/listado/${id.id}`}">
               <el-card :body-style="{ padding: '0px' }">
                 <div class="card-contenedor-imagen">
                   <img v-if="id.imagenes[0]"
@@ -33,15 +33,18 @@ export default {
     //do something after creating vue instance
     axios.get('https://intranet.meta.gov.co/api/micrositio/informacion/47')
       .then(response => {
-        this.datos = response.data
+        this.datos = response.data;
+        
       })
       .catch(e => {
         this.errors.push(e)
       })
+      this.loadin= false
   },
   data() {
     return {
       datos: '',
+      loadin: true
     }
   },
 }

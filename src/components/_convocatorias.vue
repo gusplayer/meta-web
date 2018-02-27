@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="principal">
+  <div class="principal" v-loading="loading">
 
     <el-breadcrumb separator="/" class="breadcrumb">
       <el-breadcrumb-item :to="{ path: '/' }">Inicio</el-breadcrumb-item>
@@ -31,7 +31,8 @@ export default {
     //do something after creating vue instance
     axios.get('https://intranet.meta.gov.co/api/micrositio/informacion/47')
       .then(response => {
-        this.datos = response.data
+        this.datos = response.data;
+        this.loading = false
       })
       .catch(e => {
         this.errors.push(e)
@@ -41,6 +42,7 @@ export default {
     return {
       imagenBanner: 'https://intranet.meta.gov.co/imagen_banners/33-blob',
       datos: '',
+      loading: true
     }
   },
 }

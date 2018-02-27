@@ -20,7 +20,7 @@
 
     <div class="contenido">
 
-        <div class="contenido-col" v-for="(dato, index) in sortedArray" :key="index" >
+        <div class="contenido-col" v-for="(dato, index) in sortedArray" :key="index">
           <h2>{{dato.titulo}}</h2>
           <hr>
           <br />

@@ -60,7 +60,14 @@ export default {
     //do something after creating vue instance
     axios.get('https://intranet.meta.gov.co/api/micrositio/informacion/47')
       .then(response => {
-        this.datos = response.data
+        this.detalles = response.data
+        this.detalles = this.detalles.data[0].secciones
+        this.det = this.detalles.filter( (a) => 
+            { 
+              return a.sub_secciones.filter( b =>  b.id == this.$route.params.id) 
+              
+            }
+        )
       })
       .catch(e => {
         this.errors.push(e)
@@ -68,29 +75,8 @@ export default {
   },
   data() {
     return {
-      imagenBanner: 'https://intranet.meta.gov.co/imagen_banners/33-blob',
-      datos: '',
-      tableData: [{
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Home'
-      }, {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Office'
-      }, {
-        date: '2016-05-04',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Home'
-      }, {
-        date: '2016-05-01',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-        tag: 'Office'
-      }]
+      detalles: '',
+      det: ''
     }
   },
 

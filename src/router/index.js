@@ -145,7 +145,12 @@ export default new Router({
       path:'/redirect',
       name:'redirect',
       component: Redirect
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
+
 
 
   ]
