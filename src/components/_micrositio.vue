@@ -301,14 +301,18 @@ export default {
     axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
     .then( response => {
       this.datos = response.data;
-        console.log(this.datos.data[0].url_redireccion)
+      if(this.datos.data[0].secciones[0].secciones[0].id)
+      {
+        this.activeNames = this.datos.data[0].secciones[0].id
+      }
         if(this.datos.data[0].url_redireccion == null)
         {
           setTimeout( (()=>this.loading = false), 3000)
           
         }
         else {  window.location = this.datos.data[0].url_redireccion  }
-    })   
+    })
+ 
   },
   watch:{
     "$route" (){
@@ -327,7 +331,7 @@ export default {
       tabPosition: 'left',
       activeNames: ['1'],
       datos: '',
-      loading: true
+      loading: true,
     }
   },
   methods:{

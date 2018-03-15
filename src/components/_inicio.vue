@@ -1,28 +1,31 @@
 <template>
-  <div class="general">
+  <div class="general" >
   <br>
-      <div class="banner">
+      <div class="banner" v-loading="loading"
+            element-loading-text="Cargando Contenido..."
+            element-loading-spinner="el-icon-loading"
+            element-loading-background="rgba(0, 0, 0, 0.8)">
         <bannerTop></bannerTop>
       </div>
 
-      <div class="botones_banner">
+      <div class="botones_banner" v-loading="loading">
           <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key"
           class="botones_banner_movil" target="_blank">
             <img :src="`https://intranet.meta.gov.co/web_urls_navegacion/${botones.imagen}`">
           </a>
       </div>
 
-      <div class="botones_banner_responsive">
+      <div class="botones_banner_responsive" >
           <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key"
           class="botones_banner_accion" target="_blank">
             <div><span>{{botones.titulo}}</span></div>
           </a>
       </div>
 
-      <div class="contenido">
+      <div class="contenido" v-loading="loading">
         <div class="noticias">
 
-          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, 7)" :key="noticia.idTimeline">
+          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, cantidadNoticias.cantidad.cantidad)" :key="noticia.idTimeline">
 
                   <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
                   :style="coverImagen(noticia)">
@@ -150,11 +153,16 @@ export default {
     axios.get('https://intranet.meta.gov.co/web/urls_externas/listado')
     .then(response => {this.servicios = response.data});
 
-
+    axios.get('https://intranet.meta.gov.co/api/cantidad/noticias')
+    .then(response => {this.cantidadNoticias = response.data}); 
   },
   mounted(){
     axios.get('https://intranet.meta.gov.co/web/url_youtube')
-    .then(response => {this.video_youtube = response.data})
+    .then(response => {
+      this.video_youtube = response.data;
+      })   
+
+     setTimeout( (()=>{this.loading=false}), 4000)
   },
   data(){
      return{
@@ -163,7 +171,9 @@ export default {
            botones_banner: [],
            servicios: [],
            video_youtube: null,
-           errors:[]
+           errors:[],
+           cantidadNoticias: '',
+           loading: true,
            }
          },
   methods:{
@@ -179,7 +189,6 @@ export default {
     },
     coverImagen(value){
       if(value.imagenes[0])
-
         return `background-image:url('https://intranet.meta.gov.co/imagen_timeline/${value.imagenes[0].nombre_imagen}'); background-size:cover`;
     },
     videoYoutube(urlVideo){

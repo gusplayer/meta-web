@@ -299,18 +299,20 @@ export default {
                         newtab:'true'
                       }
                     },
-              },{
-                titulo: 'Transparencia',
-                haveChildren: false,
-                childrenDynamic: false,
-                url: {
-                      name:'redirect',
-                      params: {
-                        link: 'http://www.meta.gov.co/web/content/trasparencia-y-acceso-la-informaci%C3%B3n-publica',
-                        newtab:'true'
-                      }
-                    },
-              },{
+              },
+              // {
+              //   titulo: 'Transparencia',
+              //   haveChildren: false,
+              //   childrenDynamic: false,
+              //   url: {
+              //         name:'redirect',
+              //         params: {
+              //           link: 'http://www.meta.gov.co/web/content/trasparencia-y-acceso-la-informaci%C3%B3n-publica',
+              //           newtab:'true'
+              //         }
+              //       },
+              // },
+              {
                 titulo: 'Convocatorias',
                 haveChildren: false,
                 childrenDynamic: false,
@@ -512,10 +514,6 @@ export default {
     display: none;
 
 }
-.el-menu-vertical{
-
-}
-
 @media screen and (max-width: 1000px) {
   .go_menu{
     display: none;

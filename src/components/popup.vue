@@ -20,12 +20,16 @@
 
 <script>
 export default {
-
+  create(){
+    axios.get('https://intranet.meta.gov.co/api/informacion/popup')
+    .thien(response => this.datos = response.data)
+  },
   data(){
     return{
       popup: false,
       imagen: "",
-      video: "OsruQoXPoX8"
+      video: "OsruQoXPoX8",
+      datos:''
     }
   },
   methods:{
@@ -55,8 +59,7 @@ export default {
 .pop-up-image img{
   max-height: 80vh;
 }
-.pop-up-video{
-}
+
 .pop-up-video iframe{
 	height:500px;
 	width:750px;
