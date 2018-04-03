@@ -289,29 +289,17 @@ export default {
                       }
                     },
               },{
-                titulo: 'Convocatorias',
+                titulo: 'Gestión Documental Archivo',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: {
-                      name:'redirect',
-                      params: {
-                        link: 'http://www.meta.gov.co/web/content/convocatorias',
-                        newtab:'true'
-                      }
-                    },
+                url:{
+                          name:'redirect',
+                          params: {
+                            link: 'https://meta.gov.co/micrositio/87',
+                            newtab:'false'
+                          }
+                        },
               },
-              // {
-              //   titulo: 'Transparencia',
-              //   haveChildren: false,
-              //   childrenDynamic: false,
-              //   url: {
-              //         name:'redirect',
-              //         params: {
-              //           link: 'http://www.meta.gov.co/web/content/trasparencia-y-acceso-la-informaci%C3%B3n-publica',
-              //           newtab:'true'
-              //         }
-              //       },
-              // },
               {
                 titulo: 'Convocatorias',
                 haveChildren: false,
