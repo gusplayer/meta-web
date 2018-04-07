@@ -26,8 +26,8 @@ export default {
   },
   data(){
     return{
-      popup: false,
-      imagen: "",
+      popup: true,
+      imagen: require("../assets/salud_tv.png"),
       video: "OsruQoXPoX8",
       datos:''
     }
