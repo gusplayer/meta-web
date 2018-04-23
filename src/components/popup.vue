@@ -19,17 +19,19 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  create(){
+  created(){
     axios.get('https://intranet.meta.gov.co/api/informacion/popup')
-    .thien(response => this.datos = response.data)
+    .then(response => this.data = response.data.poup)
+    .catch(e => {
+       this.errors.push(e)
+    })
   },
   data(){
     return{
       popup: false,
-      imagen: require("../assets/salud_tv.png"),
-      video: "OsruQoXPoX8",
-      datos:''
+      data:'',
     }
   },
   methods:{
