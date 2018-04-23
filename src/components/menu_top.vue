@@ -12,9 +12,9 @@
 
     <div class="encabezado_icons">
       <Buscador/>
-      <span><b>A</b></span>
+      <!-- <span><b>A</b></span>
       <span><b>A</b>-</span>
-      <span><b>A</b>+</span>
+      <span><b>A</b>+</span> -->
       
       <a href="https://www.facebook.com/GobMeta/" target="_blank"><img src="../assets/facebook.svg" ></a>
       <a href="https://twitter.com/marcela_amayag" target="_blank"><img src="../assets/twitter.svg"></a>

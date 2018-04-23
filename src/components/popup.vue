@@ -2,13 +2,13 @@
 
   <transition name="fade">
     <div class="pop-up" v-if="popup" >
-      <div class="pop-up-image" v-if="imagen" >
-        <img :src="imagen" height="auto" width="100%">
+      <div class="pop-up-image" v-if="false" >
+        <img :src="data.imagen" height="auto" width="100%">
      </div>
-      <div class="pop-up-video" v-else-if="video" >
+      <div class="pop-up-video" v-else-if="data.video" >
         <iframe
          v-if="video"
-        :src="`https://www.youtube.com/embed/${video}?autoplay=1`"
+        :src="`https://www.youtube.com/embed/${videoYoutube}?autoplay=1`"
         frameborder="0" allowfullscreen width="100%">
         </iframe>
       </div>
@@ -23,22 +23,41 @@ import axios from 'axios';
 export default {
   created(){
     axios.get('https://intranet.meta.gov.co/api/informacion/popup')
-    .then(response => this.data = response.data.poup)
+    .then( (response )=> {
+    this.data = response.data.poup
+    this.video = response.data.poup.video
+    this.imagen = response.data.poup.imagen
+    })
     .catch(e => {
        this.errors.push(e)
-    })
+    })    
   },
   data(){
     return{
       popup: false,
       data:'',
+      video: '',
+      imagen: ''
     }
   },
   methods:{
     visiblePopUp(){
       this.popup = false
-    }
+    },
   },
+  computed:{
+      videoYoutube(){
+      let urlVideo = this.data.video;
+      let index;
+         if(urlVideo.includes('?v=')){
+           index = urlVideo.indexOf('?v=')+3;
+         }else{
+           index = urlVideo.indexOf('.be/')+4;
+         }
+         let idYoutube = urlVideo.substring(index);
+         return idYoutube;
+    }
+  }
 }
 </script>
 

@@ -23,6 +23,7 @@ import Convocatorias from '@/components/_convocatorias'
 import CategoriasConvocatorias from '@/components/_categoriasConvocatorias'
 import ListadoConvocatorias from '@/components/_listadoConvocatorias'
 import DetallesConvocatorias from '@/components/_detallesConvocatorias'
+import Buscador from '@/components/_buscador'
 Vue.use(Router)
 
 export default new Router({
@@ -60,6 +61,11 @@ export default new Router({
       path: '/prensa',
       name: 'prensa',
       component: Prensa
+    },
+    {
+      path: '/buscador',
+      name: 'buscador',
+      component: Buscador
     },
     {
       path: '/noticia/:id',
