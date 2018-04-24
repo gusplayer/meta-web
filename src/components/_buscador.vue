@@ -13,11 +13,14 @@
     <center>
         <h2>Buscador</h2>
         <br>
-        <center><el-input style="width:350px" placeholder="Escribe aquí lo que quieres buscar" prefix-icon="el-icon-search" v-model="search"></el-input></center>
+        <center><el-input style="width:350px" placeholder="Escribe aquí lo que quieres buscar" prefix-icon="el-icon-search" v-model="search"></el-input>
+          <el-button type="primary" v-on:click="searchDocs">Buscar Documentos</el-button></center>
     </center><br><br>
 
-    <div class="contenedor">
-        <div class="noticias">
+    <div class="contenedor" v-if="search != ''">
+        <div class="noticias" v-if="search != ''">
+          <br>
+            <br><p style="color: white">... Resultados encontrados en noticias ...</p><br>
             <div class="card" >
             <el-col :span="8" v-for="(noticia,index) in filterData" :key="index" class="card-col">
                 <router-link :to="{ name: 'noticia',
@@ -50,19 +53,18 @@
                 </el-col>
             </div>
         </div>
-        <div class="documentos">
-            <!-- <div class="secciones_docs" v-for="(archivo, index) in subsub.archivos" :key="index">
+        <div class="documentos" v-if="search != ''">
+            <br><br><p>... Resultados encontrados en documentos ...</p><br>
+            <div class="secciones_docs" v-for="(archivo, index) in docs.archivos" :key="index">
                 <i class="el-icon-document"></i>
                 <div class="secciones_docs_descarga">
-                   <p>{{archivo.titulo}}</p>
-                   <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
-                   <el-button type="primary">Descarga</el-button>
-                   </a>
+                   <p>{{archivo.nombre}}</p>
+                   <el-button type="primary" v-on:click="getContentFile(archivo.id)">Descarga</el-button>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
-
+      <a id='downfile' download='descarga' style="display:none;" />
 
   </div>
 
@@ -85,7 +87,11 @@ export default {
    })
 
    if(this.$route.params.search)
-   {  this.search =  this.$route.params.search }
+   {  
+     this.search =  this.$route.params.search
+     this.searchDocs() 
+   }
+
   },
   data() {
     return {
@@ -93,9 +99,40 @@ export default {
            texto:null,
            imagenBanner:require('../assets/prensa.jpg'),
            search: '',
-           loading: true
+           loading: true,
+           docs :''
 
            }
+  },
+  methods:{
+       searchDocs(){
+             axios
+            .post(
+              "https://intranet.meta.gov.co/api/documentos/buscar",
+              {documento : this.search}
+            )
+            .then(response => {
+              this.docs = response.data
+            }) 
+       },
+        getContentFile(idfile){
+          console.log('si entra');
+            let json = {
+              id: idfile,
+              contrasena: ''
+            }
+            axios.post('https://intranet.meta.gov.co/web/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
+              let image = btoa(
+                new Uint8Array(response.data)
+                  .reduce((data, byte) => data + String.fromCharCode(byte), '')
+              );
+              let base64 = `data:${response.headers['content-type'].toLowerCase()};base64,${image}`;
+                  var dlnk = document.getElementById('downfile');
+                  dlnk.href = base64;
+                  dlnk.click();
+            })
+          },
+
   },
   computed: {
      filterData: function(){
@@ -131,21 +168,25 @@ export default {
       flex: 1;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      background-color: rgb(60, 97, 151);
   }
   .documentos{
       display: flex;
       flex: 1;
-      background-color: gray
+      background-color: rgb(240, 202, 80);
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
   }
   .secciones_docs{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 80%;
     padding: 10px;
     margin-top: 10px;
     align-items: center;
-    background-color: #f6f6f6;
+    background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
   }
   .secciones_docs_descarga{
