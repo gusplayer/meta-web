@@ -14,11 +14,13 @@
 export default {
   name: 'buscador',
   data(){
+      return{
       inputsearch: ''
+      }
   },
   methods:{
       doSearch(){
-          this.$router.push({ path: 'buscador', params: { search: this.inputsearch }})
+          this.$router.push({ name: 'buscador', params: { search: this.inputsearch }})
       }
   }
 }

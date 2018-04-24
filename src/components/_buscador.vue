@@ -8,11 +8,16 @@
 
     <Breadcrumb></Breadcrumb>
 
-    <center><h2>Buscador</h2></center><br>
+
+
+    <center>
+        <h2>Buscador</h2>
+        <br>
+        <center><el-input style="width:350px" placeholder="Escribe aquí lo que quieres buscar" prefix-icon="el-icon-search" v-model="search"></el-input></center>
+    </center><br><br>
+
     <div class="contenedor">
         <div class="noticias">
-            <center><el-input style="width:350px" placeholder="Buscar" prefix-icon="el-icon-search" v-model="search"></el-input></center>
-
             <div class="card" >
             <el-col :span="8" v-for="(noticia,index) in filterData" :key="index" class="card-col">
                 <router-link :to="{ name: 'noticia',
@@ -46,7 +51,15 @@
             </div>
         </div>
         <div class="documentos">
-
+            <!-- <div class="secciones_docs" v-for="(archivo, index) in subsub.archivos" :key="index">
+                <i class="el-icon-document"></i>
+                <div class="secciones_docs_descarga">
+                   <p>{{archivo.titulo}}</p>
+                   <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
+                   <el-button type="primary">Descarga</el-button>
+                   </a>
+                </div>
+            </div> -->
         </div>
     </div>
 
@@ -70,6 +83,9 @@ export default {
     .catch(e => {
      this.errors.push(e)
    })
+
+   if(this.$route.params.search)
+   {  this.search =  this.$route.params.search }
   },
   data() {
     return {
@@ -116,12 +132,27 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: aqua
   }
   .documentos{
       display: flex;
       flex: 1;
-      background-color: green
+      background-color: gray
+  }
+  .secciones_docs{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    align-items: center;
+    background-color: #f6f6f6;
+    box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+  }
+  .secciones_docs_descarga{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    width: 100%
   }
   .buscador{
     width: 500px;
@@ -163,7 +194,7 @@ export default {
     display: flex;
     flex: 1;
     margin-bottom: 30px;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
   }
   .card-time {

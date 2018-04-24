@@ -1,11 +1,11 @@
 <template>
 
   <transition name="fade">
-    <div class="pop-up" v-if="popup" >
-      <div class="pop-up-image" v-if="false" >
-        <img :src="data.imagen" height="auto" width="100%">
+    <div class="pop-up" v-if="imagen != '' || video != '' ">
+      <div class="pop-up-image" v-if="imagen" >
+        <img :src="`https://intranet.meta.gov.co/popup/${imagen}`" height="auto" width="100%">
      </div>
-      <div class="pop-up-video" v-else-if="data.video" >
+      <div class="pop-up-video" v-else-if="video" >
         <iframe
          v-if="video"
         :src="`https://www.youtube.com/embed/${videoYoutube}?autoplay=1`"
@@ -34,7 +34,6 @@ export default {
   },
   data(){
     return{
-      popup: false,
       data:'',
       video: '',
       imagen: ''
@@ -42,7 +41,8 @@ export default {
   },
   methods:{
     visiblePopUp(){
-      this.popup = false
+      this.imagen = ''
+      this.video = ''
     },
   },
   computed:{
