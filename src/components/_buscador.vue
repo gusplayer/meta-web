@@ -20,7 +20,7 @@
     <div class="contenedor" v-if="search != ''">
         <div class="noticias" v-if="search != ''">
           <br>
-            <br><p style="color: white">... Resultados encontrados en noticias ...</p><br>
+            <br><p >... Resultados encontrados en noticias ...</p><br>
             <div class="card" >
             <el-col :span="8" v-for="(noticia,index) in filterData" :key="index" class="card-col">
                 <router-link :to="{ name: 'noticia',
@@ -169,12 +169,12 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      background-color: rgb(60, 97, 151);
+      background-color: rgb(235, 236, 236);
   }
   .documentos{
       display: flex;
       flex: 1;
-      background-color: rgb(240, 202, 80);
+      background-color: rgb(214, 214, 214);
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
