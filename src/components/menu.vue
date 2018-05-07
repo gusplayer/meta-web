@@ -114,6 +114,7 @@ export default {
                 childrenDynamic: false,
                 url: "/micrositio/67"
               },{
+                id: '9',
                 titulo: 'Gestion de gobierno',
                 haveChildren: true,
                 childrenDynamic: false,
@@ -150,7 +151,7 @@ export default {
                         },
                   }
                 ],
-                childrenDynamic: false,
+                childrenDynamic: true,
               },{
                 id: '2',
                 titulo: 'Secretarías',
@@ -177,6 +178,7 @@ export default {
                         },
                   }
                 ],
+                childrenDynamic: true,
               },{
                 titulo: 'Plan de desarrollo',
                 haveChildren: false,
@@ -307,7 +309,7 @@ export default {
                 url: '/transparencia',
               },
             ],
-            childrenDynamic: false,
+            childrenDynamic: true,
           },{
             id: '5',
             titulo: 'Prensa',
@@ -356,6 +358,7 @@ export default {
                 url: "/"
               }
             ],
+            childrenDynamic: true,
           },{
             id: '6',
             titulo: 'Atencion al ciudadano',
