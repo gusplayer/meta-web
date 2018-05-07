@@ -112,13 +112,7 @@ export default {
                 titulo: 'Elementos Estrategicos',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: {
-                      name:'redirect',
-                      params: {
-                        link: 'http://www.meta.gov.co/web/content/elementos-estrat%C3%A9gicos',
-                        newtab:'true'
-                      }
-                    }
+                url: "/micrositio/67"
               },{
                 titulo: 'Gestion de gobierno',
                 haveChildren: true,
@@ -365,9 +359,9 @@ export default {
           },{
             id: '6',
             titulo: 'Atencion al ciudadano',
-            haveChildren: true,
-            childrenDynamic: true,
-            url: "/contacto",
+            haveChildren: false,
+            childrenDynamic: false,
+            url: "/micrositio/26",
           }
         ],
         menuDynamic: [],
