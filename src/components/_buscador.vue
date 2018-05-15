@@ -136,10 +136,14 @@ export default {
   },
   computed: {
      filterData: function(){
-       let algo = this.noticias.filter( (dato) => {let tittle = dato.titulo.toUpperCase(); 
-                                               return tittle.includes(this.search.toUpperCase()) 
-                                              });
-                                            return algo.slice(0,42)
+       let algo = this.noticias.filter( 
+         (dato) => {
+           if(dato.titulo != null){
+             let tittle = dato.titulo.toUpperCase(); 
+             return tittle.includes(this.search.toUpperCase()) 
+             }
+          });
+        return algo.slice(0,42)
      },
   }
 }

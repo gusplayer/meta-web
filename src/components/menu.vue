@@ -101,13 +101,7 @@ export default {
                 titulo: 'Gabinete de gobierno',
                 haveChildren: false,
                 childrenDynamic: false,
-                url: {
-                      name:'redirect',
-                      params: {
-                        link: 'http://www.meta.gov.co/web/content/gabinete-de-gobierno',
-                        newtab:'true'
-                      }
-                    }
+                url: "/micrositio/93",
               },{
                 titulo: 'Elementos Estrategicos',
                 haveChildren: false,
