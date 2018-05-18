@@ -19,88 +19,89 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  created(){
-    axios.get('https://intranet.meta.gov.co/api/informacion/popup')
-    .then( (response )=> {
-    this.data = response.data.poup
-    this.video = response.data.poup.video
-    this.imagen = response.data.poup.imagen
-    })
-    .catch(e => {
-       this.errors.push(e)
-    })    
+  created() {
+    axios
+      .get("https://intranet.meta.gov.co/api/informacion/popup")
+      .then(response => {
+        this.data = response.data.poup;
+        this.video = response.data.poup.video;
+        this.imagen = response.data.poup.imagen;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
   },
-  data(){
-    return{
-      data:'',
-      video: '',
-      imagen: ''
+  data() {
+    return {
+      data: "",
+      video: "",
+      imagen: ""
+    };
+  },
+  methods: {
+    visiblePopUp() {
+      this.imagen = "";
+      this.video = "";
     }
   },
-  methods:{
-    visiblePopUp(){
-      this.imagen = ''
-      this.video = ''
-    },
-  },
-  computed:{
-      videoYoutube(){
+  computed: {
+    videoYoutube() {
       let urlVideo = this.data.video;
       let index;
-         if(urlVideo.includes('?v=')){
-           index = urlVideo.indexOf('?v=')+3;
-         }else{
-           index = urlVideo.indexOf('.be/')+4;
-         }
-         let idYoutube = urlVideo.substring(index);
-         return idYoutube;
+      if (urlVideo.includes("?v=")) {
+        index = urlVideo.indexOf("?v=") + 3;
+      } else {
+        index = urlVideo.indexOf(".be/") + 4;
+      }
+      let idYoutube = urlVideo.substring(index);
+      return idYoutube;
     }
   }
-}
+};
 </script>
 
 <style lang="css" scoped>
-
-.pop-up{
+.pop-up {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  flex:1;
+  flex: 1;
   align-items: center;
   justify-content: center;
   background-color: rgba(33, 47, 61, 0.9);
   position: fixed;
   z-index: 100;
-  padding: 20px
+  padding: 20px;
 }
 
-.pop-up-image img{
+.pop-up-image img {
   max-height: 80vh;
 }
 
-.pop-up-video iframe{
-	height:500px;
-	width:750px;
+.pop-up-video iframe {
+  height: 500px;
+  width: 750px;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .80s
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0
+  opacity: 0;
 }
 
-@media(max-width: 750px){
-  .pop-up img{
+@media (max-width: 750px) {
+  .pop-up img {
     width: 100%;
     height: auto;
     padding: 5px;
   }
-  .pop-up-video iframe{
-  	height:260px;
-  	width:380px;
+  .pop-up-video iframe {
+    height: 260px;
+    width: 380px;
   }
 }
 </style>

@@ -71,234 +71,235 @@
 </template>
 
 <script>
-import axios from 'axios';
-import BannerMicro from './bannerMicro.vue'
-import Breadcrumb from './breadcrumb.vue'
+import axios from "axios";
+import BannerMicro from "./bannerMicro.vue";
+import Breadcrumb from "./breadcrumb.vue";
 export default {
-  components: {BannerMicro, Breadcrumb},
-  created(){
-    axios.get('https://intranet.meta.gov.co/web/timeline')
-    .then( response => {
-      this.noticias = response.data.timeline;
-      this.loading = false
-    })
-    .catch(e => {
-     this.errors.push(e)
-   })
+  components: { BannerMicro, Breadcrumb },
+  created() {
+    axios
+      .get("https://intranet.meta.gov.co/web/timeline")
+      .then(response => {
+        this.noticias = response.data.timeline;
+        this.loading = false;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
 
-   if(this.$route.params.search)
-   {  
-     this.search =  this.$route.params.search
-     this.searchDocs() 
-   }
-
+    if (this.$route.params.search) {
+      this.search = this.$route.params.search;
+      this.searchDocs();
+    }
   },
   data() {
     return {
-           noticias:[],
-           texto:null,
-           imagenBanner:require('../assets/prensa.jpg'),
-           search: '',
-           loading: true,
-           docs :''
-
-           }
+      noticias: [],
+      texto: null,
+      imagenBanner: require("../assets/prensa.jpg"),
+      search: "",
+      loading: true,
+      docs: ""
+    };
   },
-  methods:{
-       searchDocs(){
-             axios
-            .post(
-              "https://intranet.meta.gov.co/api/documentos/buscar",
-              {documento : this.search}
+  methods: {
+    searchDocs() {
+      axios
+        .post("https://intranet.meta.gov.co/api/documentos/buscar", {
+          documento: this.search
+        })
+        .then(response => {
+          this.docs = response.data;
+        });
+    },
+    getContentFile(idfile) {
+      console.log("si entra");
+      let json = {
+        id: idfile,
+        contrasena: ""
+      };
+      axios
+        .post("https://intranet.meta.gov.co/web/archivo", json, {
+          responseType: "arraybuffer"
+        })
+        .then(response => {
+          let image = btoa(
+            new Uint8Array(response.data).reduce(
+              (data, byte) => data + String.fromCharCode(byte),
+              ""
             )
-            .then(response => {
-              this.docs = response.data
-            }) 
-       },
-        getContentFile(idfile){
-          console.log('si entra');
-            let json = {
-              id: idfile,
-              contrasena: ''
-            }
-            axios.post('https://intranet.meta.gov.co/web/archivo', json, { responseType: 'arraybuffer' }).then((response) => {
-              let image = btoa(
-                new Uint8Array(response.data)
-                  .reduce((data, byte) => data + String.fromCharCode(byte), '')
-              );
-              let base64 = `data:${response.headers['content-type'].toLowerCase()};base64,${image}`;
-                  var dlnk = document.getElementById('downfile');
-                  dlnk.href = base64;
-                  dlnk.click();
-            })
-          },
-
+          );
+          let base64 = `data:${response.headers[
+            "content-type"
+          ].toLowerCase()};base64,${image}`;
+          var dlnk = document.getElementById("downfile");
+          dlnk.href = base64;
+          dlnk.click();
+        });
+    }
   },
   computed: {
-     filterData: function(){
-       let algo = this.noticias.filter( 
-         (dato) => {
-           if(dato.titulo != null){
-             let tittle = dato.titulo.toUpperCase(); 
-             return tittle.includes(this.search.toUpperCase()) 
-             }
-          });
-        return algo.slice(0,42)
-     },
+    filterData: function() {
+      let algo = this.noticias.filter(dato => {
+        if (dato.titulo != null) {
+          let tittle = dato.titulo.toUpperCase();
+          return tittle.includes(this.search.toUpperCase());
+        }
+      });
+      return algo.slice(0, 42);
+    }
   }
-}
+};
 </script>
 
 <style scoped>
-  .contenedor_blog{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .contenedor_buscador{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70px;
-    margin-bottom: -5px
-  }
-  .contenedor{
-      display: flex;
-      flex-direction: row
-  }
-  .noticias
-  {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background-color: rgb(235, 236, 236);
-  }
-  .documentos{
-      display: flex;
-      flex: 1;
-      background-color: rgb(214, 214, 214);
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-  }
-  .secciones_docs{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    padding: 10px;
-    margin-top: 10px;
-    align-items: center;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
-  }
-  .secciones_docs_descarga{
-    display: flex;
-    justify-content: space-between;
-    margin-left: 30px;
-    width: 100%
-  }
-  .buscador{
-    width: 500px;
-  }
-  .time {
-    font-size: 15px;
-    color: #999;
-  }
-  .el-col{
-    padding: 5px;
-    margin-bottom:  20px;
-  }
+.contenedor_blog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.contenedor_buscador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  margin-bottom: -5px;
+}
+.contenedor {
+  display: flex;
+  flex-direction: row;
+}
+.noticias {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(235, 236, 236);
+}
+.documentos {
+  display: flex;
+  flex: 1;
+  background-color: rgb(214, 214, 214);
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.secciones_docs {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(154, 152, 152, 0.5);
+}
+.secciones_docs_descarga {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30px;
+  width: 100%;
+}
+.buscador {
+  width: 500px;
+}
+.time {
+  font-size: 15px;
+  color: #999;
+}
+.el-col {
+  padding: 5px;
+  margin-bottom: 20px;
+}
 
-  .bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
 
-  .button {
-    padding: 0;
-    float: right;
-  }
+.button {
+  padding: 0;
+  float: right;
+}
 
-  .image {
-    width: 100%;
-    display: block;
-  }
+.image {
+  width: 100%;
+  display: block;
+}
 
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
 
-  .clearfix:after {
-      clear: both
-  }
-  .card{
-    display: flex;
-    flex: 1;
-    margin-bottom: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .card-time {
-      font-size: 13px;
-      color: #999;
-    }
+.clearfix:after {
+  clear: both;
+}
+.card {
+  display: flex;
+  flex: 1;
+  margin-bottom: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card-time {
+  font-size: 13px;
+  color: #999;
+}
 
-  .card-bottom {
-      margin-top: 13px;
-      line-height: 12px;
-    }
+.card-bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
 
-  .card-button {
-      padding: 0;
-      float: right;
-    }
+.card-button {
+  padding: 0;
+  float: right;
+}
 
-  .card-clearfix:before,
-  .card-clearfix:after {
-        display: table;
-        content: "";
-    }
+.card-clearfix:before,
+.card-clearfix:after {
+  display: table;
+  content: "";
+}
 
-  .card-clearfix:after {
-        clear: both
-    }
-  .card-col{
-    display: flex;
-    max-width: 380px;
-    min-width: 250px;
-    width: 100%;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 10px;
-
-  }
-  .card-contenedor-imagen{
-    overflow: hidden;
-    height: 170px;
-  }
-  .card-image{
-    width: 100%;
-    display: block;
-  }
-  .card-titulo{
-    font-size: 11 pt;
-  }
-  .card-fecha{
-    font-size: 13px;
-    color: #999;
-  }
+.card-clearfix:after {
+  clear: both;
+}
+.card-col {
+  display: flex;
+  max-width: 380px;
+  min-width: 250px;
+  width: 100%;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.card-contenedor-imagen {
+  overflow: hidden;
+  height: 170px;
+}
+.card-image {
+  width: 100%;
+  display: block;
+}
+.card-titulo {
+  font-size: 11 pt;
+}
+.card-fecha {
+  font-size: 13px;
+  color: #999;
+}
 
 @media screen and (max-width: 500px) {
-  .card-col{
+  .card-col {
     width: 100%;
-    max-width: 500px
+    max-width: 500px;
   }
-  .card-contenedor-imagen{
+  .card-contenedor-imagen {
     overflow: hidden;
     height: 210px;
   }
