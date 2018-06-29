@@ -2,7 +2,6 @@
   <div id="menuTop">
 
     <div class="encabezado_menu">
-      <a href="http://www.meta.gov.co/web/" target="_blank"><el-button type="warning">Versión anterior</el-button></a>
       <a href="https://intranet.meta.gov.co" target="_blank"><span>Intranet </span></a>
       <a href="../../static/manual_intranet.pdf" target="_blank"><span>Manual de ayuda</span></a>
 
@@ -24,18 +23,17 @@
 </template>
 
 <script>
-import Buscador from './buscador.vue';
+import Buscador from "./buscador.vue";
 export default {
   components: {
     Buscador
   },
-  name: 'app',
-}
-
+  name: "app"
+};
 </script>
 
 <style scoped>
-#menuTop{
+#menuTop {
   max-width: 1300px;
   width: 95%;
   height: 70px;
@@ -44,41 +42,41 @@ export default {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.encabezado_menu{
-  width: 350px;
+.encabezado_menu {
+  width: 190px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .encabezado_menu span {
-	font-size: 14px;
-	font-weight: 500;
-	color: rgba(74, 74, 74, 0.87);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(74, 74, 74, 0.87);
 }
-.encabezado_icons{
+.encabezado_icons {
   width: 350px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .encabezado_icons img {
-	height:  16px;
+  height: 16px;
 }
-.encabezado_icons span{
+.encabezado_icons span {
   font-size: 16px;
   font-weight: 500;
   color: rgba(74, 74, 74, 0.87);
 }
 @media screen and (max-width: 600px) {
-  #menuTop{
+  #menuTop {
     height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center
+    align-items: center;
   }
-  .encabezado_menu{
-    display: none
+  .encabezado_menu {
+    display: none;
   }
 }
 </style>
