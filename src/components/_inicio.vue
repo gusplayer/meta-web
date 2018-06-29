@@ -8,6 +8,8 @@
         <bannerTop></bannerTop>
       </div>
 
+      <radio></radio>
+
       <div class="botones_banner" v-loading="loading">
           <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key"
           class="botones_banner_movil" target="_blank">
@@ -139,9 +141,10 @@
 
 <script>
 import bannerTop from "./banner.vue";
+import radio from "./radio";
 import axios from "axios";
 export default {
-  components: { bannerTop },
+  components: { bannerTop, radio },
   created() {
     axios.get("https://intranet.meta.gov.co/web/timeline").then(response => {
       this.noticias = response.data.timeline;
