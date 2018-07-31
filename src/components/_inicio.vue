@@ -1,49 +1,44 @@
 <template>
-  <div class="general" >
-  <br>
-      <div class="banner" v-loading="loading"
-            element-loading-text="Cargando Contenido..."
-            element-loading-spinner="el-icon-loading"
-            element-loading-background="rgba(0, 0, 0, 0.8)">
-        <bannerTop></bannerTop>
-      </div>
+  <div class="general">
+    <br>
+    <div class="banner" v-loading="loading" element-loading-text="Cargando Contenido..." element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
+      <bannerTop></bannerTop>
+    </div>
 
-      <radio></radio>
+    <radio></radio>
 
-      <div class="botones_banner" v-loading="loading">
-          <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key"
-          class="botones_banner_movil" target="_blank">
-            <img :src="`https://intranet.meta.gov.co/web_urls_navegacion/${botones.imagen}`">
-          </a>
-      </div>
+    <div class="botones_banner" v-loading="loading">
+      <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key" class="botones_banner_movil" target="_blank">
+        <img :src="`https://intranet.meta.gov.co/web_urls_navegacion/${botones.imagen}`">
+      </a>
+    </div>
 
-      <div class="botones_banner_responsive" >
-          <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key"
-          class="botones_banner_accion" target="_blank">
-            <div><span>{{botones.titulo}}</span></div>
-          </a>
-      </div>
+    <div class="botones_banner_responsive">
+      <a :href="botones.url" v-for="botones in botones_banner.data" :key="botones.key" class="botones_banner_accion" target="_blank">
+        <div>
+          <span>{{botones.titulo}}</span>
+        </div>
+      </a>
+    </div>
 
-      <div class="contenido" v-loading="loading">
-        <div class="noticias">
+    <div class="contenido" v-loading="loading">
+      <div class="noticias" v-if="false">
 
-          <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, cantidadNoticias.cantidad.cantidad)" :key="noticia.idTimeline">
+        <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, cantidadNoticias.cantidad.cantidad)" :key="noticia.idTimeline">
 
-                  <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]"
-                  :style="coverImagen(noticia)">
-                  </div>
-                  <div class="noticias_contenedor_foto" v-else
-                  :style="setStyle">
-                  </div>
+          <div class="noticias_contenedor_foto" v-if="noticia.imagenes[0]" :style="coverImagen(noticia)">
+          </div>
+          <div class="noticias_contenedor_foto" v-else :style="setStyle">
+          </div>
 
-                  <div class="noticias_contenedor_texto">
-                    <h2 >{{ noticia.titulo }}</h2>
-                    <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p">
-                      <p v-html="contarPalabras(noticia.contenido)+'...'"></p>
-                    </div>
-                    <div class="notcicias_bottom">
+          <div class="noticias_contenedor_texto">
+            <h2>{{ noticia.titulo }}</h2>
+            <div :id="`setText${noticia.idTimeline}`" class="noticias_contenedor_p">
+              <p v-html="contarPalabras(noticia.contenido)+'...'"></p>
+            </div>
+            <div class="notcicias_bottom">
 
-                        <router-link :to="{ name: 'noticia',
+              <router-link :to="{ name: 'noticia',
                                             params: {
                                               id: noticia.idTimeline,
                                               contenido: noticia.contenido,
@@ -51,16 +46,16 @@
                                               imagen: noticia.imagenes
                                             }
                                           }">
-                            <el-button plain>Seguir Leyendo</el-button>
-                        </router-link>
-                        <span class="noticia_fecha">{{noticia.fecha}}</span>
-                    </div>
-                  </div>
+                <el-button plain>Seguir Leyendo</el-button>
+              </router-link>
+              <span class="noticia_fecha">{{noticia.fecha}}</span>
+            </div>
           </div>
+        </div>
 
-          <div class="card" >
-             <el-col :span="8" v-for="noticia in noticias.slice(0, 5)" :key="noticia.key" class="card-col">
-               <router-link :to="{ name: 'noticia',
+        <div class="card">
+          <el-col :span="8" v-for="noticia in noticias.slice(0, 5)" :key="noticia.key" class="card-col">
+            <router-link :to="{ name: 'noticia',
                                    params: {
                                      id: noticia.idTimeline,
                                      contenido: noticia.contenido,
@@ -68,74 +63,72 @@
                                      imagen: noticia.imagenes
                                    }
                                  }">
-                  <el-card :body-style="{ padding: '0px' }">
-                    <div class="card-contenedor-imagen">
-                      <img v-if="noticia.imagenes[0]"
-                      :src="`https://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`"
-                      class="card-image">
-                      <img v-else
-                      src="../assets/sinimagen.jpg"
-                      class="card-image">
-                    </div>
+              <el-card :body-style="{ padding: '0px' }">
+                <div class="card-contenedor-imagen">
+                  <img v-if="noticia.imagenes[0]" :src="`https://intranet.meta.gov.co/imagen_timeline/${noticia.imagenes[0].nombre_imagen}`" class="card-image">
+                  <img v-else src="../assets/sinimagen.jpg" class="card-image">
+                </div>
 
-                    <div style="padding: 14px;">
-                      <span class="card-titulo">{{noticia.titulo}}</span>
-                      <div class="card-bottom card-clearfix">
-                        <time class="card-fecha">{{noticia.fecha}}</time>
+                <div style="padding: 14px;">
+                  <span class="card-titulo">{{noticia.titulo}}</span>
+                  <div class="card-bottom card-clearfix">
+                    <time class="card-fecha">{{noticia.fecha}}</time>
 
-                          <el-button type="text" class="card-button">Ver más</el-button>
+                    <el-button type="text" class="card-button">Ver más</el-button>
 
-                      </div>
-                    </div>
-                  </el-card>
-                </router-link>
-              </el-col>
-          </div>
-
-        </div>
-        <div class="lateral">
-          <iframe
-          class="lateral_video" v-if="video_youtube"
-          :src="`https://www.youtube.com/embed/${video_youtube.data.url}`"
-          frameborder="0" allowfullscreen>
-          </iframe>
-          <br>
-          <div class="lateral_line"><p></p></div>
-
-          <div  style="display:flex; flex-direction: column-reverse; margin: 0px; padding: 2px; border: 0">
-            <div class="lateral_cuadros" v-for="servicio in servicios.urls" :key= "servicio.id">
-              <a :href="servicio.url" target="_blank" style="width:100%">
-                <img :src="`https://intranet.meta.gov.co/web_img_urls/${servicio.imagen}`" width="100%" style="width:100%">
-              </a>
-            </div>
-          </div>
-
-
+                  </div>
+                </div>
+              </el-card>
+            </router-link>
+          </el-col>
         </div>
       </div>
 
-      <div class="social_botones">
+      <div class="noticias">
+        <div v-loading="true" class="noticias_contenedor" element-loading-text="Noticias se encuentra en mantenimiendo..." element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)"></div>
 
-        <div class="social_botones_cuadro">
+      </div>
 
-          <div class="fb-page" data-href="https://www.facebook.com/GobMeta/"
-            data-tabs="timeline" data-small-header="false" data-adapt-container-width="true"
-            data-hide-cover="false" data-show-facepile="true" data-width="500" style="width:100%">
-            <blockquote cite="https://www.facebook.com/GobMeta/" class="fb-xfbml-parse-ignore">
-            <a href="https://www.facebook.com/GobMeta/">Cargando Facebook...</a></blockquote>
+      <div class="lateral">
+        <iframe class="lateral_video" v-if="video_youtube" :src="`https://www.youtube.com/embed/${video_youtube.data.url}`" frameborder="0" allowfullscreen>
+        </iframe>
+        <br>
+        <div class="lateral_line">
+          <p></p>
+        </div>
+
+        <div style="display:flex; flex-direction: column-reverse; margin: 0px; padding: 2px; border: 0">
+          <div class="lateral_cuadros" v-for="servicio in servicios.urls" :key="servicio.id">
+            <a :href="servicio.url" target="_blank" style="width:100%">
+              <img :src="`https://intranet.meta.gov.co/web_img_urls/${servicio.imagen}`" width="100%" style="width:100%">
+            </a>
           </div>
-
-        </div>
-
-        <div class="social_botones_cuadro">
-          <a class="twitter-timeline" href="https://twitter.com/marcela_amayag">Cargando Twitter...</a>
-        </div>
-
-        <div class="social_botones_cuadro">
-          <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
         </div>
 
       </div>
+    </div>
+
+    <div class="social_botones">
+
+      <div class="social_botones_cuadro">
+
+        <div class="fb-page" data-href="https://www.facebook.com/GobMeta/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-width="500" style="width:100%">
+          <blockquote cite="https://www.facebook.com/GobMeta/" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/GobMeta/">Cargando Facebook...</a>
+          </blockquote>
+        </div>
+
+      </div>
+
+      <div class="social_botones_cuadro">
+        <a class="twitter-timeline" href="https://twitter.com/marcela_amayag">Cargando Twitter...</a>
+      </div>
+
+      <div class="social_botones_cuadro">
+        <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpSytf-8tPo4RNiqM54NzV0M&key=AIzaSyBocvLGZd1i7uxy95idGFnPq1FJsrGFrWo" allowfullscreen></iframe>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -146,9 +139,9 @@ import axios from "axios";
 export default {
   components: { bannerTop, radio },
   created() {
-    axios.get("https://intranet.meta.gov.co/web/timeline").then(response => {
-      this.noticias = response.data.timeline;
-    });
+    // axios.get("https://intranet.meta.gov.co/web/timeline").then(response => {
+    //   this.noticias = response.data.timeline;
+    // });
 
     axios
       .get("https://intranet.meta.gov.co/web/url_navegacion/listado")
@@ -162,11 +155,11 @@ export default {
         this.servicios = response.data;
       });
 
-    axios
-      .get("https://intranet.meta.gov.co/api/cantidad/noticias")
-      .then(response => {
-        this.cantidadNoticias = response.data;
-      });
+    // axios
+    //   .get("https://intranet.meta.gov.co/api/cantidad/noticias")
+    //   .then(response => {
+    //     this.cantidadNoticias = response.data;
+    //   });
   },
   mounted() {
     axios.get("https://intranet.meta.gov.co/web/url_youtube").then(response => {
