@@ -22,7 +22,7 @@
     </div>
 
     <div class="contenido" v-loading="loading">
-      <div class="noticias" v-if="false">
+      <div class="noticias">
 
         <div class="noticias_contenedor" v-for="noticia in noticias.slice(0, cantidadNoticias.cantidad.cantidad)" :key="noticia.idTimeline">
 
@@ -82,13 +82,8 @@
             </router-link>
           </el-col>
         </div>
-      </div>
-
-      <div class="noticias">
-        <div v-loading="true" class="noticias_contenedor" element-loading-text="Noticias se encuentra en mantenimiendo..." element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)"></div>
 
       </div>
-
       <div class="lateral">
         <iframe class="lateral_video" v-if="video_youtube" :src="`https://www.youtube.com/embed/${video_youtube.data.url}`" frameborder="0" allowfullscreen>
         </iframe>
@@ -139,9 +134,9 @@ import axios from "axios";
 export default {
   components: { bannerTop, radio },
   created() {
-    // axios.get("https://intranet.meta.gov.co/web/timeline").then(response => {
-    //   this.noticias = response.data.timeline;
-    // });
+    axios.get("https://intranet.meta.gov.co/web/timeline").then(response => {
+      this.noticias = response.data.timeline;
+    });
 
     axios
       .get("https://intranet.meta.gov.co/web/url_navegacion/listado")
@@ -155,11 +150,11 @@ export default {
         this.servicios = response.data;
       });
 
-    // axios
-    //   .get("https://intranet.meta.gov.co/api/cantidad/noticias")
-    //   .then(response => {
-    //     this.cantidadNoticias = response.data;
-    //   });
+    axios
+      .get("https://intranet.meta.gov.co/api/cantidad/noticias")
+      .then(response => {
+        this.cantidadNoticias = response.data;
+      });
   },
   mounted() {
     axios.get("https://intranet.meta.gov.co/web/url_youtube").then(response => {
