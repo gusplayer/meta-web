@@ -162,7 +162,7 @@ export default {
           this.cantidadNoticias = response.data;
         });
 
-      axios.get("https://intranet.meta.gov.co/web/timeline").then(response => {
+      axios.get("https://intranet.meta.gov.co/api/noticias").then(response => {
         this.noticias = response.data.timeline;
       });
       this.loadingNoticias = false;

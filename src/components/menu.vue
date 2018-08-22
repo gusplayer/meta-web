@@ -8,15 +8,27 @@
     </div>
     <nav class="go_menu">
       <ul class="go_menu_list">
-        <li class="go_menu_list_item" v-for="(item,index) in menuDefault" :key="index"><router-link :to="item.url">{{ item.titulo }}<i class="el-icon-caret-bottom" v-show="item.haveChildren"></i></router-link>
+        <li class="go_menu_list_item" v-for="(item,index) in menuDefault" :key="`item${index}`">
+          <router-link :to="item.url">{{ item.titulo }}
+            <i class="el-icon-caret-bottom" v-show="item.haveChildren"></i>
+          </router-link>
           <ul class="go_menu_sublist" v-if="item.haveChildren">
-            <li class="go_menu_list_item" v-for="(subitem,index) in item.children" :key="index"><router-link :to="subitem.url">{{ subitem.titulo }}<i class="el-icon-caret-right" v-show="subitem.haveChildren"></i></router-link>
+            <li class="go_menu_list_item" v-for="(subitem,index) in item.children" :key="`subitem${index}`">
+              <router-link :to="subitem.url">{{ subitem.titulo }}
+                <i class="el-icon-caret-right" v-show="subitem.haveChildren"></i>
+              </router-link>
               <ul class="go_menu_sublist" v-if="subitem.haveChildren">
-                <li class="go_menu_list_item" v-if="subitem.children" v-for="(subitem2,index) in subitem.children" :key="index"><router-link :to="subitem2.url">{{ subitem2.titulo }}</router-link></li>
-                <li class="go_menu_list_item" v-if="subitem.childrenDynamic" v-for="(item,index) in filterMenu(subitem.id)" :key="index"><router-link :to="`/micrositio/${item.id}`">{{ item.titulo }}</router-link></li>
+                <li class="go_menu_list_item" v-if="subitem.children" v-for="(subitem2,index) in subitem.children" :key="`subitem2${index}`">
+                  <router-link :to="subitem2.url">{{ subitem2.titulo }}</router-link>
+                </li>
+                <li class="go_menu_list_item" v-if="subitem.childrenDynamic" v-for="(item,index) in filterMenu(subitem.id)" :key="`item2${index}`">
+                  <router-link :to="`/micrositio/${item.id}`">{{ item.titulo }}</router-link>
+                </li>
               </ul>
             </li>
-            <li class="go_menu_list_item" v-if="item.childrenDynamic" v-for="(subitem,index) in filterMenu(item.id)" :key="index"><router-link :to="`/micrositio/${subitem.id}`">{{ subitem.titulo }}</router-link></li>
+            <li class="go_menu_list_item" v-if="item.childrenDynamic" v-for="(subitem,index) in filterMenu(item.id)" :key="`subitem1${index}`">
+              <router-link :to="`/micrositio/${subitem.id}`">{{ subitem.titulo }}</router-link>
+            </li>
           </ul>
         </li>
       </ul>
@@ -24,9 +36,9 @@
 
     <!-- <a href="javascript:void(0);" class="icon" v-on:click="transition = !transition">&#9776;</a> -->
 
-<div>
+    <div>
 
-    <transition name="el-zoom-in-top">
+      <transition name="el-zoom-in-top">
         <div v-show="transition" class="menuresponsive">
           <el-menu default-active="2" class="el-menu-vertical" v-show="transition">
             <template v-for="(item, index) in menuDefault">
@@ -34,36 +46,42 @@
                 <router-link :to="item.url">{{ item.titulo }}</router-link>
               </el-menu-item>
               <el-submenu v-else :index="index.toString()">
-                <span slot="title"></i>{{ item.titulo }}</span>
+                <span slot="title">
+                  </i>{{ item.titulo }}</span>
                 <template v-for="(item2, index2) in item.children">
-                  <el-menu-item v-if="!item2.haveChildren" :index="`${index}-${index2}`"><router-link :to="item2.url">{{ item2.titulo }}</router-link></el-menu-item>
+                  <el-menu-item v-if="!item2.haveChildren" :index="`${index}-${index2}`">
+                    <router-link :to="item2.url">{{ item2.titulo }}</router-link>
+                  </el-menu-item>
                   <el-submenu v-else :index="`${index}-${index2}`">
                     <span slot="title">{{ item2.titulo }}</span>
                     <el-menu-item v-for="(item3, index3) in item2.children" :index="`${index}-${index2}-${index3}`">{{ item3.titulo }}</el-menu-item>
-                    <el-menu-item v-if="item2.childrenDynamic" v-for="(item3, index3) in filterMenu(item2.id)" :index="`${index}-${index2}-${index3}`"><router-link to="/contacto">{{ item3.titulo }}</router-link></el-menu-item>
+                    <el-menu-item v-if="item2.childrenDynamic" v-for="(item3, index3) in filterMenu(item2.id)" :index="`${index}-${index2}-${index3}`">
+                      <router-link to="/contacto">{{ item3.titulo }}</router-link>
+                    </el-menu-item>
                   </el-submenu>
                 </template>
-                <el-menu-item v-if="item.childrenDynamic" v-for="(item2, index2) in filterMenu(item.id)" :index="`${index}-${index2}`"><router-link :to="item2.url">{{ item2.titulo }}</router-link></el-menu-item>
+                <el-menu-item v-if="item.childrenDynamic" v-for="(item2, index2) in filterMenu(item.id)" :index="`${index}-${index2}`">
+                  <router-link :to="item2.url">{{ item2.titulo }}</router-link>
+                </el-menu-item>
               </el-submenu>
             </template>
           </el-menu>
         </div>
-    </transition>
+      </transition>
 
-</div>
+    </div>
 
-
-<!-- <transition name="el-fade-in-linear">
+    <!-- <transition name="el-fade-in-linear">
 <div class="fondo_transition" v-show="transition"></div>
 </transition> -->
 
-<transition name="fade">
-<el-button class="icon2" @click="transition = !transition">&#9776; Menu</el-button>
-</transition>
+    <transition name="fade">
+      <el-button class="icon2" @click="transition = !transition">&#9776; Menu</el-button>
+    </transition>
 
-<!-- <img class="search_icon" src="../assets/search.png" height="20px"/> -->
+    <!-- <img class="search_icon" src="../assets/search.png" height="20px"/> -->
 
-</div>
+  </div>
 </template>
 
 <script>
@@ -119,7 +137,7 @@ export default {
               haveChildren: true,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link:
                     "http://www.meta.gov.co/web/content/gesti%C3%B3n-de-gobierno",
@@ -132,7 +150,7 @@ export default {
                   haveChildren: false,
                   childrenDynamic: false,
                   url: {
-                    name: "redirect",
+                    path: "/redirect",
                     params: {
                       link:
                         "http://www.meta.gov.co/web/content/rendici%C3%B3n-de-cuentas",
@@ -146,7 +164,7 @@ export default {
                   haveChildren: false,
                   childrenDynamic: false,
                   url: {
-                    name: "redirect",
+                    path: "/redirect",
                     params: {
                       link: "https://meta.gov.co/micrositio/53",
                       newtab: "false"
@@ -175,7 +193,7 @@ export default {
                   haveChildren: false,
                   childrenDynamic: false,
                   url: {
-                    name: "redirect",
+                    path: "/redirect",
                     params: {
                       link:
                         "http://www.meta.gov.co/web/content/oficina-promotora-de-paz",
@@ -191,7 +209,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link: "http://www.meta.gov.co/web/content/plan-de-desarrollo",
                   newtab: "true"
@@ -203,7 +221,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link: "https://meta.gov.co/micrositio/103",
                   newtab: "false"
@@ -224,7 +242,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link:
                     "http://www.meta.gov.co/web/content/nuestro-departamento",
@@ -249,7 +267,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link: "http://www.meta.gov.co/web/content/gobernadores",
                   newtab: "true"
@@ -261,7 +279,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link:
                     "http://www.meta.gov.co/web/content/departamento-del-meta",
@@ -296,7 +314,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link: "http://www.meta.gov.co/web/content/equidad-de-genero",
                   newtab: "true"
@@ -308,7 +326,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link: "https://meta.gov.co/micrositio/87",
                   newtab: "false"
@@ -354,7 +372,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link: "https://www.youtube.com/user/GobMeta/videos",
                   newtab: "true"
@@ -366,7 +384,7 @@ export default {
               haveChildren: false,
               childrenDynamic: false,
               url: {
-                name: "redirect",
+                path: "/redirect",
                 params: {
                   link: "http://www.meta.gov.co/web/content/galeria-de-audios",
                   newtab: "true"
