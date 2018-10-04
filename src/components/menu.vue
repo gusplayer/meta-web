@@ -149,14 +149,7 @@ export default {
                   titulo: "Control y rendicion de cuentas",
                   haveChildren: false,
                   childrenDynamic: false,
-                  url: {
-                    path: "/redirect",
-                    params: {
-                      link:
-                        "http://www.meta.gov.co/web/content/rendici%C3%B3n-de-cuentas",
-                      newtab: "true"
-                    }
-                  }
+                  url: "/micrositio/95"
                 },
                 {
                   titulo:
