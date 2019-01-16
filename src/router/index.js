@@ -17,7 +17,6 @@ import Micrositio from "@/components/_micrositio";
 import Gobernadora from "@/components/_gobernadora";
 import Documentacion from "@/components/_centroDocumentacion";
 import Calidad from "@/components/_gestionCalidad";
-import Redirect from "@/components/_redirect";
 import NoticiaDetalle from "@/components/_noticiaDetalle";
 import Convocatorias from "@/components/_convocatorias";
 import CategoriasConvocatorias from "@/components/_categoriasConvocatorias";
@@ -149,7 +148,6 @@ export default new Router({
     {
       path: "/redirect",
       name: "redirect",
-      component: Redirect,
       beforeEnter(to) {
         if (to.query.newtab == "true") {
           window.open(to.query.link, "_blank");
