@@ -194,9 +194,11 @@ export default {
       this.currentPassword = "";
       axios
         .post("https://intranet.meta.gov.co/web/archivo", json, {
-          responseType: "arraybuffer"
+          responseType: "arraybuffer",
+          timeout:99999999999999
         })
         .then(response => {
+          /*
           let image = btoa(
             new Uint8Array(response.data).reduce(
               (data, byte) => data + String.fromCharCode(byte),
@@ -208,8 +210,14 @@ export default {
           ].toLowerCase()};base64,${image}`;
           var dlnk = document.getElementById("dwnldLnk");
           dlnk.href = base64;
-          dlnk.click();
+          dlnk.click();*/
           this.getPasswordFile = false;
+          var typefile = response.headers["content-type"].toLowerCase();
+          let blob = new Blob([response.data], { type:  typefile}), 
+          url = window.URL.createObjectURL(blob) 
+          var dlnk = document.getElementById("dwnldLnk");
+          dlnk.href = url;
+          dlnk.click();
         });
     },
     getFirstColumn(value) {

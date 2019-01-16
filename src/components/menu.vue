@@ -156,13 +156,7 @@ export default {
                     "Plan de Accion general y plan operativo anual de inversiones (POAI)",
                   haveChildren: false,
                   childrenDynamic: false,
-                  url: {
-                    path: "/redirect",
-                    params: {
-                      link: "https://meta.gov.co/micrositio/53",
-                      newtab: "false"
-                    }
-                  }
+                  url: "/micrositio/53"
                 }
               ],
               childrenDynamic: true
@@ -213,13 +207,7 @@ export default {
               titulo: "Control interno",
               haveChildren: false,
               childrenDynamic: false,
-              url: {
-                path: "/redirect",
-                params: {
-                  link: "https://meta.gov.co/micrositio/103",
-                  newtab: "false"
-                }
-              }
+              url: "/micrositio/103" 
             }
           ]
         },
@@ -318,13 +306,7 @@ export default {
               titulo: "Gestión Documental Archivo",
               haveChildren: false,
               childrenDynamic: false,
-              url: {
-                path: "/redirect",
-                params: {
-                  link: "https://meta.gov.co/micrositio/87",
-                  newtab: "false"
-                }
-              }
+              url: "/micrositio/87"
             },
             {
               titulo: "Convocatorias",
