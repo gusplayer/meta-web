@@ -14,7 +14,7 @@ export default {
   props: ['texto','imagen'],
   computed: {
     styles(){
-      return `background:url('${this.imagen}'); background-size: 100% auto;`
+      return `background:url('${this.imagen}'); background-size: 100% auto;background-repeat: no-repeat;`
     }
   }
 }

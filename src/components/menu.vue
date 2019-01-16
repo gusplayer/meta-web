@@ -230,6 +230,7 @@ export default {
                     "Plan de Accion general y plan operativo anual de inversiones (POAI)",
                   haveChildren: false,
                   childrenDynamic: false,
+
                   url: {
                     path: "/redirect",
                     query: {
@@ -287,6 +288,7 @@ export default {
               titulo: "Control interno",
               haveChildren: false,
               childrenDynamic: false,
+
               url: {
                 path: "/redirect",
                 query: {
@@ -392,6 +394,7 @@ export default {
               titulo: "Gestión Documental Archivo",
               haveChildren: false,
               childrenDynamic: false,
+
               url: {
                 path: "/redirect",
                 query: {
