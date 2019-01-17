@@ -79,6 +79,10 @@ align-items: center;
 line-height: initial
 }
 
+.el-collapse-item__arrow{
+  margin: 0 0 0 0;
+}
+
 @media(max-width: 750px){
   .views{
     width: 100%;

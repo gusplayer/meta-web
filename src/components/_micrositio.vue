@@ -23,8 +23,8 @@
         <br><br>
       </div>
 
-      <el-collapse v-model="activeNames" @change="handleChange">
-        <el-collapse-item :title="setTitle(item.titulo)" :name="item.id" v-for="(item,index) in datos.data[0].secciones" :key="index">
+      <el-collapse v-model="activeNames" @change="handleChange" accordion>
+        <el-collapse-item onclick="guardar(this,window.location);" :title="setTitle(item.titulo)" :name="item.id" v-bind:id="item.id" v-for="(item,index) in datos.data[0].secciones" :key="index">
 
             <div class="sub_texto" v-for="(texto_seccion,index) in item.textos" :key="index">
               <p v-html="texto_seccion.texto"> </p>
@@ -288,8 +288,6 @@
 
 <script>
 
-
-
 import BannerMicro from './bannerMicro.vue'
 import Breadcrumb from './breadcrumb.vue'
 import axios from 'axios';
@@ -298,19 +296,34 @@ export default {
   components: {BannerMicro, Breadcrumb},
   name: 'app',
   created(){
-    axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
-    .then( response => {
-        this.datos = response.data;
-        if(this.datos.data[0].secciones[0])
-        {
-          this.activeNames = this.datos.data[0].secciones[0].id
-        }
-        if(this.datos.data[0].url_redireccion == null)
-        {
-          setTimeout( (()=>this.loading = false), 2000)          
-        }
-        else {  window.location = this.datos.data[0].url_redireccion  }
-    }) 
+    var open = window.location+"";
+    open = open.split("open=");
+    if (typeof open[1] === 'undefined') {
+      axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+      .then( response => {
+          this.datos = response.data;
+          if(this.datos.data[0].secciones[0])
+          {
+            this.activeNames = this.datos.data[0].secciones[0].id
+          }
+          if(this.datos.data[0].url_redireccion == null)
+          {
+            setTimeout( (()=>this.loading = false), 2000)          
+          }
+          else {  window.location = this.datos.data[0].url_redireccion  }
+      }) 
+    }else{
+      this.activeNames = parseInt(open[1]);
+      axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+      .then( response => {
+          this.datos = response.data;
+          if(this.datos.data[0].url_redireccion == null)
+          {
+            setTimeout( (()=>this.loading = false), 2000)          
+          }
+          else {  window.location = this.datos.data[0].url_redireccion  }
+      }) 
+    }
   },
   watch:{
     "$route" (){
