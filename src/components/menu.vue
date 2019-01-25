@@ -123,7 +123,7 @@
                       v-for="(item3, index3) in filterMenu(item2.id)"
                       :index="`${index}-${index2}-${index3}`"
                     >
-                      <router-link to="/contacto">{{ item3.titulo }}</router-link>
+                      <router-link :to="{ path: `/micrositio/${item3.id}`}">{{ item3.titulo }}</router-link>
                     </el-menu-item>
                   </el-submenu>
                 </template>
@@ -186,7 +186,7 @@ export default {
           haveChildren: true,
           childrenDynamic: true,
           url: "/",
-          children: [
+          children: [ 
             {
               titulo: "Nuestra Gobernadora",
               haveChildren: false,

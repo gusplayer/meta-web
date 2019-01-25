@@ -24,12 +24,13 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <script type="text/javascript">
+      var urlGlobal;
       function guardar(argument,url) {
-        localStorage.setItem(url,argument.id);
-        history.pushState(null, url, "?open="+argument.id);
+        localStorage.setItem(url,argument);
+        //alert(argument.id);
+        history.pushState(null, url, "#open="+argument);
       }
     </script>
-
   </head>
   <body>
     <div id="app"></div>
