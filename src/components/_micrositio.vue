@@ -24,7 +24,7 @@
       </div>
 
       <el-collapse v-model="activeNames" @change="handleChange" accordion>
-        <el-collapse-item onclick="guardar(this,window.location);" :title="setTitle(item.titulo)" :name="item.id" v-bind:id="item.id" v-for="(item,index) in datos.data[0].secciones" :key="index">
+        <el-collapse-item  :title="setTitle(item.titulo)" :name="item.id" v-bind:id="item.id" v-for="(item,index) in datos.data[0].secciones" :key="index" v-bind:class="index">
 
             <div class="sub_texto" v-for="(texto_seccion,index) in item.textos" :key="index">
               <p v-html="texto_seccion.texto"> </p>
@@ -72,8 +72,8 @@
             </div>
 
               <div class="sub_secciones" v-if="item.sub_secciones[0]">
-                  <el-tabs type="border-card" tab-position="top" style="height: auto;" >
-                      <el-tab-pane :label="sub.titulo" v-for="(sub,index) in item.sub_secciones" :key="index" class="reverse" >
+                  <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card" tab-position="top" style="height: auto;" >
+                      <el-tab-pane :label="sub.titulo" v-for="(sub,index) in item.sub_secciones" :key="index" :name="sub.id" class="reverse" >
 
 
 
@@ -122,8 +122,8 @@
                         </div>
 
                         <div class="sub_sub_secciones" v-if="sub.sub_secciones[0]">
-                            <el-tabs type="border-card" tab-position="top" style="height: auto;" >
-                                <el-tab-pane :label="subsub.titulo" v-for="(subsub,index) in sub.sub_secciones" class="reverse" :key="index">
+                            <el-tabs v-model="activeNameSub" @tab-click="handleClickSub" type="border-card" tab-position="top" style="height: auto;" >
+                                <el-tab-pane :label="subsub.titulo" v-for="(subsub,index) in sub.sub_secciones" :name="subsub.id" class="reverse" :key="index">
 
 
 
@@ -171,7 +171,7 @@
 
 
                                         <div class="sub_sub_secciones">
-                                            <el-tabs tab-position="top" style="height: auto;" >
+                                            <el-tabs v-model="activeNameSubH" @tab-click="handleClickSubH" tab-position="top" style="height: auto;" >
                                                 <el-tab-pane :label="subsub.titulo" v-for="(subsub,index) in subsub.sub_secciones" class="reverse" :key="index">
 
 
@@ -296,8 +296,8 @@ export default {
   components: {BannerMicro, Breadcrumb},
   name: 'app',
   created(){
-    var open = window.location+"";
-    open = open.split("open=");
+    var url = window.location+"";
+    var open = url.split("open=");
     if (typeof open[1] === 'undefined') {
       axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
       .then( response => {
@@ -313,10 +313,81 @@ export default {
           else {  window.location = this.datos.data[0].url_redireccion  }
       }) 
     }else{
-      this.activeNames = parseInt(open[1]);
+      var div2 = open[1].split("_");
+      if (typeof div2[1] != 'undefined') {
+        this.activeNames = parseInt(div2[0]);
+      }else{
+        this.activeNames = parseInt(open[1]);
+      }
       axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
       .then( response => {
           this.datos = response.data;
+          if (typeof div2[1] === 'undefined') {
+            for (var i in this.datos.data[0].secciones) {
+              if (this.datos.data[0].secciones[i].id == this.activeNames) {
+                this.pos = i;
+                break;
+              }
+            }
+            if(this.datos.data[0].secciones[this.pos].sub_secciones[0])
+            {
+              this.activeName = this.datos.data[0].secciones[this.pos].sub_secciones[0].id
+            }
+          }else{
+            this.activeName = parseInt(div2[1]);
+            if (typeof div2[2] === 'undefined') {
+              if (this.pos == 0) {
+                for (var i in this.datos.data[0].secciones) {
+                  if (this.datos.data[0].secciones[i].id == this.activeNames) {
+                    this.pos = i;
+                    break;
+                  }
+                }
+              }
+              for (var j in this.datos.data[0].secciones[this.pos].sub_secciones) {
+                if (this.datos.data[0].secciones[this.pos].sub_secciones[j].id == this.activeName) {
+                  this.posSub = j;
+                  break;
+                }
+              }
+              if(this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[0])
+              {
+                this.activeNameSub = this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[0].id
+              }
+            }else{
+              this.activeNameSub = parseInt(div2[2]);
+              if (typeof div2[3] === 'undefined') {
+                if (this.pos == 0) {
+                  for (var i in this.datos.data[0].secciones) {
+                    if (this.datos.data[0].secciones[i].id == this.activeNames) {
+                      this.pos = i;
+                      break;
+                    }
+                  }
+                }
+                if (this.posSub == 0) {
+                  for (var j in this.datos.data[0].secciones[this.pos].sub_secciones) {
+                    if (this.datos.data[0].secciones[this.pos].sub_secciones[j].id == this.activeName) {
+                      this.posSub = j;
+                      break;
+                    }
+                  }
+                }
+                for (var x in this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones) {
+                  if (this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[x].id == this.activeNameSub) {
+                    this.posSubH = x;
+                    break;
+                  }
+                }
+                if(this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[this.posSubH].sub_secciones[0])
+                {
+                  this.activeNameSubH = this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[this.posSubH].sub_secciones[0].id
+                }
+              }else{
+                this.activeNameSubH = parseInt(div2[3]);
+              }
+            }
+          }
           if(this.datos.data[0].url_redireccion == null)
           {
             setTimeout( (()=>this.loading = false), 2000)          
@@ -341,8 +412,14 @@ export default {
       imagenBanner:'http://www.meta.gov.co/web/sites/default/files/img_micrositios/Prensa-01.png',
       tabPosition: 'left',
       activeNames: ['1'],
+      activeName: null,
+      activeNameSub: null,
+      activeNameSubH: null,
       datos: '',
       loading: true,
+      pos: 0,
+      posSub: 0,
+      posSubH: 0,
     }
   },
   methods:{
@@ -362,6 +439,109 @@ export default {
         	let idYoutube = urlVideo.substring(index);
     			return idYoutube;
      },
+     handleChange(val) {
+        guardar(val,window.location);
+        axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+        .then( response => {
+            this.datos = response.data;
+            for (var i in this.datos.data[0].secciones) {
+              if (this.datos.data[0].secciones[i].id == val) {
+                this.pos = i;
+                break;
+              }
+            }
+            if(this.datos.data[0].secciones[this.pos].sub_secciones[0])
+            {
+              this.activeName = this.datos.data[0].secciones[this.pos].sub_secciones[0].id
+            }
+        }) 
+     },
+     handleClick(tab, event) {
+        var id = tab.$el.id+"";
+        id = id.split("pane-");
+        var val = id[1];
+        var url = window.location+"";
+        var div = url.split("open=");
+        var div2 = div[1].split("_");
+        if (typeof div2[1] != 'undefined') {
+          val = div2[0]+"_"+val; 
+        }else{
+          val = div[1]+"_"+val; 
+        }
+        guardar(val,window.location);
+        axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+        .then( response => {
+            this.datos = response.data;
+            if (this.pos == 0) {
+              for (var i in this.datos.data[0].secciones) {
+                if (this.datos.data[0].secciones[i].id == this.activeNames) {
+                  this.pos = i;
+                  break;
+                }
+              }
+            }
+            for (var j in this.datos.data[0].secciones[this.pos].sub_secciones) {
+              if (this.datos.data[0].secciones[this.pos].sub_secciones[j].id == id[1]) {
+                this.posSub = j;
+                break;
+              }
+            }
+            if(this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[0])
+            {
+              this.activeNameSub = this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[0].id
+            }
+        }) 
+     },
+     handleClickSub(tab, event) {
+        var id = tab.$el.id+"";
+        id = id.split("pane-");
+        var val = id[1];
+        var url = window.location+"";
+        var div = url.split("open=");
+        var div2 = div[1].split("_");
+        val = div2[0]+"_"+div2[1]+"_"+val; 
+        guardar(val,window.location);
+        axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
+        .then( response => {
+            this.datos = response.data;
+            if (this.pos == 0) {
+              for (var i in this.datos.data[0].secciones) {
+                if (this.datos.data[0].secciones[i].id == this.activeNames) {
+                  this.pos = i;
+                  break;
+                }
+              }
+            }
+            if (this.posSub == 0) {
+              for (var j in this.datos.data[0].secciones[this.pos].sub_secciones) {
+                if (this.datos.data[0].secciones[this.pos].sub_secciones[j].id == this.activeName) {
+                  this.posSub = j;
+                  break;
+                }
+              }
+            }
+            for (var x in this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones) {
+              if (this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[x].id == id[1]) {
+                this.posSubH = x;
+                break;
+              }
+            }
+            if(this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[this.posSubH].sub_secciones[0])
+            {
+              this.activeNameSubH = this.datos.data[0].secciones[this.pos].sub_secciones[this.posSub].sub_secciones[this.posSubH].sub_secciones[0].id
+            }
+        }) 
+     },
+     handleClickSubH(tab, event) {
+        var id = tab.$el.id+"";
+        id = id.split("pane-");
+        var val = id[1];
+        var url = window.location+"";
+        var div = url.split("open=");
+        var div2 = div[1].split("_");
+        val = div2[0]+"_"+div2[1]+"_"+div2[2]+"_"+val; 
+        guardar(val,window.location);
+     }
   },
 }
 </script>
