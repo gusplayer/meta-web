@@ -100,13 +100,13 @@
               <el-menu-item
                 v-if="!item.haveChildren"
                 :index="index.toString()"
-              >
+              :key="index">
                 <router-link :to="item.url">{{ item.titulo }}</router-link>
               </el-menu-item>
               <el-submenu
                 v-else
                 :index="index.toString()"
-              >
+              :key="index">
                 <span slot="title">
                   {{ item.titulo }}</span>
                 <template v-for="(item2, index2) in item.children">
@@ -114,34 +114,35 @@
                   <el-menu-item
                     v-if="!item2.haveChildren"
                     :index="`${index}-${index2}`"
-                  >
+                  :key="index2">
                   
                     <router-link :to="item2.url">{{ item2.titulo }}</router-link>
                   </el-menu-item>
                   <el-submenu
                     v-else
                     :index="`${index}-${index2}`"
-                  >
+                  :key="index2">
                     <span slot="title">{{ item2.titulo }}</span>
                     <el-menu-item
                       v-for="(item3, index3) in item2.children"
                       :index="`${index}-${index2}-${index3}`"
-                    >{{ item3.titulo }}</el-menu-item>
+                    :key="index3">{{ item3.titulo }}</el-menu-item>
                     <el-menu-item
                       v-if="item2.childrenDynamic"
                       v-for="(item3, index3) in filterMenu(item2.id)"
                       :index="`${index}-${index2}-${index3}`"
-                    >
+                    :key="index3">
                     
                       <router-link :to="{ path: `/micrositio/${item3.id}`}">{{ item3.titulo }}</router-link>
                     </el-menu-item>
                   </el-submenu>
                 </template>
+                
                 <el-menu-item
                   v-if="item.childrenDynamic"
                   v-for="(item2, index2) in filterMenu(item.id)"
                   :index="`${index}-${index2}`"
-                >
+                :key="index2">
                   <router-link :to="{ path: `/micrositio/${item2.id}`}">{{ item2.titulo }}</router-link>
                 </el-menu-item>
               </el-submenu>
