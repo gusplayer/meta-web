@@ -44,6 +44,9 @@
                 class="go_menu_sublist"
                 v-if="subitem.haveChildren"
               >
+
+
+
                 <li
                   class="go_menu_list_item"
                   v-if="subitem.children"
@@ -52,6 +55,9 @@
                 >
                   <router-link :to="subitem2.url">{{ subitem2.titulo }}</router-link>
                 </li>
+
+
+
                 <li
                   class="go_menu_list_item"
                   v-if="subitem.childrenDynamic"
@@ -62,6 +68,7 @@
                 </li>
               </ul>
             </li>
+
             <li
               class="go_menu_list_item"
               v-if="item.childrenDynamic"
@@ -101,12 +108,14 @@
                 :index="index.toString()"
               >
                 <span slot="title">
-                  </i>{{ item.titulo }}</span>
+                  {{ item.titulo }}</span>
                 <template v-for="(item2, index2) in item.children">
+
                   <el-menu-item
                     v-if="!item2.haveChildren"
                     :index="`${index}-${index2}`"
                   >
+                  
                     <router-link :to="item2.url">{{ item2.titulo }}</router-link>
                   </el-menu-item>
                   <el-submenu
@@ -123,6 +132,7 @@
                       v-for="(item3, index3) in filterMenu(item2.id)"
                       :index="`${index}-${index2}-${index3}`"
                     >
+                    
                       <router-link :to="{ path: `/micrositio/${item3.id}`}">{{ item3.titulo }}</router-link>
                     </el-menu-item>
                   </el-submenu>
@@ -132,7 +142,7 @@
                   v-for="(item2, index2) in filterMenu(item.id)"
                   :index="`${index}-${index2}`"
                 >
-                  <router-link :to="item2.url">{{ item2.titulo }}</router-link>
+                  <router-link :to="{ path: `/micrositio/${item2.id}`}">{{ item2.titulo }}</router-link>
                 </el-menu-item>
               </el-submenu>
             </template>
@@ -161,12 +171,16 @@
 <script>
 import axios from "axios";
 export default {
+
+
   created() {
     axios
       .get("https://intranet.meta.gov.co/api/micrositio/listado")
       .then(response => {
         this.menuDynamic = response.data.data;
+
       });
+      
   },
   data() {
     return {
@@ -490,6 +504,8 @@ export default {
     filterMenu(parameterMenu) {
       return this.menuDynamic.filter(item => item.menu == parameterMenu);
     }
+
+    
   }
 };
 </script>
