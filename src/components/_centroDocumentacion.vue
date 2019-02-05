@@ -61,6 +61,7 @@
 import axios from "axios";
 import BannerMicro from "./bannerMicro.vue";
 import Breadcrumb from "./breadcrumb.vue";
+import sleep from 'await-sleep';
 export default {
   components: { BannerMicro, Breadcrumb },
   created() {
@@ -69,6 +70,34 @@ export default {
       .then(response => {
         this.foldersData = response.data.carpetas;
       });
+  },
+  mounted(){
+    var url = window.location+"";
+    var div = url.split("open=");
+    var div2 = div[1].split("_");
+    async function changeFolder(argument,id,tam){
+      if (id == 0) {
+        await sleep(2000);
+      }else{
+        await sleep(3000);
+      }
+      var clnk = document.getElementById("folder"+argument[id]);
+      clnk.click();
+      changeFolder(argument,id+1,tam);
+    }
+    document.onreadystatechange = () => { 
+      if (document.readyState == "complete") {
+        if (typeof div[1] != 'undefined') {
+          if (typeof div2[1] != 'undefined') {
+            changeFolder(div2,0,div2.length);
+          }else{
+            console.log("Aquí");
+            var clnk = document.getElementById("folder"+div[1]);
+            clnk.click();
+          }
+        }
+      } 
+    }
   },
   data() {
     return {
@@ -245,6 +274,28 @@ export default {
       for (let folder of document.querySelectorAll(`.column${index}`)) {
         folder.classList.remove("selected");
       }
+      //Generar url open
+      if (index == 0) {
+        guardarFolder(folder.id,window.location);
+      }else{
+        var id = "";
+        var url = window.location+"";
+        var div = url.split("open=");
+        var div2 = div[1].split("_");
+        for (var i = 0; i <= index; i++) {
+          if (typeof div2[1] != 'undefined') {
+            if (i == index) {
+              id += folder.id;
+            }else{
+              id += div2[i]+"_"
+            }
+          }else{
+            id = div[1]+"_"+folder.id;
+          }
+        }
+        guardarFolder(id,window.location);
+      }
+      //Fin de generar url open
       document.getElementById(`folder${folder.id}`).classList.add("selected");
     },
     showSubfolders(obj) {
