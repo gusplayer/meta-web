@@ -30,10 +30,30 @@
               <p v-html="texto_seccion.texto"> </p>
             </div><br>
 
-            <div class="secciones_docs" v-for="(archivo,index) in item.archivos" :key="index">
-              <i class="el-icon-document"></i>
+            <el-input placeholder="Buscador" id="myInput" v-model="inputsearch" onkeyup="buscar()" class="input-search">
+              <i slot="prefix" class="el-input__icon el-icon-search"></i>        
+            </el-input>  
+
+            <div class="secciones_docs" >
+              <div class="secciones_docs_descarga secciones_docs_fecha">
+                <p>Fecha</p>
+              </div>
               <div class="secciones_docs_descarga">
-                <p>{{archivo.titulo}}</p>
+                <p> Descripción Corta</p>
+              </div>
+              <div class="secciones_docs_descarga">
+                <p> Titulo</p>
+              </div>
+            </div>
+
+            <div  class="secciones_docs tr" v-for="(archivo,index) in item.archivos" :key="index">
+              <i class="el-icon-document"></i>
+              <div class="secciones_docs_descarga ">
+                <p class="secciones_docs_fechap">{{archivo.updated_at}}</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis felis ac dolor blandit facilisis.</p>    
+              </div>
+              <div class="secciones_docs_descarga">
+                <p> {{archivo.titulo}}</p>
                 <a :href="`https://intranet.meta.gov.co/secciones_archivos/${archivo.archivo}`" target="_blank">
                 <el-button type="primary">Descarga</el-button>
                 </a>
@@ -298,10 +318,33 @@ export default {
   created(){
     var url = window.location+"";
     var open = url.split("open=");
+
     if (typeof open[1] === 'undefined') {
       axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
       .then( response => {
           this.datos = response.data;
+
+
+  //Normatividad Inicio
+          var x;
+          var y;
+          var i;
+          var arrayfinal= new Array();
+          var valorllega1=this.datos.data[0].secciones;
+          var valorllega=this.datos.data[0].secciones[0].archivos;
+          
+          for(y=0;y<valorllega1.length;y++){
+              console.log(valorllega1[y].titulo);
+              var valorllega=this.datos.data[0].secciones[y].archivos;
+            for (x=0;x<valorllega.length;x++){
+                var res = valorllega[x].updated_at.slice(0,10);
+                console.log(res);
+                arrayfinal[x]=res;
+                this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
+            }  
+          }
+          //Normatividad Fin
+
           if(this.datos.data[0].secciones[0])
           {
             this.activeNames = this.datos.data[0].secciones[0].id
@@ -322,6 +365,26 @@ export default {
       axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
       .then( response => {
           this.datos = response.data;
+           //Normatividad Inicio
+          var x;
+          var y;
+          var i;
+          var arrayfinal= new Array();
+          var valorllega1=this.datos.data[0].secciones;
+          var valorllega=this.datos.data[0].secciones[0].archivos;
+          
+          for(y=0;y<valorllega1.length;y++){
+              console.log(valorllega1[y].titulo);
+              var valorllega=this.datos.data[0].secciones[y].archivos;
+            for (x=0;x<valorllega.length;x++){
+                var res = valorllega[x].updated_at.slice(0,10);
+                console.log(res);
+                arrayfinal[x]=res;
+                this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
+            }  
+          }
+          //Normatividad Fin
+
           if (typeof div2[1] === 'undefined') {
             for (var i in this.datos.data[0].secciones) {
               if (this.datos.data[0].secciones[i].id == this.activeNames) {
@@ -444,6 +507,25 @@ export default {
         axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
         .then( response => {
             this.datos = response.data;
+             //Normatividad Inicio
+          var x;
+          var y;
+          var i;
+          var arrayfinal= new Array();
+          var valorllega1=this.datos.data[0].secciones;
+          var valorllega=this.datos.data[0].secciones[0].archivos;
+          
+          for(y=0;y<valorllega1.length;y++){
+              console.log(valorllega1[y].titulo);
+              var valorllega=this.datos.data[0].secciones[y].archivos;
+            for (x=0;x<valorllega.length;x++){
+                var res = valorllega[x].updated_at.slice(0,10);
+                console.log(res);
+                arrayfinal[x]=res;
+                this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
+            }  
+          }
+          //Normatividad Fin
             for (var i in this.datos.data[0].secciones) {
               if (this.datos.data[0].secciones[i].id == val) {
                 this.pos = i;
@@ -472,6 +554,25 @@ export default {
         axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
         .then( response => {
             this.datos = response.data;
+             //Normatividad Inicio
+          var x;
+          var y;
+          var i;
+          var arrayfinal= new Array();
+          var valorllega1=this.datos.data[0].secciones;
+          var valorllega=this.datos.data[0].secciones[0].archivos;
+          
+          for(y=0;y<valorllega1.length;y++){
+              console.log(valorllega1[y].titulo);
+              var valorllega=this.datos.data[0].secciones[y].archivos;
+            for (x=0;x<valorllega.length;x++){
+                var res = valorllega[x].updated_at.slice(0,10);
+                console.log(res);
+                arrayfinal[x]=res;
+                this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
+            }  
+          }
+          //Normatividad Fin
             if (this.pos == 0) {
               for (var i in this.datos.data[0].secciones) {
                 if (this.datos.data[0].secciones[i].id == this.activeNames) {
@@ -543,6 +644,15 @@ export default {
         guardar(val,window.location);
      }
   },
+ /** mounted(){
+    var table;
+    console.log("Holaa")
+    table = document.getElementsByClassName("tr");
+    console.log(table.length);
+    var divs = document.getElementsByClassName("tr").length;
+    console.log("Hay " + divs + " elementos");
+
+  }**/
 }
 </script>
 
@@ -725,6 +835,12 @@ h1, h2, h3{
     justify-content: space-between;
     margin-left: 30px;
     width: 100%
+  }
+  .secciones_docs_fecha{
+    width: 15%;
+  }
+  .secciones_docs_fechap{
+    width: 25%;
   }
   .reverse{
     display: flex;
