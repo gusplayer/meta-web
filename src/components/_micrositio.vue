@@ -323,7 +323,7 @@ export default {
       axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
       .then( response => {
           this.datos = response.data;
-
+          if(this.$route.params.id==96){
 
   //Normatividad Inicio
           var x;
@@ -344,7 +344,7 @@ export default {
             }  
           }
           //Normatividad Fin
-
+          }
           if(this.datos.data[0].secciones[0])
           {
             this.activeNames = this.datos.data[0].secciones[0].id
@@ -365,6 +365,7 @@ export default {
       axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
       .then( response => {
           this.datos = response.data;
+          if(this.$route.params.id==96){
            //Normatividad Inicio
           var x;
           var y;
@@ -384,6 +385,7 @@ export default {
             }  
           }
           //Normatividad Fin
+          }
 
           if (typeof div2[1] === 'undefined') {
             for (var i in this.datos.data[0].secciones) {
@@ -507,6 +509,10 @@ export default {
         axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
         .then( response => {
             this.datos = response.data;
+
+          if(this.$route.params.id==96){
+
+           
              //Normatividad Inicio
           var x;
           var y;
@@ -526,6 +532,7 @@ export default {
             }  
           }
           //Normatividad Fin
+          } 
             for (var i in this.datos.data[0].secciones) {
               if (this.datos.data[0].secciones[i].id == val) {
                 this.pos = i;
@@ -554,6 +561,8 @@ export default {
         axios.get(`https://intranet.meta.gov.co/api/micrositio/informacion/${this.$route.params.id}`)
         .then( response => {
             this.datos = response.data;
+
+          if(this.$route.params.id==96){
              //Normatividad Inicio
           var x;
           var y;
@@ -572,7 +581,8 @@ export default {
                 this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
             }  
           }
-          //Normatividad Fin
+          //Normatividad Fin}
+          }
             if (this.pos == 0) {
               for (var i in this.datos.data[0].secciones) {
                 if (this.datos.data[0].secciones[i].id == this.activeNames) {
