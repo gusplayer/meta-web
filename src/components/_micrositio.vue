@@ -30,9 +30,10 @@
               <p v-html="texto_seccion.texto"> </p>
             </div><br>
 
-            <el-input placeholder="Buscador" id="myInput" v-model="inputsearch" onkeyup="buscar()" class="input-search">
+            <el-input placeholder="Buscador" v-model="inputsearch" @keyup.native="buscarnorma" class="input-search">
               <i slot="prefix" class="el-input__icon el-icon-search"></i>        
             </el-input>  
+             
 
             <div class="secciones_docs" >
               <div class="secciones_docs_descarga secciones_docs_fecha">
@@ -334,11 +335,11 @@ export default {
           var valorllega=this.datos.data[0].secciones[0].archivos;
           
           for(y=0;y<valorllega1.length;y++){
-              console.log(valorllega1[y].titulo);
+              
               var valorllega=this.datos.data[0].secciones[y].archivos;
             for (x=0;x<valorllega.length;x++){
                 var res = valorllega[x].updated_at.slice(0,10);
-                console.log(res);
+                
                 arrayfinal[x]=res;
                 this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
             }  
@@ -375,11 +376,11 @@ export default {
           var valorllega=this.datos.data[0].secciones[0].archivos;
           
           for(y=0;y<valorllega1.length;y++){
-              console.log(valorllega1[y].titulo);
+              
               var valorllega=this.datos.data[0].secciones[y].archivos;
             for (x=0;x<valorllega.length;x++){
                 var res = valorllega[x].updated_at.slice(0,10);
-                console.log(res);
+                
                 arrayfinal[x]=res;
                 this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
             }  
@@ -485,9 +486,29 @@ export default {
       pos: 0,
       posSub: 0,
       posSubH: 0,
+      inputsearch: ''
     }
   },
   methods:{
+    buscarnorma: function(event) {
+      var table;
+      var filter;
+      var i;
+      var td;
+      filter = this.inputsearch.toUpperCase();
+      table = document.getElementsByClassName("tr");
+      for (i = 0; i < table.length; i++) {
+        td = table[i].textContent;
+          if (td) {
+            if (td.toUpperCase().indexOf(filter) > -1) {
+              table[i].style.display = "";
+            } else {
+              table[i].style.display = "none";
+            }
+          } 
+        }
+
+    },
     setTitle(value){
        if(value){
          value = value.toLowerCase();
@@ -522,11 +543,11 @@ export default {
           var valorllega=this.datos.data[0].secciones[0].archivos;
           
           for(y=0;y<valorllega1.length;y++){
-              console.log(valorllega1[y].titulo);
+              
               var valorllega=this.datos.data[0].secciones[y].archivos;
             for (x=0;x<valorllega.length;x++){
                 var res = valorllega[x].updated_at.slice(0,10);
-                console.log(res);
+             
                 arrayfinal[x]=res;
                 this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
             }  
@@ -572,11 +593,11 @@ export default {
           var valorllega=this.datos.data[0].secciones[0].archivos;
           
           for(y=0;y<valorllega1.length;y++){
-              console.log(valorllega1[y].titulo);
+              
               var valorllega=this.datos.data[0].secciones[y].archivos;
             for (x=0;x<valorllega.length;x++){
                 var res = valorllega[x].updated_at.slice(0,10);
-                console.log(res);
+              
                 arrayfinal[x]=res;
                 this.datos.data[0].secciones[y].archivos[x].updated_at= arrayfinal[x]; 
             }  
@@ -653,16 +674,7 @@ export default {
         val = div2[0]+"_"+div2[1]+"_"+div2[2]+"_"+val; 
         guardar(val,window.location);
      }
-  },
- /** mounted(){
-    var table;
-    console.log("Holaa")
-    table = document.getElementsByClassName("tr");
-    console.log(table.length);
-    var divs = document.getElementsByClassName("tr").length;
-    console.log("Hay " + divs + " elementos");
-
-  }**/
+  }
 }
 </script>
 
